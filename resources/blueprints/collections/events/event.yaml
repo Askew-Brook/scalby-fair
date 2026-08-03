@@ -1,0 +1,242 @@
+title: Event
+tabs:
+  main:
+    display: Event
+    sections:
+      -
+        display: Essential details
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Event name
+              required: true
+              validate:
+                - required
+          -
+            handle: summary
+            field:
+              type: textarea
+              display: Short summary
+              instructions: A concise description for event cards and search results.
+              character_limit: 220
+              required: true
+              validate:
+                - required
+          -
+            handle: event_types
+            field:
+              type: terms
+              display: Event types
+              taxonomies:
+                - event_types
+              mode: select
+              create: false
+              required: true
+              validate:
+                - required
+          -
+            handle: fair_year
+            field:
+              type: entries
+              display: Fair year
+              collections:
+                - fair_years
+              max_items: 1
+              mode: select
+              instructions: Link this event to the relevant annual Fair record.
+      -
+        display: Date and place
+        fields:
+          -
+            handle: start_at
+            field:
+              type: date
+              display: Starts
+              time_enabled: true
+              required: true
+              validate:
+                - required
+          -
+            handle: end_at
+            field:
+              type: date
+              display: Ends
+              time_enabled: true
+          -
+            handle: location
+            field:
+              type: text
+              display: Location name
+              required: true
+              validate:
+                - required
+          -
+            handle: address
+            field:
+              type: textarea
+              display: Address
+          -
+            handle: map_url
+            field:
+              type: link
+              display: Map link
+              instructions: Link to an external map. Do not paste embed code.
+      -
+        display: Description
+        fields:
+          -
+            handle: featured_image
+            field:
+              type: assets
+              display: Featured image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: events
+          -
+            handle: gallery
+            field:
+              type: assets
+              display: Image gallery
+              container: assets
+              mode: grid
+              folder: events
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Full description
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - quote
+                - link
+  practical:
+    display: Booking & practical information
+    sections:
+      -
+        display: Booking
+        fields:
+          -
+            handle: booking_status
+            field:
+              type: select
+              display: Booking status
+              default: not_required
+              options:
+                not_required: No booking required
+                available: Booking available
+                sold_out: Sold out
+                closed: Booking closed
+          -
+            handle: booking_url
+            field:
+              type: link
+              display: Booking link
+              if:
+                booking_status: 'equals available'
+          -
+            handle: booking_label
+            field:
+              type: text
+              display: Booking button label
+              default: Book your place
+              if:
+                booking_status: 'equals available'
+          -
+            handle: price
+            field:
+              type: text
+              display: Price
+              instructions: Use plain language, for example “£5 per person”.
+          -
+            handle: is_free
+            field:
+              type: toggle
+              display: Free to attend
+              default: false
+      -
+        display: Event status
+        fields:
+          -
+            handle: event_status
+            field:
+              type: select
+              display: Status
+              default: scheduled
+              options:
+                scheduled: Scheduled
+                postponed: Postponed
+                cancelled: Cancelled
+          -
+            handle: status_message
+            field:
+              type: textarea
+              display: Status message
+              instructions: Required for postponed or cancelled events. Explain what visitors need to know.
+              if:
+                event_status: 'not scheduled'
+          -
+            handle: featured
+            field:
+              type: toggle
+              display: Feature this event
+              default: false
+      -
+        display: Access and contact
+        fields:
+          -
+            handle: accessibility
+            field:
+              type: textarea
+              display: Accessibility information
+              instructions: Include step-free access, surfaces, seating and accessible facilities where known.
+          -
+            handle: contact_name
+            field:
+              type: text
+              display: Contact name or role
+          -
+            handle: contact_email
+            field:
+              type: text
+              input_type: email
+              display: Contact email
+          -
+            handle: contact_phone
+            field:
+              type: text
+              input_type: tel
+              display: Contact phone
+          -
+            handle: downloads
+            field:
+              type: assets
+              display: Downloads
+              container: assets
+              folder: downloads/events
+              mode: list
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              validate:
+                - required

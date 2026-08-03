@@ -1,0 +1,107 @@
+title: Article
+tabs:
+  main:
+    display: Article
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Headline
+              required: true
+              validate:
+                - required
+          -
+            handle: summary
+            field:
+              type: textarea
+              display: Summary
+              character_limit: 220
+              required: true
+              validate:
+                - required
+          -
+            handle: author_name
+            field:
+              type: text
+              display: Author
+          -
+            handle: featured_image
+            field:
+              type: assets
+              display: Featured image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: news
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Article content
+              required: true
+              validate:
+                - required
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - quote
+                - link
+                - image
+          -
+            handle: news_categories
+            field:
+              type: terms
+              display: Categories
+              taxonomies:
+                - news_categories
+              mode: select
+              create: true
+          -
+            handle: related_events
+            field:
+              type: entries
+              display: Related events
+              collections:
+                - events
+              mode: select
+          -
+            handle: gallery
+            field:
+              type: assets
+              display: Gallery
+              container: assets
+              folder: news
+              mode: grid
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              validate:
+                - required
+          -
+            handle: date
+            field:
+              type: date
+              display: Publication date
+              required: true
+              validate:
+                - required

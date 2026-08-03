@@ -1,0 +1,26 @@
+title: SEO
+fields:
+  -
+    handle: seo_title
+    field:
+      type: text
+      display: SEO title
+      instructions: Optional. Leave blank to use the page or entry title.
+      character_limit: 60
+  -
+    handle: seo_description
+    field:
+      type: textarea
+      display: SEO description
+      instructions: A short summary for search results. Leave blank to use the entry summary or the site default.
+      character_limit: 160
+  -
+    handle: share_image
+    field:
+      type: assets
+      display: Social sharing image
+      instructions: Optional landscape image used when this page is shared.
+      container: assets
+      max_files: 1
+      mode: list
+      folder: social

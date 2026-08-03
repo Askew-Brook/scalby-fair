@@ -1,0 +1,52 @@
+tree:
+  -
+    id: nav-whats-on
+    entry: events
+    children:
+      -
+        id: nav-fair-week
+        entry: fair-week
+      -
+        id: nav-fair-day-child
+        entry: fair-day
+  -
+    id: nav-fair-day
+    entry: fair-day
+  -
+    id: nav-scalby-walk
+    entry: scalby-walk
+  -
+    id: nav-get-involved
+    entry: volunteer
+    children:
+      -
+        id: nav-stall-bookings
+        entry: stall-bookings
+      -
+        id: nav-walk-bookings
+        entry: walk-bookings
+      -
+        id: nav-volunteer
+        entry: volunteer
+      -
+        id: nav-resources
+        entry: resources
+  -
+    id: nav-about
+    entry: about
+    children:
+      -
+        id: nav-history
+        entry: history
+      -
+        id: nav-committee
+        entry: committee
+      -
+        id: nav-contact
+        entry: contact
+  -
+    id: nav-news
+    entry: news
+  -
+    id: nav-donate
+    entry: donate

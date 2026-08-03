@@ -1,0 +1,15 @@
+title: Events
+route: '{mount}/{slug}'
+template: events/show
+layout: layouts/app
+revisions: true
+date: true
+sort_dir: asc
+mount: events
+taxonomies:
+  - event_types
+preview_targets:
+  -
+    label: Event
+    url: '{permalink}'
+    refresh: true

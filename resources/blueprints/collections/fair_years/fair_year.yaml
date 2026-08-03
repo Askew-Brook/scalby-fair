@@ -1,0 +1,152 @@
+title: Fair Year
+tabs:
+  main:
+    display: Annual details
+    sections:
+      -
+        display: Fair
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Record title
+              instructions: For example, “Scalby Fair 2027”.
+              required: true
+              validate:
+                - required
+          -
+            handle: year
+            field:
+              type: integer
+              display: Year
+              required: true
+              validate:
+                - required
+                - integer
+          -
+            handle: status
+            field:
+              type: select
+              display: Fair status
+              default: upcoming
+              options:
+                upcoming: Upcoming
+                underway: Underway
+                finished: Finished
+          -
+            handle: theme
+            field:
+              type: text
+              display: Theme
+              instructions: Optional. Leave blank until the theme is announced.
+          -
+            handle: introduction
+            field:
+              type: textarea
+              display: Annual introduction
+          -
+            handle: fair_week_start
+            field:
+              type: date
+              display: Fair Week starts
+              required: true
+              validate:
+                - required
+          -
+            handle: fair_week_end
+            field:
+              type: date
+              display: Fair Week ends
+              required: true
+              validate:
+                - required
+          -
+            handle: fair_day
+            field:
+              type: date
+              display: Fair Day
+              required: true
+              validate:
+                - required
+      -
+        display: Programme and bookings
+        fields:
+          -
+            handle: programme
+            field:
+              type: assets
+              display: Programme downloads
+              container: assets
+              folder: downloads/programmes
+              mode: list
+          -
+            handle: bookings_open
+            field:
+              type: toggle
+              display: Bookings are open
+              default: false
+          -
+            handle: stall_booking_url
+            field:
+              type: link
+              display: Stall booking link
+              if:
+                bookings_open: 'equals true'
+          -
+            handle: walk_booking_url
+            field:
+              type: link
+              display: Walk booking link
+              if:
+                bookings_open: 'equals true'
+      -
+        display: Imagery and notice
+        fields:
+          -
+            handle: hero_image
+            field:
+              type: assets
+              display: Annual hero image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: fair-years
+          -
+            handle: announcement
+            field:
+              type: textarea
+              display: Annual announcement
+              instructions: Optional time-sensitive notice shown near the top of the website.
+          -
+            handle: announcement_link
+            field:
+              type: link
+              display: Announcement link
+              if:
+                announcement: 'not null'
+          -
+            handle: announcement_link_label
+            field:
+              type: text
+              display: Announcement link label
+              if:
+                announcement: 'not null'
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              validate:
+                - required

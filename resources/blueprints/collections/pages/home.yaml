@@ -1,0 +1,121 @@
+title: Homepage
+tabs:
+  main:
+    display: Homepage
+    sections:
+      -
+        display: Hero
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Page title
+              required: true
+              validate:
+                - required
+          -
+            handle: hero_kicker
+            field:
+              type: text
+              display: Hero label
+          -
+            handle: hero_heading
+            field:
+              type: text
+              display: Hero heading
+              required: true
+              validate:
+                - required
+          -
+            handle: hero_text
+            field:
+              type: textarea
+              display: Hero text
+          -
+            handle: hero_image
+            field:
+              type: assets
+              display: Hero image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: homepage
+          -
+            handle: hero_link_label
+            field:
+              type: text
+              display: Primary button label
+          -
+            handle: hero_link
+            field:
+              type: link
+              display: Primary button link
+      -
+        display: Introduction
+        fields:
+          -
+            handle: introduction_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: introduction
+            field:
+              type: markdown
+              display: Introduction
+              buttons:
+                - bold
+                - italic
+                - link
+      -
+        display: Highlights
+        fields:
+          -
+            handle: fair_week_summary
+            field:
+              type: textarea
+              display: Fair Week summary
+          -
+            handle: fair_day_summary
+            field:
+              type: textarea
+              display: Fair Day summary
+          -
+            handle: walk_summary
+            field:
+              type: textarea
+              display: Scalby Walk summary
+          -
+            handle: archive_heading
+            field:
+              type: text
+              display: Off-season heading
+              instructions: Shown when there are no upcoming events.
+          -
+            handle: archive_text
+            field:
+              type: textarea
+              display: Off-season text
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+          -
+            handle: template
+            field:
+              type: hidden
+              default: home

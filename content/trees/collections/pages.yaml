@@ -1,3 +1,37 @@
 tree:
   -
     entry: home
+  -
+    entry: events
+  -
+    entry: fair-week
+  -
+    entry: fair-day
+  -
+    entry: scalby-walk
+  -
+    entry: stall-bookings
+  -
+    entry: walk-bookings
+  -
+    entry: about
+  -
+    entry: history
+  -
+    entry: committee
+  -
+    entry: volunteer
+  -
+    entry: donate
+  -
+    entry: resources
+  -
+    entry: news
+  -
+    entry: newsletter
+  -
+    entry: contact
+  -
+    entry: policies
+  -
+    entry: privacy

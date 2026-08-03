@@ -1,0 +1,11 @@
+title: Fair Years
+template: fair_years/show
+layout: layouts/app
+revisions: true
+date: true
+sort_dir: desc
+preview_targets:
+  -
+    label: Homepage
+    url: /
+    refresh: true

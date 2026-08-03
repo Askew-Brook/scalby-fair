@@ -1,0 +1,15 @@
+title: News
+route: '{mount}/{slug}'
+template: news/show
+layout: layouts/app
+revisions: true
+date: true
+sort_dir: desc
+mount: news
+taxonomies:
+  - news_categories
+preview_targets:
+  -
+    label: Article
+    url: '{permalink}'
+    refresh: true

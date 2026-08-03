@@ -1,0 +1,187 @@
+title: Site Settings
+tabs:
+  contact:
+    display: Contact & links
+    sections:
+      -
+        display: Contact details
+        fields:
+          -
+            handle: contact_email
+            field:
+              type: text
+              input_type: email
+              display: Public email address
+          -
+            handle: contact_phone
+            field:
+              type: text
+              input_type: tel
+              display: Public phone number
+          -
+            handle: postal_address
+            field:
+              type: textarea
+              display: Postal address
+          -
+            handle: social_links
+            field:
+              type: grid
+              display: Social links
+              add_row: Add social link
+              fields:
+                -
+                  handle: label
+                  field:
+                    type: text
+                    display: Name
+                    validate:
+                      - required
+                -
+                  handle: url
+                  field:
+                    type: link
+                    display: Link
+                    validate:
+                      - required
+  actions:
+    display: Actions
+    sections:
+      -
+        display: External services
+        fields:
+          -
+            handle: donation_url
+            field:
+              type: link
+              display: Donation link
+          -
+            handle: newsletter_url
+            field:
+              type: link
+              display: Newsletter sign-up link
+          -
+            handle: default_stall_booking_url
+            field:
+              type: link
+              display: Default stall booking link
+          -
+            handle: default_walk_booking_url
+            field:
+              type: link
+              display: Default walk booking link
+      -
+        display: Emergency notice
+        fields:
+          -
+            handle: emergency_notice
+            field:
+              type: textarea
+              display: Notice text
+              instructions: Optional urgent, site-wide message. Remove the text to hide the notice.
+          -
+            handle: emergency_notice_link
+            field:
+              type: link
+              display: Notice link
+              if:
+                emergency_notice: 'not null'
+          -
+            handle: emergency_notice_label
+            field:
+              type: text
+              display: Notice link label
+              if:
+                emergency_notice: 'not null'
+  impact:
+    display: Impact
+    sections:
+      -
+        fields:
+          -
+            handle: statistics
+            field:
+              type: grid
+              display: Homepage statistics
+              instructions: Keep to four or five short, verifiable facts.
+              min_rows: 1
+              max_rows: 5
+              add_row: Add statistic
+              fields:
+                -
+                  handle: value
+                  field:
+                    type: text
+                    display: Figure
+                    validate:
+                      - required
+                -
+                  handle: label
+                  field:
+                    type: text
+                    display: Meaning
+                    validate:
+                      - required
+  footer:
+    display: Footer
+    sections:
+      -
+        fields:
+          -
+            handle: organisation_name
+            field:
+              type: text
+              display: Organisation name
+              required: true
+              validate:
+                - required
+          -
+            handle: footer_text
+            field:
+              type: textarea
+              display: Footer introduction
+          -
+            handle: charity_details
+            field:
+              type: text
+              display: Charity or organisation details
+              instructions: Optional. Only add verified registration wording.
+          -
+            handle: askew_brook_credit
+            field:
+              type: link
+              display: Askew Brook credit link
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            handle: site_name
+            field:
+              type: text
+              display: Site name
+              required: true
+              validate:
+                - required
+          -
+            handle: default_seo_title
+            field:
+              type: text
+              display: Default SEO title
+              character_limit: 60
+          -
+            handle: default_seo_description
+            field:
+              type: textarea
+              display: Default SEO description
+              character_limit: 160
+          -
+            handle: default_share_image
+            field:
+              type: assets
+              display: Default social sharing image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: social

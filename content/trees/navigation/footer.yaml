@@ -1,0 +1,16 @@
+tree:
+  -
+    id: footer-contact
+    entry: contact
+  -
+    id: footer-resources
+    entry: resources
+  -
+    id: footer-newsletter
+    entry: newsletter
+  -
+    id: footer-policies
+    entry: policies
+  -
+    id: footer-privacy
+    entry: privacy

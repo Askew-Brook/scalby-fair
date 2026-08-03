@@ -1,0 +1,11 @@
+title: News Category
+sections:
+  main:
+    display: Details
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          display: Name
+          validate: required

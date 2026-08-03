@@ -1,0 +1,113 @@
+title: Page
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              required: true
+              validate:
+                - required
+          -
+            handle: eyebrow
+            field:
+              type: text
+              display: Eyebrow
+              instructions: Optional short label above the page title.
+          -
+            handle: introduction
+            field:
+              type: textarea
+              display: Introduction
+              instructions: One or two sentences that introduce this page.
+          -
+            handle: featured_image
+            field:
+              type: assets
+              display: Featured image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: pages
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Page content
+              instructions: Use headings, short paragraphs and lists to keep the page easy to scan.
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - quote
+                - link
+                - image
+          -
+            handle: callout_heading
+            field:
+              type: text
+              display: Callout heading
+              instructions: Optional closing call to action.
+          -
+            handle: callout_text
+            field:
+              type: textarea
+              display: Callout text
+              if:
+                callout_heading: 'not null'
+          -
+            handle: callout_link
+            field:
+              type: link
+              display: Callout link
+              if:
+                callout_heading: 'not null'
+          -
+            handle: callout_label
+            field:
+              type: text
+              display: Callout button label
+              if:
+                callout_heading: 'not null'
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate:
+                - required
+          -
+            handle: parent
+            field:
+              type: entries
+              collections:
+                - pages
+              max_items: 1
+              localizable: true
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+              instructions: Only change this when the page has a dedicated layout.
+              default: page
