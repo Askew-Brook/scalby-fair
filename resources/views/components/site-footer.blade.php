@@ -8,7 +8,7 @@
     <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-18">
         <div class="grid gap-12 lg:grid-cols-12">
             <div class="lg:col-span-5">
-                <a href="/" class="inline-flex text-cream-50" aria-label="Scalby Fair home"><x-site-mark /></a>
+                <a href="/" class="inline-flex text-cream-50 hover:text-wheat-300" aria-label="Scalby Fair home"><x-site-mark /></a>
                 @if($siteSettings?->footer_text)<p class="mt-6 max-w-md text-pretty text-hedge-100">{{ $siteSettings->footer_text }}</p>@endif
                 @if($siteSettings?->charity_details)<p class="mt-4 text-sm text-hedge-100/80">{{ $siteSettings->charity_details }}</p>@endif
             </div>

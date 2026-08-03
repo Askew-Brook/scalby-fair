@@ -7,6 +7,7 @@ template: page
 eyebrow: Lend a hand
 introduction: Volunteers are at the heart of Fair Week, Fair Day and the Scalby Walk.
 featured_image: Scalby-Fair_BBQ_2025.webp
+supporting_image: SF2026-Comm-Annoucment.png
 content: |-
   There are many ways to help, from planning and preparation to stewarding, practical jobs and welcoming visitors on the day.
 

@@ -1,22 +1,39 @@
-@props(['title', 'eyebrow' => null, 'introduction' => null, 'image' => null])
-<header class="relative overflow-hidden border-b border-hedge-700/15 bg-cream-100">
-    <div class="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-12 lg:items-center lg:py-24">
-        <div class="lg:col-span-7">
-            @if($eyebrow)<p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">{{ $eyebrow }}</p>@endif
-            <h1 class="font-serif text-5xl leading-[0.98] tracking-tight text-balance text-hedge-900 sm:text-7xl {{ $eyebrow ? 'mt-4' : '' }}">{{ $title }}</h1>
-            @if($introduction)<p class="mt-6 max-w-2xl text-xl leading-8 text-pretty text-hedge-800/85">{{ $introduction }}</p>@endif
+@props(['title', 'eyebrow' => null, 'introduction' => null, 'image' => null, 'supportingImage' => null])
+@php($hasImage = (bool) \Statamic\View\Blade\value($image))
+<header @class([
+    'relative isolate overflow-hidden border-b border-hedge-700/15',
+    'bg-cream-100' => $hasImage,
+    'bg-hedge-900 text-cream-50' => !$hasImage,
+])>
+    @unless($hasImage)
+        <div class="absolute -right-6 -bottom-24 -z-10 select-none font-serif text-[18rem] leading-none text-cream-50/[0.035] sm:text-[26rem]" aria-hidden="true">1977</div>
+    @endunless
+    <div @class([
+        'mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:items-center',
+        'py-14 sm:py-20 lg:py-24' => !$hasImage,
+        'pt-14 pb-16 sm:pt-20 sm:pb-24 lg:pt-20 lg:pb-28' => $hasImage,
+    ])>
+        <div @class(['lg:col-span-6' => $hasImage, 'max-w-4xl lg:col-span-9' => !$hasImage])>
+            @if($eyebrow)<p @class(['text-sm font-semibold tracking-[0.16em] uppercase', 'text-barn-600' => $hasImage, 'text-wheat-300' => !$hasImage])>{{ $eyebrow }}</p>@endif
+            <h1 @class([
+                'font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-7xl',
+                'mt-4' => $eyebrow,
+                'text-hedge-900' => $hasImage,
+                'text-cream-50' => !$hasImage,
+            ])>{{ $title }}</h1>
+            @if($introduction)<p @class(['mt-6 max-w-2xl text-xl leading-8 text-pretty', 'text-hedge-800/85' => $hasImage, 'text-hedge-100' => !$hasImage])>{{ $introduction }}</p>@endif
         </div>
-        @if($image)
-            <div class="relative lg:col-span-5">
+        @if($hasImage)
+            <div class="relative lg:col-span-5 lg:col-start-8 lg:pb-5">
                 <div class="absolute -top-4 -right-4 h-24 w-24 border-t-2 border-r-2 border-wheat-500" aria-hidden="true"></div>
-                <x-responsive-image :asset="$image" :width="1100" :height="825" sizes="(min-width: 1024px) 42vw, 100vw" class="aspect-[4/3] w-full object-cover shadow-soft" />
-            </div>
-        @else
-            <div class="hidden lg:col-span-5 lg:block" aria-hidden="true">
-                <div class="relative mx-auto aspect-square max-w-72 rounded-full border border-wheat-500/40">
-                    <div class="absolute inset-7 rounded-full border border-barn-500/30"></div>
-                    <div class="absolute inset-14 grid place-items-center rounded-full bg-hedge-700 font-serif text-6xl text-cream-50">SF</div>
+                <div class="image-zoom shadow-soft">
+                    <x-responsive-image :asset="$image" :width="1100" :height="900" sizes="(min-width: 1024px) 42vw, 100vw" class="aspect-[11/9] w-full object-cover" />
                 </div>
+                @if($supportingImage)
+                    <div class="image-zoom absolute -bottom-8 -left-5 w-28 border-[6px] border-cream-100 shadow-soft sm:-left-8 sm:w-40 lg:-left-14 lg:w-44">
+                        <x-responsive-image :asset="$supportingImage" :width="520" :height="520" sizes="176px" alt="" class="aspect-square w-full object-cover" />
+                    </div>
+                @endif
             </div>
         @endif
     </div>

@@ -7,8 +7,11 @@ template: page
 eyebrow: Rooted in the community
 introduction: Scalby Fair brings Scalby, Newby and the wider community together through shared events and fundraising.
 featured_image: SF-2026-Fair-Day-Parade-1-scaled-e1782569315833.webp
+supporting_image: images.jpeg
 content: |-
   The Fair is more than one summer day. Fair Week, Fair Day and the Scalby Walk create opportunities to meet, take part, volunteer and support good causes.
 
   Its character comes from the people who contribute time, ideas, performances, stalls and practical help each year.
+
+  Every generation brings something new, but the purpose remains simple: share good company, celebrate local life and raise money for good causes.
 ---

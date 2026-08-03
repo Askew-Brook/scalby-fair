@@ -7,6 +7,7 @@ template: page
 eyebrow: The heart of Fair Week
 introduction: Fair Day welcomes the community for a traditional day of stalls, activities and entertainment.
 featured_image: 'images (1).jpeg'
+supporting_image: SF-2026-Nancy-Tilley-on-stageRS-e1782569879860.webp
 content: |-
   Fair Day is the centrepiece of the week, bringing together local groups, good causes, stallholders, volunteers and visitors.
 

@@ -7,6 +7,7 @@ template: page
 eyebrow: A week for the community
 introduction: A varied programme of events builds towards Fair Day each June.
 featured_image: SF_Celidh_2025.jpeg
+supporting_image: SF_Wine-Tasting-2025.jpeg
 content: |-
   Fair Week brings neighbours and visitors together through a programme of community events.
 

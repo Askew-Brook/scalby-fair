@@ -18,11 +18,12 @@
     $events = $query->get();
     $groupedEvents = $events->groupBy(fn ($event) => \Illuminate\Support\Carbon::parse($event->start_at)->toDateString());
     $eventTypes = Term::query()->where('taxonomy', 'event_types')->get()->sortBy('title');
+    $emptyImages = collect([\Statamic\View\Blade\value($supporting_image), \Statamic\View\Blade\value($featured_image)])->filter();
 @endphp
 
 <x-layouts.app :title="$title" :seo-title="$seo_title" :seo-description="$seo_description" :share-image="$share_image">
     <main id="main-content">
-        <x-page-hero :title="$title" :eyebrow="$eyebrow" :introduction="$introduction" :image="$featured_image" />
+        <x-page-hero :title="$title" :eyebrow="$eyebrow" :introduction="$introduction" :image="$featured_image" :supporting-image="$supporting_image" />
         <div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-18">
             <x-breadcrumbs :items="[['title' => $title]]" />
 
@@ -53,6 +54,10 @@
                         </section>
                     @endforeach
                 </div>
+            @elseif(!$selectedType && $period === 'upcoming')
+                <x-photo-empty-state class="mt-12" heading="The next programme is taking shape" text="The committee is preparing the next round of community events. In the meantime, revisit the atmosphere of the Fair and join the newsletter for announcements." :images="$emptyImages">
+                    <div class="mt-7 flex flex-wrap gap-4"><x-button href="/newsletter">Join the newsletter</x-button><x-button href="/history" variant="secondary">Explore our history</x-button></div>
+                </x-photo-empty-state>
             @else
                 <x-empty-state class="mt-12" heading="No events match those filters" text="Try another event type or switch between upcoming and past events.">
                     <x-button href="/events" variant="secondary" class="mt-6">Clear filters</x-button>

@@ -7,6 +7,7 @@ template: page
 eyebrow: Easter Monday
 introduction: A community walk held on Easter Monday and enjoyed as part of the Scalby Fair tradition.
 featured_image: IMG_9704-1.jpeg
+supporting_image: SF-2026-Fair-Day-Parade-1-scaled-e1782569315833.webp
 content: |-
   The Scalby Walk is a year-round part of the Fair calendar, bringing people together well before Fair Week arrives.
 

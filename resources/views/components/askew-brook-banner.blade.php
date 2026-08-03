@@ -1,11 +1,13 @@
 @php($siteSettings = globalSet('site'))
 
 @if($siteSettings?->askew_brook_banner_enabled)
-    <aside class="border-t border-hedge-700/15 bg-wheat-300 text-hedge-900" aria-labelledby="askew-brook-heading">
+    <aside class="relative isolate overflow-hidden border-t border-hedge-700/15 bg-wheat-300 text-hedge-900" aria-labelledby="askew-brook-heading">
+        <div class="absolute -top-28 -right-24 -z-10 size-80 rounded-full border border-hedge-900/10" aria-hidden="true"></div>
         <div class="mx-auto grid max-w-7xl gap-7 px-5 py-9 sm:px-8 sm:py-11 lg:grid-cols-12 lg:items-center">
             <div class="lg:col-span-3">
                 @if($siteSettings?->askew_brook_logo)
-                    <x-responsive-image :asset="$siteSettings->askew_brook_logo" :width="420" :height="186" sizes="260px" class="h-auto w-52 object-contain object-left sm:w-60" />
+                    <p class="mb-3 text-xs font-semibold tracking-[0.16em] text-hedge-900/65 uppercase">Website partner</p>
+                    <x-responsive-image :asset="$siteSettings->askew_brook_logo" :width="420" :height="186" sizes="260px" alt="Askew Brook" class="h-auto w-52 object-contain object-left sm:w-60" />
                 @else
                     <p class="font-serif text-3xl">Askew Brook</p>
                 @endif
@@ -16,7 +18,7 @@
             </div>
             @if($siteSettings?->askew_brook_url && $siteSettings?->askew_brook_label)
                 <div class="lg:col-span-3 lg:text-right">
-                    <a href="{{ $siteSettings->askew_brook_url }}" class="inline-flex min-h-12 items-center justify-center border border-hedge-900 px-5 py-3 font-semibold text-hedge-900 hover:bg-hedge-900 hover:text-cream-50" target="_blank" rel="noopener">{{ $siteSettings->askew_brook_label }}<span class="sr-only"> (opens in a new tab)</span></a>
+                    <a href="{{ $siteSettings->askew_brook_url }}" class="group inline-flex min-h-12 items-center justify-center border-2 border-hedge-900 px-5 py-3 font-semibold text-hedge-900 hover:-translate-y-0.5 hover:bg-hedge-900 hover:text-cream-50" target="_blank" rel="noopener">{{ $siteSettings->askew_brook_label }}<span class="ml-2 inline-block transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
                 </div>
             @endif
         </div>

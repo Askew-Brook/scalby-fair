@@ -7,6 +7,7 @@ template: booking
 eyebrow: Join Fair Day
 introduction: Information for organisations, traders and good causes interested in applying for a Fair Day stall.
 featured_image: 'images (2).jpeg'
+supporting_image: Scalby-Fair_BBQ_2025.webp
 content: |-
   Please review the current stallholder information before applying. Details and availability may change from year to year.
 

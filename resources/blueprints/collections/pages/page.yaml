@@ -35,6 +35,16 @@ tabs:
               mode: list
               folder: pages
           -
+            handle: supporting_image
+            field:
+              type: assets
+              display: Supporting image
+              instructions: Optional second photograph used as an editorial detail in the page header.
+              container: assets
+              max_files: 1
+              mode: list
+              folder: pages
+          -
             handle: content
             field:
               type: markdown

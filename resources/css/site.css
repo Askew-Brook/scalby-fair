@@ -40,6 +40,11 @@
     ::selection { background: var(--color-wheat-300); color: var(--color-hedge-900); }
     :focus-visible { outline: 3px solid var(--color-wheat-500); outline-offset: 4px; }
     a, button, summary, input, select { border-radius: 0.125rem; }
+    a, button, summary {
+        transition-duration: 180ms;
+        transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+        transition-timing-function: ease-out;
+    }
     button, summary, select { cursor: pointer; }
 }
 
@@ -85,10 +90,14 @@
         text-decoration-thickness: 0.08em;
         text-underline-offset: 0.2em;
     }
+    .prose a:hover { color: var(--color-barn-700); }
+    .prose strong { color: var(--color-hedge-900); }
     .prose ul, .prose ol { padding-left: 1.4em; }
     .prose ul { list-style: disc; }
     .prose ol { list-style: decimal; }
-    .prose blockquote { border-left: 0.3rem solid var(--color-wheat-300); color: var(--color-hedge-800); font-style: italic; padding-left: 1.25rem; }
+    .prose li + li { margin-top: 0.45em; }
+    .prose li::marker { color: var(--color-barn-600); }
+    .prose blockquote { border-left: 0.3rem solid var(--color-wheat-300); color: var(--color-hedge-800); font-size: 1.15em; font-style: italic; padding-left: 1.25rem; }
     .prose img { height: auto; max-width: 100%; }
     .field-label {
         color: var(--color-hedge-900);
@@ -107,6 +116,23 @@
         padding: 0.65rem 0.85rem;
         width: 100%;
     }
+    .field-control:hover { border-color: var(--color-hedge-600); }
+    .field-control:focus-visible { border-color: var(--color-hedge-700); outline-color: var(--color-wheat-500); }
+    .interactive-card {
+        transition: border-color 220ms ease-out, box-shadow 220ms ease-out, transform 220ms ease-out;
+    }
+    .image-zoom { overflow: hidden; }
+    .image-zoom > img { transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
+}
+
+@media (hover: hover) {
+    .interactive-card:hover {
+        border-color: rgb(71 99 63 / 0.35);
+        box-shadow: var(--shadow-soft);
+        transform: translateY(-0.25rem);
+    }
+    .interactive-card:hover .image-zoom > img,
+    .image-zoom:hover > img { transform: scale(1.025); }
 }
 
 @keyframes bunting-sway {
@@ -117,4 +143,5 @@
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .bunting > span { animation: none; }
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
