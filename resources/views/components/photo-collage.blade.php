@@ -1,5 +1,8 @@
 @props(['images'])
-@php($images = collect(\Statamic\View\Blade\value($images))->filter()->take(3)->values())
+@php
+    $images = \Statamic\View\Blade\value($images);
+    $images = ($images instanceof \Statamic\Contracts\Query\Builder ? $images->get() : collect($images))->filter()->take(3)->values();
+@endphp
 
 @if($images->isNotEmpty())
     <div {{ $attributes->class(['grid grid-cols-2 gap-3 sm:gap-4']) }}>

@@ -1,4 +1,5 @@
 @php
+    use Statamic\Contracts\Query\Builder as StatamicQueryBuilder;
     use Statamic\Facades\Entry;
 
     $siteSettings = globalSet('site');
@@ -11,7 +12,14 @@
         ->get();
     $featuredEvents = $upcomingEvents->sortByDesc(fn ($event) => (bool) $event->featured)->take(4);
     $latestNews = Entry::query()->where('collection', 'news')->whereStatus('published')->orderBy('date', 'desc')->limit(3)->get();
-    $communityImages = collect(\Statamic\View\Blade\value($community_gallery))->filter()->values();
+    $resolveAssets = static function ($value) {
+        $resolved = \Statamic\View\Blade\value($value);
+
+        return ($resolved instanceof StatamicQueryBuilder ? $resolved->get() : collect($resolved))->filter()->values();
+    };
+    $heroSupportingImages = $resolveAssets($hero_supporting_images);
+    $programmeImages = $resolveAssets($programme_images);
+    $communityImages = $resolveAssets($community_gallery);
 @endphp
 
 <x-layouts.app :title="$title" :seo-title="$seo_title" :seo-description="$seo_description" :share-image="$share_image">
@@ -49,7 +57,7 @@
                     <x-section-heading eyebrow="Welcome" :heading="$introduction_heading" />
                     <div class="prose mt-7">{!! \Statamic\Statamic::modify($introduction)->markdown() !!}</div>
                 </div>
-                <x-photo-collage :images="$hero_supporting_images" class="lg:col-span-6 lg:col-start-7" />
+                <x-photo-collage :images="$heroSupportingImages" class="lg:col-span-6 lg:col-start-7" />
             </div>
         </section>
 
@@ -64,7 +72,7 @@
                         @foreach($featuredEvents as $event)<x-event-card :event="$event" />@endforeach
                     </div>
                 @else
-                    <x-photo-empty-state class="mt-12" :heading="$archive_heading" :text="$archive_text" :images="$programme_images">
+                    <x-photo-empty-state class="mt-12" :heading="$archive_heading" :text="$archive_text" :images="$programmeImages">
                         <div class="mt-7 flex flex-wrap gap-4">
                             <x-button href="/history" variant="secondary">Explore our history</x-button>
                             <a href="/volunteer" class="inline-flex min-h-12 items-center font-semibold text-barn-700 underline decoration-2 underline-offset-4">Get involved</a>
