@@ -1,8 +1,10 @@
-@props(['event'])
+@props(['event', 'headingLevel' => 3])
 @php
     $startAt = $event->start_at ? \Illuminate\Support\Carbon::parse($event->start_at) : null;
     $endAt = $event->end_at ? \Illuminate\Support\Carbon::parse($event->end_at) : null;
-    $status = $event->event_status ?: 'scheduled';
+    $status = \Statamic\View\Blade\value($event->event_status) ?: 'scheduled';
+    $bookingUrl = \Statamic\View\Blade\value($event->booking_url);
+    $timeTbc = (bool) \Statamic\View\Blade\value($event->time_tbc);
     $types = collect($event->event_types ?? []);
 @endphp
 
@@ -16,16 +18,20 @@
     @endif
     <div class="p-6 sm:p-7">
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-            @if($startAt)<p class="font-semibold text-barn-700">{{ $startAt->format('D j M, g:ia') }}@if($endAt)–{{ $endAt->format('g:ia') }}@endif</p>@endif
-            @if($status !== 'scheduled')<span class="border border-barn-600 bg-barn-100 px-2 py-0.5 text-xs font-semibold tracking-[0.1em] text-barn-700 uppercase">{{ $status }}</span>@endif
+            @if($startAt)<p class="font-semibold text-barn-700">{{ $startAt->format('D j M') }}@if($timeTbc) · time TBC @else, {{ $startAt->format('g:ia') }}@if($endAt)–{{ $endAt->format('g:ia') }}@endif @endif</p>@endif
+            @if($status !== 'scheduled')<span class="bg-barn-600 px-2.5 py-1 text-xs font-bold tracking-[0.12em] text-white uppercase">{{ $status }}</span>@endif
         </div>
         @if($types->isNotEmpty())<p class="mt-3 text-xs font-semibold tracking-[0.12em] text-hedge-600 uppercase">{{ $types->pluck('title')->join(' · ') }}</p>@endif
-        <h3 class="mt-2 font-serif text-2xl tracking-tight text-balance text-hedge-900 sm:text-3xl"><a href="{{ $event->url() }}" class="group-hover:text-barn-700">{{ $event->title }}<span aria-hidden="true" class="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span></a></h3>
+        @if((int) $headingLevel === 4)
+            <h4 class="mt-2 font-serif text-2xl tracking-tight text-balance text-hedge-900 sm:text-3xl"><a href="{{ $event->url() }}" class="group-hover:text-barn-700">{{ $event->title }}<span aria-hidden="true" class="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span></a></h4>
+        @else
+            <h3 class="mt-2 font-serif text-2xl tracking-tight text-balance text-hedge-900 sm:text-3xl"><a href="{{ $event->url() }}" class="group-hover:text-barn-700">{{ $event->title }}<span aria-hidden="true" class="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span></a></h3>
+        @endif
         @if($event->summary)<p class="mt-3 text-pretty text-hedge-800/80">{{ $event->summary }}</p>@endif
         @if($event->location)<p class="mt-4 text-sm font-semibold text-hedge-700">{{ $event->location }}</p>@endif
         <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             <a href="{{ $event->url() }}" class="font-semibold text-barn-700 underline decoration-2 underline-offset-4">Event details</a>
-            @if($event->booking_url)<a href="{{ $event->booking_url }}" class="font-semibold text-hedge-700 underline decoration-2 underline-offset-4" rel="noopener">Booking available</a>@endif
+            @if($bookingUrl)<a href="{{ $bookingUrl }}" class="font-semibold text-hedge-700 underline decoration-2 underline-offset-4" rel="noopener">Booking available</a>@endif
         </div>
     </div>
 </article>

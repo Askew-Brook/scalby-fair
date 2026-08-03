@@ -3,11 +3,12 @@ id: contact
 blueprint: page
 title: Contact
 slug: contact
-template: page
+template: contact
 eyebrow: Get in touch
 introduction: Questions, ideas and offers of help from across the community are always welcome.
 featured_image: SF2026-Comm-Annoucment.png
 supporting_image: SF-2026-Fair-Day-Parade-1-scaled-e1782569315833.webp
 content: |-
-  For questions about a specific event, use the contact details on the event page where available. For everything else, the Fair committee’s public contact details are shown below when confirmed.
+  Send the committee a message using the form below. Choose the closest subject so your enquiry reaches the right volunteer, and include the event or activity you are asking about where relevant.
+seo_description: Contact the Scalby Fair Committee about Fair Week, events, volunteering, stall bookings, the Scalby Walk or photography competition.
 ---

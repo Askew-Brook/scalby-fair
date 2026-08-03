@@ -1,0 +1,43 @@
+title: About Scalby Fair
+tabs:
+  main:
+    display: About
+    sections:
+      -
+        display: Introduction
+        fields:
+          - { handle: title, field: { type: text, display: Title, required: true, validate: [required] } }
+          - { handle: eyebrow, field: { type: text, display: Eyebrow } }
+          - { handle: introduction, field: { type: textarea, display: Introduction, required: true } }
+          - { handle: featured_image, field: { type: assets, display: Featured image, container: assets, max_files: 1, mode: list } }
+          - { handle: supporting_image, field: { type: assets, display: Supporting image, container: assets, max_files: 1, mode: list } }
+          -
+            handle: content
+            field:
+              type: markdown
+              display: About the Fair
+              buttons: [h2, h3, bold, italic, unorderedlist, link]
+      -
+        display: Community impact
+        fields:
+          - { handle: impact_total, field: { type: text, display: Current donation total, instructions: Keep this editable until the committee confirms each new total. } }
+          -
+            handle: beneficiary_groups
+            field:
+              type: grid
+              display: Groups supported
+              add_row: Add a group
+              fields:
+                - { handle: group, field: { type: text, display: Group heading, required: true } }
+                - { handle: beneficiaries, field: { type: textarea, display: Beneficiaries, required: true } }
+  seo:
+    display: SEO
+    sections:
+      - { fields: [{ import: seo }] }
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          - { handle: slug, field: { type: slug, validate: [required] } }
+          - { handle: template, field: { type: hidden, default: about } }

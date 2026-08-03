@@ -16,6 +16,10 @@ tree:
     id: nav-scalby-walk
     entry: scalby-walk
   -
+    id: nav-photography-competition
+    entry: photography-competition-2026
+    title: 'Photo Competition'
+  -
     id: nav-get-involved
     entry: volunteer
     children:
@@ -39,8 +43,16 @@ tree:
         id: nav-history
         entry: history
       -
+        id: nav-village-history
+        entry: village-history
+        title: 'The History of Scalby'
+      -
         id: nav-committee
         entry: committee
+      -
+        id: nav-community-impact
+        title: 'Community Impact'
+        url: '/about#community-impact'
       -
         id: nav-contact
         entry: contact

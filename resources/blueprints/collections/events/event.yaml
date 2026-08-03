@@ -65,6 +65,13 @@ tabs:
               display: Ends
               time_enabled: true
           -
+            handle: time_tbc
+            field:
+              type: toggle
+              display: Time to be confirmed
+              instructions: Show the date without a time until timings are known.
+              default: false
+          -
             handle: location
             field:
               type: text
@@ -156,6 +163,12 @@ tabs:
               display: Price
               instructions: Use plain language, for example “£5 per person”.
           -
+            handle: booking_information
+            field:
+              type: textarea
+              display: Booking information
+              instructions: Explain where tickets are available or whether visitors can simply turn up.
+          -
             handle: is_free
             field:
               type: toggle
@@ -197,6 +210,12 @@ tabs:
               type: textarea
               display: Accessibility information
               instructions: Include step-free access, surfaces, seating and accessible facilities where known.
+          -
+            handle: organiser
+            field:
+              type: text
+              display: Organiser
+              instructions: The committee, venue or partner responsible for the event.
           -
             handle: contact_name
             field:

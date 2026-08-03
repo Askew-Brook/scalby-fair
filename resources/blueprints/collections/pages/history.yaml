@@ -1,0 +1,53 @@
+title: Editorial History
+tabs:
+  main:
+    display: History
+    sections:
+      -
+        display: Introduction
+        fields:
+          - { handle: title, field: { type: text, display: Title, required: true, validate: [required] } }
+          - { handle: eyebrow, field: { type: text, display: Eyebrow } }
+          - { handle: introduction, field: { type: textarea, display: Editorial introduction, required: true } }
+          - { handle: author, field: { type: text, display: Original author } }
+          - { handle: author_note, field: { type: textarea, display: Attribution and thanks } }
+          - { handle: featured_image, field: { type: assets, display: Featured image, container: assets, max_files: 1, mode: list } }
+          - { handle: supporting_image, field: { type: assets, display: Supporting image, container: assets, max_files: 1, mode: list } }
+      -
+        display: Chapters
+        fields:
+          -
+            handle: chapters
+            field:
+              type: grid
+              display: Historical chapters
+              add_row: Add a chapter
+              reorderable: true
+              fields:
+                - { handle: heading, field: { type: text, display: Heading, required: true } }
+                - { handle: content, field: { type: markdown, display: Chapter text, required: true, buttons: [h3, bold, italic, unorderedlist, orderedlist, quote, link] } }
+                - { handle: image, field: { type: assets, display: Optional image, container: assets, max_files: 1, mode: list } }
+      -
+        display: Presidents and Chairs
+        fields:
+          -
+            handle: leaders
+            field:
+              type: grid
+              display: Complete appointments record
+              add_row: Add a year
+              fields:
+                - { handle: year, field: { type: integer, display: Year, required: true } }
+                - { handle: president, field: { type: text, display: President } }
+                - { handle: chair, field: { type: text, display: Chair, required: true } }
+  seo:
+    display: SEO
+    sections:
+      - { fields: [{ import: seo }] }
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          - { handle: slug, field: { type: slug, validate: [required] } }
+          - { handle: template, field: { type: hidden, default: history } }

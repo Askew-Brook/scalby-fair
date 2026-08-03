@@ -18,6 +18,8 @@ tree:
   -
     entry: history
   -
+    entry: village-history
+  -
     entry: committee
   -
     entry: volunteer

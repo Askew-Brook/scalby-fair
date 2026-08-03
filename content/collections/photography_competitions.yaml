@@ -1,0 +1,11 @@
+title: Photography Competitions
+route: 'photography-competition/{slug}'
+template: photography-competitions/show
+layout: layouts/app
+revisions: true
+sort_dir: desc
+preview_targets:
+  -
+    label: Competition page
+    url: '{permalink}'
+    refresh: true

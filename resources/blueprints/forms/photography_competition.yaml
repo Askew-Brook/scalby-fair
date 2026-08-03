@@ -1,0 +1,88 @@
+title: Photography Competition Entry
+fields:
+  -
+    handle: competition_year
+    field:
+      type: integer
+      display: Competition year
+      validate:
+        - required
+        - integer
+  -
+    handle: entrant_name
+    field:
+      type: text
+      display: Your name
+      validate:
+        - required
+        - 'max:120'
+  -
+    handle: email
+    field:
+      type: text
+      input_type: email
+      display: Email address
+      validate:
+        - required
+        - email
+        - 'max:160'
+  -
+    handle: category
+    field:
+      type: select
+      display: Competition category
+      options:
+        fair_day: Fair Day
+        fair_week_events: Fair Week Events
+        community_spirit: Community Spirit
+        families_having_fun: Families Having Fun
+        performers_entertainment: 'Performers & Entertainment'
+        village_life: Village Life
+        behind_the_scenes: Behind the Scenes
+        creative_artistic: Creative / Artistic Image
+      validate:
+        - required
+  -
+    handle: photo_title
+    field:
+      type: text
+      display: Photo title
+      validate:
+        - 'nullable'
+        - 'max:160'
+  -
+    handle: photo_location
+    field:
+      type: text
+      display: Where was the photograph taken?
+      validate:
+        - required
+        - 'max:200'
+  -
+    handle: photo_description
+    field:
+      type: textarea
+      display: Short description
+      validate:
+        - 'nullable'
+        - 'max:1000'
+  -
+    handle: photographs
+    field:
+      type: assets
+      display: Photographs
+      container: assets
+      folder: competition-entries
+      min_files: 1
+      max_files: 5
+      validate:
+        - required
+        - 'max_filesize:10240'
+        - 'mimes:jpg,jpeg,png,heic'
+  -
+    handle: terms_agreed
+    field:
+      type: toggle
+      display: Competition rules accepted
+      validate:
+        - accepted

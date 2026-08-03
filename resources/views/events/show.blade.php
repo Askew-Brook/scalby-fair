@@ -2,7 +2,18 @@
     use Statamic\Facades\Entry;
     $startAt = $page->start_at ? \Illuminate\Support\Carbon::parse($page->start_at) : null;
     $endAt = $page->end_at ? \Illuminate\Support\Carbon::parse($page->end_at) : null;
-    $status = $page->event_status ?: 'scheduled';
+    $status = \Statamic\View\Blade\value($page->event_status) ?: 'scheduled';
+    $timeTbc = (bool) \Statamic\View\Blade\value($page->time_tbc);
+    $isFree = (bool) \Statamic\View\Blade\value($page->is_free);
+    $priceValue = \Statamic\View\Blade\value($page->price);
+    $bookingInformation = \Statamic\View\Blade\value($page->booking_information);
+    $organiserValue = \Statamic\View\Blade\value($page->organiser);
+    $bookingStatus = \Statamic\View\Blade\value($page->booking_status);
+    $bookingUrl = \Statamic\View\Blade\value($page->booking_url);
+    $mapUrl = \Statamic\View\Blade\value($page->map_url);
+    $contactName = \Statamic\View\Blade\value($page->contact_name);
+    $contactEmail = \Statamic\View\Blade\value($page->contact_email);
+    $contactPhone = \Statamic\View\Blade\value($page->contact_phone);
     $eventImage = $page->featured_image;
     $galleryItems = collect($page->gallery ?? []);
     $downloadItems = collect($page->downloads ?? []);
@@ -25,7 +36,7 @@
         },
         'location' => ['@type' => 'Place', 'name' => $location, 'address' => $address],
         'url' => url()->current(),
-        'isAccessibleForFree' => (bool) $is_free,
+        'isAccessibleForFree' => $isFree,
     ];
 @endphp
 
@@ -34,7 +45,12 @@
 <x-layouts.app :title="$title" :seo-title="$seo_title" :seo-description="$seo_description ?: $summary" :share-image="$share_image ?: $eventImage">
     <main id="main-content">
         @if($status !== 'scheduled')
-            <x-announcement :message="$status_message ?: 'This event is ' . $status . '. Please check this page for updates.'" />
+            <aside class="border-y-4 border-barn-700 bg-barn-600 text-white" role="status" aria-label="Event status">
+                <div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 sm:flex-row sm:items-center sm:gap-5 sm:px-8">
+                    <span class="w-fit border border-white/70 px-3 py-1 text-xs font-bold tracking-[0.16em] uppercase">{{ $status }}</span>
+                    <p class="font-serif text-xl leading-7 text-pretty">{{ $status_message ?: 'This event is ' . $status . '. Please check this page for updates.' }}</p>
+                </div>
+            </aside>
         @endif
         <x-page-hero :title="$title" eyebrow="Event" :introduction="$summary" :image="$eventImage" />
         <div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-18">
@@ -60,17 +76,20 @@
                     <div class="border-t-4 border-wheat-300 bg-cream-100 p-7">
                         <h2 class="font-serif text-2xl font-semibold tracking-tight text-hedge-900">Event details</h2>
                         <dl class="mt-6 grid gap-5">
-                            @if($startAt)<div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Date and time</dt><dd class="mt-1 font-semibold text-hedge-900">{{ $startAt->format('l j F Y, g:ia') }}@if($endAt)<br>to {{ $endAt->format($endAt->isSameDay($startAt) ? 'g:ia' : 'l j F Y, g:ia') }}@endif</dd></div>@endif
+                            @if($startAt)<div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Date and time</dt><dd class="mt-1 font-semibold text-hedge-900">{{ $startAt->format('l j F Y') }}@if($timeTbc)<br><span class="font-normal">Time to be confirmed</span>@else, {{ $startAt->format('g:ia') }}@if($endAt)<br>to {{ $endAt->format($endAt->isSameDay($startAt) ? 'g:ia' : 'l j F Y, g:ia') }}@endif @endif</dd></div>@endif
                             @if($location)<div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Location</dt><dd class="mt-1 font-semibold text-hedge-900">{{ $location }}@if($address)<span class="mt-1 block whitespace-pre-line font-normal text-hedge-800/80">{{ $address }}</span>@endif</dd></div>@endif
-                            <div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Admission</dt><dd class="mt-1 font-semibold text-hedge-900">{{ $is_free ? 'Free' : ($price ?: 'See event information') }}</dd></div>
+                            <div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Admission</dt><dd class="mt-1 font-semibold text-hedge-900">{{ $isFree ? 'Free' : ($priceValue ?: 'See event information') }}</dd></div>
+                            @if($bookingInformation)<div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Booking</dt><dd class="mt-1 text-hedge-800">{{ $bookingInformation }}</dd></div>@endif
+                            @if($organiserValue)<div><dt class="text-xs font-semibold tracking-[0.12em] text-barn-600 uppercase">Organiser</dt><dd class="mt-1 font-semibold text-hedge-900">{{ $organiserValue }}</dd></div>@endif
                         </dl>
-                        @if($map_url)<x-button :href="$map_url" variant="secondary" external class="mt-6 w-full">Open map</x-button>@endif
-                        @if($booking_status === 'available' && $booking_url)<x-button :href="$booking_url" external class="mt-4 w-full">{{ $booking_label ?: 'Book your place' }}</x-button>
-                        @elseif(in_array($booking_status, ['sold_out', 'closed']))<p class="mt-5 border border-barn-600 px-4 py-3 font-semibold text-barn-700">{{ $booking_status === 'sold_out' ? 'This event is sold out.' : 'Booking is closed.' }}</p>@endif
+                        @if($mapUrl)<x-button :href="$mapUrl" variant="secondary" external class="mt-6 w-full">Open map</x-button>@endif
+                        @if($bookingStatus === 'available' && $bookingUrl)<x-button :href="$bookingUrl" external class="mt-4 w-full">{{ $booking_label ?: 'Book your place' }}</x-button>
+                        @elseif($status === 'scheduled' && in_array($bookingStatus, ['sold_out', 'closed']))<p class="mt-5 border border-barn-600 px-4 py-3 font-semibold text-barn-700">{{ $bookingStatus === 'sold_out' ? 'This event is sold out.' : 'Booking is closed.' }}</p>@endif
+                        <a href="/contact?event={{ urlencode($title) }}#contact-form" class="mt-5 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Ask the committee about this event</a>
                     </div>
 
-                    @if($contact_name || $contact_email || $contact_phone)
-                        <div class="mt-8 border-t border-hedge-700/20 pt-6"><h2 class="font-serif text-xl font-semibold text-hedge-900">Event contact</h2><div class="mt-3 grid gap-2 text-sm">@if($contact_name)<p>{{ $contact_name }}</p>@endif @if($contact_email)<a class="font-semibold text-barn-700 underline underline-offset-4" href="mailto:{{ $contact_email }}">{{ $contact_email }}</a>@endif @if($contact_phone)<a class="font-semibold text-barn-700 underline underline-offset-4" href="tel:{{ preg_replace('/[^+0-9]/', '', $contact_phone) }}">{{ $contact_phone }}</a>@endif</div></div>
+                    @if($contactName || $contactEmail || $contactPhone)
+                        <div class="mt-8 border-t border-hedge-700/20 pt-6"><h2 class="font-serif text-xl font-semibold text-hedge-900">Event contact</h2><div class="mt-3 grid gap-2 text-sm">@if($contactName)<p>{{ $contactName }}</p>@endif @if($contactEmail)<a class="font-semibold text-barn-700 underline underline-offset-4" href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a>@endif @if($contactPhone)<a class="font-semibold text-barn-700 underline underline-offset-4" href="tel:{{ preg_replace('/[^+0-9]/', '', $contactPhone) }}">{{ $contactPhone }}</a>@endif</div></div>
                     @endif
                 </aside>
             </div>

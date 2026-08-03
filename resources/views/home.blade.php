@@ -4,6 +4,10 @@
 
     $siteSettings = globalSet('site');
     $currentFair = Entry::query()->where('collection', 'fair_years')->whereStatus('published')->orderBy('date', 'desc')->first();
+    $currentCompetition = Entry::query()->where('collection', 'photography_competitions')->whereStatus('published')->orderBy('year', 'desc')->first();
+    $competitionImage = \Statamic\View\Blade\value($currentCompetition?->card_image) ?: \Statamic\View\Blade\value($currentCompetition?->featured_image);
+    $competitionSummary = \Statamic\View\Blade\value($currentCompetition?->summary);
+    $competitionClosingDate = \Statamic\View\Blade\value($currentCompetition?->closing_date);
     $upcomingEvents = Entry::query()
         ->where('collection', 'events')
         ->whereStatus('published')
@@ -88,7 +92,7 @@
 
         <section class="overflow-hidden py-16 sm:py-24">
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
-                <x-section-heading eyebrow="Annual traditions" heading="Three ways to be part of it" text="From the build-up through Fair Week to Easter Monday’s walk, each tradition has its own character." />
+                <x-section-heading eyebrow="Annual traditions" heading="Four ways to be part of it" text="From Fair Week and Fair Day to the Easter Monday walk and our annual photography competition, each tradition has its own character." />
 
                 <article class="interactive-card group mt-12 grid overflow-hidden border border-hedge-700/10 bg-hedge-50 lg:grid-cols-2 lg:items-center">
                     <div class="image-zoom h-full"><x-responsive-image :asset="$fair_week_image" :width="1100" :height="800" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover" /></div>
@@ -114,19 +118,33 @@
                 </div>
             </article>
 
-            <div class="mx-auto mt-8 max-w-7xl px-5 sm:mt-12 sm:px-8">
-                <article class="group grid gap-8 lg:grid-cols-12 lg:items-center">
-                    <div class="bg-cream-100 p-8 sm:p-12 lg:col-span-5 lg:p-14">
-                        <p class="font-serif text-5xl text-wheat-500" aria-hidden="true">03</p>
-                        <h2 class="mt-6 font-serif text-4xl tracking-tight text-balance text-hedge-900 sm:text-5xl">Scalby Walk</h2>
-                        <p class="mt-5 text-lg text-pretty text-hedge-800/80">{{ $walk_summary }}</p>
-                        <a href="/scalby-walk" class="mt-7 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Plan your walk</a>
-                    </div>
-                    <div class="image-zoom relative lg:col-span-7">
-                        <div class="absolute -top-4 -right-4 h-24 w-24 border-t-2 border-r-2 border-wheat-500" aria-hidden="true"></div>
-                        <x-responsive-image :asset="$walk_image" :width="1200" :height="800" sizes="(min-width: 1024px) 58vw, 100vw" alt="" class="aspect-[3/2] w-full object-cover shadow-soft" />
+            <div class="mx-auto mt-8 grid max-w-7xl gap-6 px-5 sm:mt-12 sm:px-8 lg:grid-cols-2">
+                <article class="group relative isolate flex min-h-[34rem] items-end overflow-hidden bg-hedge-900 p-8 text-cream-50 shadow-soft sm:p-10">
+                    <div class="image-zoom absolute inset-0 -z-20"><x-responsive-image :asset="$walk_image" :width="1100" :height="1000" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="h-full w-full object-cover" /></div>
+                    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-hedge-900 via-hedge-900/55 to-hedge-900/10" aria-hidden="true"></div>
+                    <div class="max-w-lg">
+                        <p class="font-serif text-5xl text-wheat-300" aria-hidden="true">03</p>
+                        <h2 class="mt-5 font-serif text-4xl tracking-tight text-balance sm:text-5xl">Scalby Walk</h2>
+                        <p class="mt-4 text-lg text-pretty text-cream-100">{{ $walk_summary }}</p>
+                        <a href="/scalby-walk" class="mt-7 inline-flex font-semibold text-wheat-300 underline decoration-2 underline-offset-4 hover:text-cream-50">Plan your walk <span class="ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></a>
                     </div>
                 </article>
+
+                @if($currentCompetition)
+                    <article class="group relative isolate flex min-h-[34rem] items-end overflow-hidden bg-hedge-900 p-8 text-cream-50 shadow-soft sm:p-10">
+                        <div class="image-zoom absolute inset-0 -z-20"><x-responsive-image :asset="$competitionImage" :width="1100" :height="1000" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="h-full w-full object-cover" /></div>
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-hedge-900 via-hedge-900/65 to-hedge-900/10" aria-hidden="true"></div>
+                        <div class="max-w-lg">
+                            <div class="flex flex-wrap items-center justify-between gap-3">
+                                <p class="font-serif text-5xl text-wheat-300" aria-hidden="true">04</p>
+                                @if($competitionClosingDate)<p class="border border-cream-50/30 bg-hedge-900/65 px-3 py-1 text-xs font-semibold tracking-[0.1em] text-cream-50 uppercase">Closes {{ \Illuminate\Support\Carbon::parse($competitionClosingDate)->format('j F Y') }}</p>@endif
+                            </div>
+                            <h2 class="mt-5 font-serif text-4xl tracking-tight text-balance sm:text-5xl">Photography Competition</h2>
+                            <p class="mt-4 text-lg text-pretty text-cream-100">{{ $competitionSummary }}</p>
+                            <a href="{{ $currentCompetition->url() }}" class="mt-7 inline-flex font-semibold text-wheat-300 underline decoration-2 underline-offset-4 hover:text-cream-50">Enter the competition <span class="ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></a>
+                        </div>
+                    </article>
+                @endif
             </div>
         </section>
 

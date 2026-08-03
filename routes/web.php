@@ -5,7 +5,7 @@ use Statamic\Facades\Entry;
 
 Route::get('sitemap.xml', function () {
     $entries = Entry::query()
-        ->whereIn('collection', ['pages', 'events', 'news'])
+        ->whereIn('collection', ['pages', 'events', 'news', 'photography_competitions'])
         ->whereStatus('published')
         ->get()
         ->filter(fn ($entry) => $entry->url());

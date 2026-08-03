@@ -1,0 +1,41 @@
+title: Scalby Walk
+tabs:
+  main:
+    display: Walk
+    sections:
+      -
+        display: Current walk
+        fields:
+          - { handle: title, field: { type: text, display: Title, required: true, validate: [required] } }
+          - { handle: eyebrow, field: { type: text, display: Eyebrow } }
+          - { handle: introduction, field: { type: textarea, display: Introduction } }
+          - { handle: featured_image, field: { type: assets, display: Featured image, container: assets, max_files: 1, mode: list } }
+          - { handle: supporting_image, field: { type: assets, display: Supporting image, container: assets, max_files: 1, mode: list } }
+          - { handle: current_information, field: { type: markdown, display: This year's practical information, buttons: [h2, h3, bold, italic, unorderedlist, orderedlist, link] } }
+      -
+        display: Walk history
+        fields:
+          -
+            handle: history_chapters
+            field:
+              type: grid
+              display: History chapters
+              add_row: Add a chapter
+              fields:
+                - { handle: heading, field: { type: text, display: Heading, required: true } }
+                - { handle: content, field: { type: markdown, display: Chapter text, required: true, buttons: [h3, bold, italic, unorderedlist, quote, link] } }
+          - { handle: callout_heading, field: { type: text, display: Callout heading } }
+          - { handle: callout_text, field: { type: textarea, display: Callout text } }
+          - { handle: callout_link, field: { type: link, display: Callout link } }
+          - { handle: callout_label, field: { type: text, display: Callout button label } }
+  seo:
+    display: SEO
+    sections:
+      - { fields: [{ import: seo }] }
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          - { handle: slug, field: { type: slug, validate: [required] } }
+          - { handle: template, field: { type: hidden, default: scalby-walk } }

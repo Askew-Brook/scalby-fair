@@ -1,0 +1,193 @@
+title: Photography Competition
+tabs:
+  main:
+    display: Competition
+    sections:
+      -
+        display: Essential details
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Competition title
+              required: true
+              validate:
+                - required
+          -
+            handle: year
+            field:
+              type: integer
+              display: Competition year
+              required: true
+              validate:
+                - required
+                - integer
+          -
+            handle: eyebrow
+            field:
+              type: text
+              display: Hero label
+          -
+            handle: introduction
+            field:
+              type: textarea
+              display: Introduction
+              required: true
+              validate:
+                - required
+          -
+            handle: summary
+            field:
+              type: textarea
+              display: Overview
+              required: true
+              validate:
+                - required
+          -
+            handle: featured_image
+            field:
+              type: assets
+              display: Featured image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: photography-competition
+          -
+            handle: supporting_image
+            field:
+              type: assets
+              display: Supporting image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: photography-competition
+          -
+            handle: card_image
+            field:
+              type: assets
+              display: Homepage card image
+              instructions: Used for the homepage feature. Falls back to the featured image.
+              container: assets
+              max_files: 1
+              mode: list
+              folder: photography-competition
+      -
+        display: Entry information
+        fields:
+          -
+            handle: categories
+            field:
+              type: list
+              display: Competition categories
+              add_button: Add category
+              required: true
+              validate:
+                - required
+          -
+            handle: how_to_enter
+            field:
+              type: markdown
+              display: How to enter
+              buttons:
+                - bold
+                - italic
+                - link
+          -
+            handle: rules
+            field:
+              type: list
+              display: Competition rules
+              add_button: Add rule
+              required: true
+              validate:
+                - required
+          -
+            handle: closing_date
+            field:
+              type: date
+              display: Closing date
+              required: true
+              validate:
+                - required
+          -
+            handle: winners_announcement
+            field:
+              type: textarea
+              display: Winner announcement information
+          -
+            handle: prizes
+            field:
+              type: list
+              display: Prize features
+              add_button: Add prize
+          -
+            handle: additional_prize_text
+            field:
+              type: textarea
+              display: Additional prize note
+          -
+            handle: help_text
+            field:
+              type: textarea
+              display: Help text
+          -
+            handle: entries_open
+            field:
+              type: toggle
+              display: Accept entries
+              instructions: Turn this off to replace the form with a closed message.
+              default: true
+  winners:
+    display: Winners & archive
+    sections:
+      -
+        fields:
+          -
+            handle: winners_announced
+            field:
+              type: toggle
+              display: Show winners
+              default: false
+          -
+            handle: winners_intro
+            field:
+              type: textarea
+              display: Winners introduction
+              if:
+                winners_announced: 'equals true'
+          -
+            handle: winners_gallery
+            field:
+              type: assets
+              display: Winning photographs
+              container: assets
+              mode: grid
+              folder: photography-competition/winners
+              if:
+                winners_announced: 'equals true'
+          -
+            handle: winner_notes
+            field:
+              type: markdown
+              display: Winner details and credits
+              if:
+                winners_announced: 'equals true'
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Settings
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              validate:
+                - required

@@ -1,0 +1,16 @@
+@php
+    use Statamic\Facades\Asset;
+    $chapters = collect($page->history_chapters ?? []);
+    $historyImage = Asset::find('assets::SF_Celidh_2025.jpeg');
+@endphp
+<x-layouts.app :title="$title" :seo-title="$seo_title" :seo-description="$seo_description ?: $introduction" :share-image="$share_image ?: $featured_image">
+    <main id="main-content">
+        <x-page-hero :title="$title" :eyebrow="$eyebrow" :introduction="$introduction" :image="$featured_image" :supporting-image="$supporting_image" />
+        <section class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-20" aria-labelledby="walk-current">
+            <x-breadcrumbs :items="[['title' => $title]]" />
+            <div class="mt-10 grid gap-10 lg:grid-cols-12"><div class="lg:col-span-7"><p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">This year's walk</p><h2 id="walk-current" class="mt-3 font-serif text-4xl tracking-tight text-hedge-900 sm:text-5xl">Easter Monday in walking boots</h2>@if($current_information)<div class="prose mt-7">{!! \Statamic\Statamic::modify($current_information)->markdown() !!}</div>@endif</div><aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:col-span-4 lg:col-start-9"><p class="font-serif text-3xl text-hedge-900">Seven miles. Four pubs. One village tradition.</p><p class="mt-4 text-hedge-800/80">The route links Scalby, Burniston and Cloughton, with fancy dress, friendly competition and fundraising along the way.</p><x-button href="/walk-bookings" class="mt-6">Walk bookings</x-button></aside></div>
+        </section>
+        <section id="walk-history" class="scroll-mt-28 bg-hedge-900 py-16 text-cream-50 sm:py-20" aria-labelledby="walk-history-heading"><div class="mx-auto max-w-7xl px-5 sm:px-8"><x-section-heading id="walk-history-heading" eyebrow="Since 1959" title="The story behind the Walk" introduction="A pub bet became an Easter Monday institution—competitive enough for trophies, sociable enough to lose the occasional walker at a pub." theme="dark" /><div class="mt-12 grid gap-px bg-cream-50/20 lg:grid-cols-2">@foreach($chapters as $index => $chapter)<article class="bg-hedge-800 p-7 sm:p-9"><span class="font-serif text-2xl text-wheat-300" aria-hidden="true">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><h3 class="mt-4 font-serif text-3xl tracking-tight">{{ $chapter['heading'] ?? '' }}</h3><div class="prose mt-5 text-hedge-100 [&_strong]:text-white">{!! \Statamic\Statamic::modify($chapter['content'] ?? '')->markdown() !!}</div></article>@endforeach</div></div></section>
+        <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20"><div class="grid gap-4 sm:grid-cols-12"><div class="image-zoom sm:col-span-7"><x-responsive-image :asset="$featured_image" :width="1100" :height="720" class="aspect-[11/7] h-full w-full object-cover" /></div><div class="image-zoom sm:col-span-5 sm:translate-y-8"><x-responsive-image :asset="$historyImage" :width="820" :height="720" class="aspect-[8/7] h-full w-full object-cover" /></div></div>@if($callout_heading && $callout_link && $callout_label)<x-cta class="mt-16" :heading="$callout_heading" :text="$callout_text" :href="$callout_link" :label="$callout_label" />@endif</section>
+    </main>
+</x-layouts.app>

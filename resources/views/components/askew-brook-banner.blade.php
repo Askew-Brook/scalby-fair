@@ -1,13 +1,16 @@
-@php($siteSettings = globalSet('site'))
+@php
+    $siteSettings = globalSet('site');
+    $askewBrookLogo = \Statamic\View\Blade\value($siteSettings?->askew_brook_logo);
+@endphp
 
 @if($siteSettings?->askew_brook_banner_enabled)
     <aside class="relative isolate overflow-hidden border-t border-hedge-700/15 bg-wheat-300 text-hedge-900" aria-labelledby="askew-brook-heading">
         <div class="absolute -top-28 -right-24 -z-10 size-80 rounded-full border border-hedge-900/10" aria-hidden="true"></div>
         <div class="mx-auto grid max-w-7xl gap-7 px-5 py-9 sm:px-8 sm:py-11 lg:grid-cols-12 lg:items-center">
             <div class="lg:col-span-3">
-                @if($siteSettings?->askew_brook_logo)
+                @if($askewBrookLogo)
                     <p class="mb-3 text-xs font-semibold tracking-[0.16em] text-hedge-900/65 uppercase">Website partner</p>
-                    <x-responsive-image :asset="$siteSettings->askew_brook_logo" :width="420" :height="186" sizes="260px" alt="Askew Brook" class="h-auto w-52 object-contain object-left sm:w-60" />
+                    <img src="{{ $askewBrookLogo->url() }}" width="2542" height="402" alt="Askew Brook" loading="lazy" decoding="async" class="h-auto w-full max-w-72 object-contain object-left">
                 @else
                     <p class="font-serif text-3xl">Askew Brook</p>
                 @endif

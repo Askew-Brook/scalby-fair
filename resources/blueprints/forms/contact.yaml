@@ -1,0 +1,59 @@
+title: Contact
+tabs:
+  main:
+    display: Enquiry
+    sections:
+      -
+        fields:
+          -
+            handle: name
+            field:
+              type: text
+              display: Your name
+              validate: [required, string, 'max:120']
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: Email address
+              validate: [required, email, 'max:160']
+          -
+            handle: phone
+            field:
+              type: text
+              input_type: tel
+              display: Phone number
+              validate: [nullable, string, 'max:40']
+          -
+            handle: enquiry_type
+            field:
+              type: select
+              display: What is your enquiry about?
+              options:
+                general: General enquiry
+                fair_week: Fair Week or an event
+                stalls: Stall bookings
+                volunteering: Volunteering
+                photography: Photography competition
+                walk: Scalby Walk
+                website: Website help
+              validate: [required]
+          -
+            handle: related_to
+            field:
+              type: text
+              display: Related event or page
+              validate: [nullable, string, 'max:160']
+          -
+            handle: message
+            field:
+              type: textarea
+              display: Your message
+              validate: [required, string, 'min:10', 'max:5000']
+          -
+            handle: consent
+            field:
+              type: toggle
+              display: Privacy consent
+              validate: [accepted]
