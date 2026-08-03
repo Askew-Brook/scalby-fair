@@ -6,6 +6,7 @@ slug: scalby-walk
 template: page
 eyebrow: Easter Monday
 introduction: A community walk held on Easter Monday and enjoyed as part of the Scalby Fair tradition.
+featured_image: IMG_9704-1.jpeg
 content: |-
   The Scalby Walk is a year-round part of the Fair calendar, bringing people together well before Fair Week arrives.
 

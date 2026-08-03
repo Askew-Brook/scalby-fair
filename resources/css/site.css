@@ -60,9 +60,12 @@
         display: block;
         filter: drop-shadow(0 2px 1px rgb(29 44 32 / 0.12));
         transform: rotate(var(--tilt, 0deg));
+        transform-origin: 50% 0;
+        animation: bunting-sway 4.6s ease-in-out infinite alternate;
     }
     .bunting > span:nth-child(3n + 2) { border-top-color: var(--color-wheat-300); --tilt: 2deg; }
     .bunting > span:nth-child(3n) { border-top-color: var(--color-hedge-600); --tilt: -2deg; }
+    .bunting > span:nth-child(2n) { animation-delay: -1.8s; }
     .prose { color: #3f4038; font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.85; }
     .prose > * + * { margin-top: 1.4em; }
     .prose h2, .prose h3 {
@@ -106,6 +109,12 @@
     }
 }
 
+@keyframes bunting-sway {
+    from { transform: rotate(calc(var(--tilt, 0deg) - 1.5deg)); }
+    to { transform: rotate(calc(var(--tilt, 0deg) + 1.5deg)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .bunting > span { animation: none; }
 }

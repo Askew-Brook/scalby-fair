@@ -22,7 +22,7 @@
 
 <x-layouts.app :title="$title" :seo-title="$seo_title" :seo-description="$seo_description" :share-image="$share_image">
     <main id="main-content">
-        <x-page-hero :title="$title" :eyebrow="$eyebrow" :introduction="$introduction" />
+        <x-page-hero :title="$title" :eyebrow="$eyebrow" :introduction="$introduction" :image="$featured_image" />
         <div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-18">
             <x-breadcrumbs :items="[['title' => $title]]" />
 

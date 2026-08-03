@@ -33,9 +33,8 @@
                 @endif
             </div>
         </div>
-        <div class="mt-12 flex flex-col gap-3 border-t border-cream-50/15 pt-6 text-sm text-hedge-100/75 sm:flex-row sm:items-center sm:justify-between">
+        <div class="mt-12 border-t border-cream-50/15 pt-6 text-sm text-hedge-100/75">
             <p>&copy; {{ now()->year }} {{ $siteSettings?->organisation_name ?: 'Scalby Fair' }}</p>
-            @if($siteSettings?->askew_brook_credit)<p>Website by <a href="{{ $siteSettings->askew_brook_credit }}" class="font-semibold text-cream-50 hover:text-wheat-300" target="_blank" rel="noopener">Askew Brook<span class="sr-only"> (opens in a new tab)</span></a></p>@endif
         </div>
     </div>
 </footer>

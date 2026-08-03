@@ -42,6 +42,16 @@ tabs:
               mode: list
               folder: homepage
           -
+            handle: hero_supporting_images
+            field:
+              type: assets
+              display: Supporting hero images
+              instructions: Choose two or three candid photographs to accompany the introduction.
+              container: assets
+              max_files: 3
+              mode: list
+              folder: homepage
+          -
             handle: hero_link_label
             field:
               type: text
@@ -72,20 +82,57 @@ tabs:
         display: Highlights
         fields:
           -
+            handle: programme_images
+            field:
+              type: assets
+              display: Programme preview images
+              instructions: Shown while the next programme is being prepared.
+              container: assets
+              max_files: 3
+              mode: list
+              folder: homepage
+          -
             handle: fair_week_summary
             field:
               type: textarea
               display: Fair Week summary
+          -
+            handle: fair_week_image
+            field:
+              type: assets
+              display: Fair Week image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: homepage
           -
             handle: fair_day_summary
             field:
               type: textarea
               display: Fair Day summary
           -
+            handle: fair_day_image
+            field:
+              type: assets
+              display: Fair Day image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: homepage
+          -
             handle: walk_summary
             field:
               type: textarea
               display: Scalby Walk summary
+          -
+            handle: walk_image
+            field:
+              type: assets
+              display: Scalby Walk image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: homepage
           -
             handle: archive_heading
             field:
@@ -97,6 +144,48 @@ tabs:
             field:
               type: textarea
               display: Off-season text
+      -
+        display: Community stories
+        fields:
+          -
+            handle: impact_background_image
+            field:
+              type: assets
+              display: Impact background image
+              container: assets
+              max_files: 1
+              mode: list
+              folder: homepage
+          -
+            handle: news_empty_image
+            field:
+              type: assets
+              display: News preview image
+              instructions: Shown before the first news story is published.
+              container: assets
+              max_files: 1
+              mode: list
+              folder: homepage
+          -
+            handle: community_heading
+            field:
+              type: text
+              display: Community gallery heading
+          -
+            handle: community_text
+            field:
+              type: textarea
+              display: Community gallery text
+          -
+            handle: community_gallery
+            field:
+              type: assets
+              display: Community gallery
+              instructions: Select four to six photographs with a mixture of people, performances and activities.
+              container: assets
+              max_files: 6
+              mode: list
+              folder: homepage
   seo:
     display: SEO
     sections:

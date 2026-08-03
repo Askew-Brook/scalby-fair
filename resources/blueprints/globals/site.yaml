@@ -151,6 +151,54 @@ tabs:
             field:
               type: link
               display: Askew Brook credit link
+      -
+        display: Askew Brook banner
+        instructions: This full-width acknowledgement appears immediately above the footer on every page.
+        fields:
+          -
+            handle: askew_brook_banner_enabled
+            field:
+              type: toggle
+              display: Show banner
+              default: true
+          -
+            handle: askew_brook_logo
+            field:
+              type: assets
+              display: Askew Brook logo
+              container: assets
+              max_files: 1
+              mode: list
+              if:
+                askew_brook_banner_enabled: 'equals true'
+          -
+            handle: askew_brook_heading
+            field:
+              type: text
+              display: Heading
+              if:
+                askew_brook_banner_enabled: 'equals true'
+          -
+            handle: askew_brook_text
+            field:
+              type: textarea
+              display: Supporting text
+              if:
+                askew_brook_banner_enabled: 'equals true'
+          -
+            handle: askew_brook_label
+            field:
+              type: text
+              display: Button label
+              if:
+                askew_brook_banner_enabled: 'equals true'
+          -
+            handle: askew_brook_url
+            field:
+              type: link
+              display: Button link
+              if:
+                askew_brook_banner_enabled: 'equals true'
   seo:
     display: SEO
     sections:

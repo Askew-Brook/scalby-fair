@@ -6,6 +6,7 @@ slug: walk-bookings
 template: booking
 eyebrow: Take part
 introduction: Registration information for the Easter Monday Scalby Walk.
+featured_image: IMG_9704-1.jpeg
 content: |-
   Check the current walk information before registering, including the route, timings and practical guidance.
 

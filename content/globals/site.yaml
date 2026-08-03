@@ -6,6 +6,12 @@ data:
   default_seo_description: Community events, Fair Week and the Scalby Walk in Scalby and Newby, near Scarborough.
   footer_text: Bringing Scalby, Newby and the wider community together through Fair Week, Fair Day and the Scalby Walk.
   askew_brook_credit: 'https://askewbrook.com'
+  askew_brook_banner_enabled: true
+  askew_brook_logo: askew-brook-logo.png
+  askew_brook_heading: 'Proudly designed and developed by Askew Brook'
+  askew_brook_text: 'Based in Scalby, Askew Brook creates bespoke websites, software and AI-powered digital solutions for businesses, charities and organisations across the UK.'
+  askew_brook_label: 'Visit Askew Brook'
+  askew_brook_url: 'https://askewbrook.com'
   statistics:
     -
       value: 'Since 1977'
