@@ -9,8 +9,8 @@ tabs:
             handle: title
             field:
               type: text
-              display: Title
               required: true
+              display: Title
               validate:
                 - required
           -
@@ -18,18 +18,18 @@ tabs:
             field:
               type: text
               display: Eyebrow
-              instructions: Optional short label above the page title.
+              instructions: 'Optional short label above the page title.'
           -
             handle: introduction
             field:
               type: textarea
               display: Introduction
-              instructions: One or two sentences that introduce this page.
+              instructions: 'One or two sentences that introduce this page.'
           -
             handle: featured_image
             field:
               type: assets
-              display: Featured image
+              display: 'Featured image'
               container: assets
               max_files: 1
               mode: list
@@ -38,8 +38,8 @@ tabs:
             handle: supporting_image
             field:
               type: assets
-              display: Supporting image
-              instructions: Optional second photograph used as an editorial detail in the page header.
+              display: 'Supporting image'
+              instructions: 'Optional second photograph used as an editorial detail in the page header.'
               container: assets
               max_files: 1
               mode: list
@@ -48,8 +48,8 @@ tabs:
             handle: content
             field:
               type: markdown
-              display: Page content
-              instructions: Use headings, short paragraphs and lists to keep the page easy to scan.
+              display: 'Page content'
+              instructions: 'Use headings, short paragraphs and lists to keep the page easy to scan.'
               buttons:
                 - h2
                 - h3
@@ -64,27 +64,27 @@ tabs:
             handle: callout_heading
             field:
               type: text
-              display: Callout heading
-              instructions: Optional closing call to action.
+              display: 'Callout heading'
+              instructions: 'Optional closing call to action.'
           -
             handle: callout_text
             field:
               type: textarea
-              display: Callout text
+              display: 'Callout text'
               if:
                 callout_heading: 'not null'
           -
             handle: callout_link
             field:
               type: link
-              display: Callout link
+              display: 'Callout link'
               if:
                 callout_heading: 'not null'
           -
             handle: callout_label
             field:
               type: text
-              display: Callout button label
+              display: 'Callout button label'
               if:
                 callout_heading: 'not null'
   seo:
@@ -107,17 +107,9 @@ tabs:
               validate:
                 - required
           -
-            handle: parent
-            field:
-              type: entries
-              collections:
-                - pages
-              max_items: 1
-              localizable: true
-          -
             handle: template
             field:
               type: template
               display: Template
-              instructions: Only change this when the page has a dedicated layout.
+              instructions: 'Only change this when the page has a dedicated layout.'
               default: page
