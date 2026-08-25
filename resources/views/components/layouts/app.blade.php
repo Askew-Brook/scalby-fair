@@ -10,6 +10,13 @@
     $resolvedTitle = $seoTitle ?: ($title ? "$title | $siteName" : (\Statamic\View\Blade\value($siteSettings?->default_seo_title) ?: $siteName));
     $resolvedDescription = $seoDescription ?: \Statamic\View\Blade\value($siteSettings?->default_seo_description);
     $resolvedShareImage = $shareImage ?: \Statamic\View\Blade\value($siteSettings?->default_share_image);
+    $organizationSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        'name' => \Statamic\View\Blade\value($siteSettings?->organisation_name) ?: $siteName,
+        'url' => url('/'),
+        'email' => \Statamic\View\Blade\value($siteSettings?->contact_email) ?: null,
+    ];
 @endphp
 
 <!doctype html>
@@ -28,13 +35,7 @@
         <meta property="og:url" content="{{ url()->current() }}">
         @if ($resolvedShareImage)<meta property="og:image" content="{{ $resolvedShareImage->url() }}">@endif
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">{!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'Organization',
-            'name' => \Statamic\View\Blade\value($siteSettings?->organisation_name) ?: $siteName,
-            'url' => url('/'),
-            'email' => \Statamic\View\Blade\value($siteSettings?->contact_email) ?: null,
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+        <script type="application/ld+json">{!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
         @stack('schema')
 
         @livewireStyles
