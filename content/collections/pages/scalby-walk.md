@@ -6,8 +6,8 @@ slug: scalby-walk
 template: scalby-walk
 eyebrow: Easter Monday since 1959
 introduction: A seven-mile village tradition with friendly competition, fancy dress, four pub stops and fundraising at its heart.
-featured_image: IMG_9704-1.jpeg
-supporting_image: SF-2026-Fair-Day-Parade-1-scaled-e1782569315833.webp
+featured_image: 'Scalby Walk 2026.jpg'
+supporting_image: 'Scalby Walk 2026 2.jpg'
 current_information: |-
   ## The current walk
 

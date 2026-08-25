@@ -6,8 +6,8 @@ slug: about
 template: about
 eyebrow: Rooted in the community
 introduction: One of the few remaining traditional village fairs in the North of England—run entirely by volunteers and shared by everyone.
-featured_image: SF-2026-Fair-Day-Parade-1-scaled-e1782569315833.webp
-supporting_image: images.jpeg
+featured_image: 'SF 2026 Fair Day Parade 1. RZjpg.jpg'
+supporting_image: 'Fair Day Yew Court 2.jpg'
 content: |-
   Scalby Fair brings together residents, local organisations, performers, businesses and visitors for a programme of events throughout Fair Week, culminating in a lively village street fair with stalls, music, dancing, food and entertainment for all ages.
 

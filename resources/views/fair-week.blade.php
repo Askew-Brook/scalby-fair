@@ -3,17 +3,30 @@
     use Statamic\Facades\Asset;
     use Statamic\Facades\Entry;
 
-    $weekStarts = Carbon::parse('2026-06-12')->startOfDay();
-    $weekEnds = Carbon::parse('2026-06-21')->endOfDay();
-    $events = Entry::query()->where('collection', 'events')->whereStatus('published')->get()
-        ->filter(fn ($event) => Carbon::parse($event->start_at)->betweenIncluded($weekStarts, $weekEnds))
+    $fairWeekEvents = Entry::query()
+        ->where('collection', 'events')
+        ->whereStatus('published')
+        ->whereTaxonomy('event_types::fair-week')
+        ->get();
+    $programmeYears = $fairWeekEvents
+        ->map(fn ($event) => Carbon::parse($event->start_at)->year)
+        ->unique()
+        ->sort()
+        ->values();
+    $programmeYear = $programmeYears->first(fn ($year) => $year >= now()->year) ?? $programmeYears->last() ?? now()->year;
+    $events = $fairWeekEvents
+        ->filter(fn ($event) => Carbon::parse($event->start_at)->year === $programmeYear)
         ->sortBy('start_at')
         ->values();
     $groupedEvents = $events->groupBy(fn ($event) => Carbon::parse($event->start_at)->toDateString());
-    $featureOrder = collect(['event-ceilidh-2026', 'event-soul-rida-2026', 'event-fair-day-2026']);
-    $featuredEvents = $events->filter(fn ($event) => $featureOrder->contains($event->id()))
-        ->sortBy(fn ($event) => $featureOrder->search($event->id()));
-    $competition = Entry::query()->where('collection', 'photography_competitions')->whereStatus('published')->orderBy('year', 'desc')->first();
+    $featuredEvents = $events->filter(fn ($event) => (bool) $event->featured)->take(3);
+    $programmeStarts = $events->first() ? Carbon::parse($events->first()->start_at) : null;
+    $programmeEnds = $events->last() ? Carbon::parse($events->last()->start_at) : null;
+    $programmeDates = $programmeStarts && $programmeEnds
+        ? ($programmeStarts->isSameMonth($programmeEnds)
+            ? $programmeStarts->format('j').'–'.$programmeEnds->format('j F Y')
+            : $programmeStarts->format('j F').'–'.$programmeEnds->format('j F Y'))
+        : null;
     $pageContent = \Statamic\View\Blade\value($content);
     $ceilidhImage = Asset::find('assets::SF_Celidh_2025.jpeg');
     $wineImage = Asset::find('assets::SF_Wine-Tasting-2025.jpeg');
@@ -36,7 +49,7 @@
                 <aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:col-span-4 lg:col-start-9">
                     <p class="text-xs font-semibold tracking-[0.16em] text-barn-600 uppercase">At a glance</p>
                     <p class="mt-3 font-serif text-4xl text-hedge-900">{{ $events->count() }} events</p>
-                    <p class="mt-2 text-hedge-800/80">From Friday 12 to Saturday 20 June, with the wider Fair Week running through Sunday 21 June.</p>
+                    @if($programmeDates)<p class="mt-2 text-hedge-800/80">Running {{ $programmeDates }}, ahead of the village's Fair Day celebrations.</p>@endif
                     <a href="#programme" class="mt-6 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Jump to the full programme ↓</a>
                 </aside>
             </div>
@@ -45,7 +58,7 @@
         @if($featuredEvents->isNotEmpty())
             <section class="bg-hedge-900 py-16 text-cream-50 sm:py-20" aria-labelledby="featured-events-heading">
                 <div class="mx-auto max-w-7xl px-5 sm:px-8">
-                    <x-section-heading id="featured-events-heading" eyebrow="Start here" title="Fair Week highlights" introduction="Three very different moments that capture the range of the week—from the first dance to the final parade." theme="dark" />
+                    <x-section-heading id="featured-events-heading" eyebrow="Start here" title="Fair Week highlights" introduction="Three very different moments that capture the range of the week—from the first dance to the final live set." theme="dark" />
                     <div class="mt-10 grid gap-7 xl:grid-cols-3">
                         @foreach($featuredEvents as $event)
                             <x-event-card :event="$event" class="bg-cream-50 text-ink sm:grid-cols-1" />
@@ -64,7 +77,7 @@
         </section>
 
         <section id="programme" class="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 sm:px-8 sm:py-24" aria-labelledby="programme-heading">
-            <x-section-heading id="programme-heading" eyebrow="Day by day" title="The complete 2026 programme" introduction="Every event in chronological order, with cancellation notices and practical information kept visible." />
+            <x-section-heading id="programme-heading" eyebrow="Day by day" :title="'The complete '.$programmeYear.' programme'" introduction="Every event in chronological order, with cancellation notices and practical information kept visible." />
 
             <div class="relative mt-12 grid gap-14 before:absolute before:top-2 before:bottom-3 before:left-[1.05rem] before:w-px before:bg-hedge-700/20 sm:before:left-[5.5rem]">
                 @foreach($groupedEvents as $day => $dayEvents)
@@ -86,11 +99,10 @@
             <div class="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:items-center">
                 <div class="lg:col-span-7">
                     <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Keep the week with you</p>
-                    <h2 id="keep-celebrating" class="mt-3 font-serif text-4xl tracking-tight text-balance text-hedge-900 sm:text-5xl">Take part, take a photograph, make a memory</h2>
-                    <p class="mt-5 max-w-3xl text-lg leading-8 text-hedge-800/80">The best view of Fair Week is your own. Explore the photography competition, plan for Fair Day or ask the committee about volunteering.</p>
+                    <h2 id="keep-celebrating" class="mt-3 font-serif text-4xl tracking-tight text-balance text-hedge-900 sm:text-5xl">Take part, bring a friend, make a memory</h2>
+                    <p class="mt-5 max-w-3xl text-lg leading-8 text-hedge-800/80">Plan for Fair Day, find another way to join in or ask the committee about volunteering.</p>
                     <div class="mt-7 flex flex-wrap gap-4">
-                        @if($competition)<x-button :href="$competition->url()">Photography competition</x-button>@endif
-                        <x-button href="/fair-day" variant="secondary">Plan Fair Day</x-button>
+                        <x-button href="/fair-day">Plan Fair Day</x-button>
                         <x-button href="/volunteer" variant="secondary">Volunteer</x-button>
                     </div>
                 </div>

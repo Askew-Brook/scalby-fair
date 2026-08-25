@@ -92,7 +92,7 @@
 
         <section class="overflow-hidden py-16 sm:py-24">
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
-                <x-section-heading eyebrow="Annual traditions" heading="Four ways to be part of it" text="From Fair Week and Fair Day to the Easter Monday walk and our annual photography competition, each tradition has its own character." />
+                <x-section-heading eyebrow="Annual traditions" :heading="$currentCompetition ? 'Four ways to be part of it' : 'Three ways to be part of it'" :text="$currentCompetition ? 'From Fair Week and Fair Day to the Easter Monday walk and the current photography competition, each tradition has its own character.' : 'Fair Week, Fair Day and the Easter Monday walk each have their own character and offer a different way to take part.'" />
 
                 <article class="interactive-card group mt-12 grid overflow-hidden border border-hedge-700/10 bg-hedge-50 lg:grid-cols-2 lg:items-center">
                     <div class="image-zoom h-full"><x-responsive-image :asset="$fair_week_image" :width="1100" :height="800" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover" /></div>
@@ -118,20 +118,19 @@
                 </div>
             </article>
 
-            <div class="mx-auto mt-8 grid max-w-7xl gap-6 px-5 sm:mt-12 sm:px-8 lg:grid-cols-2">
-                <article class="group relative isolate flex min-h-[34rem] items-end overflow-hidden bg-hedge-900 p-8 text-cream-50 shadow-soft sm:p-10">
-                    <div class="image-zoom absolute inset-0 -z-20"><x-responsive-image :asset="$walk_image" :width="1100" :height="1000" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="h-full w-full object-cover" /></div>
-                    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-hedge-900 via-hedge-900/55 to-hedge-900/10" aria-hidden="true"></div>
-                    <div class="max-w-lg">
-                        <p class="font-serif text-5xl text-wheat-300" aria-hidden="true">03</p>
-                        <h2 class="mt-5 font-serif text-4xl tracking-tight text-balance sm:text-5xl">Scalby Walk</h2>
-                        <p class="mt-4 text-lg text-pretty text-cream-100">{{ $walk_summary }}</p>
-                        <a href="/scalby-walk" class="mt-7 inline-flex font-semibold text-wheat-300 underline decoration-2 underline-offset-4 hover:text-cream-50">Plan your walk <span class="ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></a>
+            <div class="mx-auto mt-8 max-w-7xl px-5 sm:mt-12 sm:px-8">
+                <article class="interactive-card group grid overflow-hidden border border-hedge-700/10 bg-hedge-50 lg:grid-cols-2 lg:items-center">
+                    <div class="image-zoom h-full lg:order-2"><x-responsive-image :asset="$walk_image" :width="1100" :height="800" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover" /></div>
+                    <div class="p-8 sm:p-12 lg:order-1 lg:p-16">
+                        <p class="font-serif text-5xl text-wheat-500" aria-hidden="true">03</p>
+                        <h2 class="mt-6 font-serif text-4xl tracking-tight text-balance text-hedge-900 sm:text-5xl">Scalby Walk</h2>
+                        <p class="mt-5 max-w-xl text-lg text-pretty text-hedge-800/80">{{ $walk_summary }}</p>
+                        <a href="/scalby-walk" class="mt-7 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Plan your walk</a>
                     </div>
                 </article>
 
                 @if($currentCompetition)
-                    <article class="group relative isolate flex min-h-[34rem] items-end overflow-hidden bg-hedge-900 p-8 text-cream-50 shadow-soft sm:p-10">
+                    <article class="group relative isolate mt-6 flex min-h-[34rem] items-end overflow-hidden bg-hedge-900 p-8 text-cream-50 shadow-soft sm:p-10">
                         <div class="image-zoom absolute inset-0 -z-20"><x-responsive-image :asset="$competitionImage" :width="1100" :height="1000" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="h-full w-full object-cover" /></div>
                         <div class="absolute inset-0 -z-10 bg-gradient-to-t from-hedge-900 via-hedge-900/65 to-hedge-900/10" aria-hidden="true"></div>
                         <div class="max-w-lg">

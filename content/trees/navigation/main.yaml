@@ -1,51 +1,58 @@
 tree:
   -
+    id: nav-home
+    entry: home
+  -
     id: nav-whats-on
     entry: events
+    title: "What's On"
     children:
       -
         id: nav-fair-week
         entry: fair-week
+        title: 'Fair Week Events'
       -
         id: nav-fair-day-child
         entry: fair-day
-  -
-    id: nav-fair-day
-    entry: fair-day
-  -
-    id: nav-scalby-walk
-    entry: scalby-walk
-  -
-    id: nav-photography-competition
-    entry: photography-competition-2026
-    title: 'Photo Competition'
+      -
+        id: nav-scalby-walk
+        entry: scalby-walk
   -
     id: nav-get-involved
     entry: volunteer
+    title: 'Get Involved'
     children:
       -
         id: nav-stall-bookings
         entry: stall-bookings
+        title: 'Book a Stall'
       -
         id: nav-walk-bookings
         entry: walk-bookings
       -
         id: nav-volunteer
         entry: volunteer
+        title: Volunteer
       -
         id: nav-resources
         entry: resources
   -
     id: nav-about
     entry: about
+    title: 'About Scalby Fair'
     children:
+      -
+        id: nav-about-overview
+        entry: about
+        title: About
       -
         id: nav-history
         entry: history
+        title: History
       -
         id: nav-village-history
         entry: village-history
-        title: 'The History of Scalby'
+        title: Scalby
       -
         id: nav-committee
         entry: committee

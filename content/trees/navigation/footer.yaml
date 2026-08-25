@@ -6,10 +6,6 @@ tree:
     id: footer-resources
     entry: resources
   -
-    id: footer-photography-competition
-    entry: photography-competition-2026
-    title: 'Photo Competition'
-  -
     id: footer-newsletter
     entry: newsletter
   -

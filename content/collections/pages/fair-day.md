@@ -6,8 +6,8 @@ slug: fair-day
 template: page
 eyebrow: The heart of Fair Week
 introduction: Fair Day welcomes the community for a traditional day of stalls, activities and entertainment.
-featured_image: 'images (1).jpeg'
-supporting_image: SF-2026-Nancy-Tilley-on-stageRS-e1782569879860.webp
+featured_image: 'Scalby Fair 2026 Gen Crowd.jpg'
+supporting_image: 'SF 2026 Fair Day Magic Mike 3.jpg'
 content: |-
   Fair Day is the centrepiece of the week, bringing together local groups, good causes, stallholders, volunteers and visitors.
 

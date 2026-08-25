@@ -35,7 +35,6 @@ tabs:
                 fair_week: Fair Week or an event
                 stalls: Stall bookings
                 volunteering: Volunteering
-                photography: Photography competition
                 walk: Scalby Walk
                 website: Website help
               validate: [required]
