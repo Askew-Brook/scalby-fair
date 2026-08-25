@@ -104,7 +104,7 @@ return [
         resource_path('preferences.yaml'),
         resource_path('sites.yaml'),
         storage_path('forms'),
-        public_path('assets'),
+        storage_path('app/assets'),
     ],
 
     /*

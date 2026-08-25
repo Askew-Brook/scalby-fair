@@ -63,9 +63,20 @@ return [
 
         'assets' => [
             'driver' => 'local',
-            'root' => public_path('assets'),
+            'root' => storage_path('app/assets'),
             'url' => '/assets',
             'visibility' => 'public',
+            'allowed_extensions' => [
+                'avif',
+                'gif',
+                'heic',
+                'heif',
+                'jpeg',
+                'jpg',
+                'pdf',
+                'png',
+                'webp',
+            ],
             'throw' => false,
             'report' => false,
         ],

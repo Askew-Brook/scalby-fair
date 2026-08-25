@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\PublicAssetController;
 use Illuminate\Support\Facades\Route;
 use Statamic\Facades\Entry;
+
+Route::get('assets/{path}', PublicAssetController::class)
+    ->where('path', '.*')
+    ->name('assets.show');
 
 Route::get('sitemap.xml', function () {
     $entries = Entry::query()
