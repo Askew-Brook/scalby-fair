@@ -36,12 +36,12 @@
             @if($hero_image)
                 <x-responsive-image :asset="$hero_image" :width="1920" :height="1120" sizes="100vw" loading="eager" fetch-priority="high" alt="" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
             @endif
-            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900 via-hedge-900/85 to-hedge-900/25" aria-hidden="true"></div>
-            <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-hedge-900/65 to-transparent" aria-hidden="true"></div>
+            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900/75 via-hedge-900/52 to-hedge-900/5" aria-hidden="true"></div>
+            <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-hedge-900/35 to-transparent" aria-hidden="true"></div>
             <div class="mx-auto grid min-h-[42rem] max-w-7xl items-end px-5 py-16 sm:min-h-[47rem] sm:px-8 sm:py-20 lg:grid-cols-12 lg:py-24">
                 <div class="max-w-4xl lg:col-span-8">
                     <p class="text-sm font-semibold tracking-[0.18em] text-wheat-300 uppercase">{{ $hero_kicker }}</p>
-                    <h1 class="mt-5 font-serif text-5xl leading-[0.96] tracking-tight text-balance sm:text-7xl lg:text-8xl">{{ $hero_heading }}</h1>
+                    <h1 class="mt-5 font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-balance sm:text-7xl lg:text-8xl">{{ $hero_heading }}</h1>
                     <p class="mt-7 max-w-2xl text-lg leading-8 text-pretty text-cream-100 sm:text-xl">{{ $hero_text }}</p>
                     <p class="mt-5 inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-wheat-300">
                         <svg class="size-4 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 18s6-5.2 6-11A6 6 0 1 0 4 7c0 5.8 6 11 6 11Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="7" r="2" fill="currentColor"/></svg>
