@@ -59,6 +59,28 @@
             </div>
         </section>
 
+        <section class="border-y border-hedge-700/15 bg-cream-100 py-16 sm:py-20">
+            <div class="mx-auto max-w-7xl px-5 sm:px-8">
+                <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                    <x-section-heading eyebrow="Latest news" heading="News from the Fair" />
+                    <a href="/news" class="font-semibold text-barn-700 underline decoration-2 underline-offset-4">All news</a>
+                </div>
+                @if($latestNews->isNotEmpty())
+                    <div class="mt-10 grid gap-10 md:grid-cols-3">@foreach($latestNews as $article)<x-news-card :article="$article" />@endforeach</div>
+                @else
+                    <div class="mt-10 grid overflow-hidden bg-cream-50 lg:grid-cols-12 lg:items-center">
+                        <x-responsive-image :asset="$news_empty_image" :width="1100" :height="760" sizes="(min-width: 1024px) 58vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover lg:col-span-7" />
+                        <div class="p-8 sm:p-12 lg:col-span-5">
+                            <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">From the community</p>
+                            <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-4xl">More stories are on their way</h2>
+                            <p class="mt-4 text-pretty text-hedge-800/80">Fresh stories from Fair Week, Fair Day and the people behind the tradition will be shared here soon.</p>
+                            <a href="/newsletter" class="mt-7 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Join the newsletter</a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </section>
+
         <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
             <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
                 <div class="lg:col-span-5">
@@ -163,26 +185,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
-            <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                <x-section-heading eyebrow="Latest stories" heading="News from the Fair" />
-                <a href="/news" class="font-semibold text-barn-700 underline decoration-2 underline-offset-4">All news</a>
-            </div>
-            @if($latestNews->isNotEmpty())
-                <div class="mt-12 grid gap-10 md:grid-cols-3">@foreach($latestNews as $article)<x-news-card :article="$article" />@endforeach</div>
-            @else
-                <div class="mt-12 grid overflow-hidden bg-hedge-50 lg:grid-cols-12 lg:items-center">
-                    <x-responsive-image :asset="$news_empty_image" :width="1100" :height="760" sizes="(min-width: 1024px) 58vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover lg:col-span-7" />
-                    <div class="p-8 sm:p-12 lg:col-span-5">
-                        <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">From the community</p>
-                        <h2 class="mt-3 font-serif text-3xl tracking-tight text-balance text-hedge-900 sm:text-4xl">More stories are on their way</h2>
-                        <p class="mt-4 text-pretty text-hedge-800/80">Fresh stories from Fair Week, Fair Day and the people behind the tradition will be shared here soon.</p>
-                        <a href="/newsletter" class="mt-7 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Join the newsletter</a>
-                    </div>
-                </div>
-            @endif
         </section>
 
         @if($communityImages->isNotEmpty())
