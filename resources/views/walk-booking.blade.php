@@ -6,9 +6,19 @@
     $bookingOpen = $catalogue->registrationsAreOpen() && ($adultAvailable || $juniorAvailable);
     $adultWalkers = old('adult_walkers');
     $juniorWalkers = old('junior_walkers');
+    $dogs = old('dogs', []);
+    $ageDateLabel = $catalogue->eventDateLabel();
+    $rulesDocument = $catalogue->rulesDocument() ? \Statamic\Facades\Asset::find('assets::'.$catalogue->rulesDocument()) : null;
+    $mapDocument = $catalogue->mapDocument() ? \Statamic\Facades\Asset::find('assets::'.$catalogue->mapDocument()) : null;
+    $sponsorshipDocument = $catalogue->sponsorshipDocument() ? \Statamic\Facades\Asset::find('assets::'.$catalogue->sponsorshipDocument()) : null;
+    $walkDocuments = collect([
+        ['asset' => $rulesDocument, 'label' => 'Walk Rules and Regulations', 'description' => 'Read the rules before registering.'],
+        ['asset' => $mapDocument, 'label' => 'Scalby Walk map', 'description' => 'View or download the route map.'],
+        ['asset' => $sponsorshipDocument, 'label' => 'Sponsorship form', 'description' => 'Download and print the sponsorship form.'],
+    ])->filter(fn (array $document) => $document['asset']);
 
     if ($adultWalkers === null && $juniorWalkers === null) {
-        $adultWalkers = $adultAvailable ? [['name' => '', 'age' => '', 'gender' => '', 'postcode' => '']] : [];
+        $adultWalkers = $adultAvailable ? [['first_name' => '', 'last_name' => '', 'age' => '', 'gender' => '', 'postcode' => '']] : [];
         $juniorWalkers = [];
     }
 
@@ -29,12 +39,24 @@
                         <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Easter Monday {{ $catalogue->year() }}</p>
                         <h2 id="walk-booking-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Before you register</h2>
                         @if($pageContent)<div class="prose mt-7 max-w-[75ch]">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+
+                        @if($walkDocuments->isNotEmpty())
+                            <div class="mt-8 grid border-y border-hedge-900/10 sm:grid-cols-3" role="list" aria-label="Walk documents">
+                                @foreach($walkDocuments as $document)
+                                    <a class="group border-t border-hedge-900/10 py-5 first:border-t-0 sm:border-t-0 sm:border-l sm:px-5 sm:first:border-l-0 sm:first:pl-0 sm:last:pr-0" href="{{ $document['asset']->url() }}" target="_blank" rel="noopener" role="listitem">
+                                        <span class="font-semibold text-hedge-900 underline decoration-barn-500 decoration-2 underline-offset-4 group-hover:text-barn-700">{{ $document['label'] }}</span>
+                                        <p class="mt-2 text-base text-pretty text-hedge-800/70 sm:text-sm">{{ $document['description'] }}</p>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
 
                     <aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:sticky lg:top-28 lg:col-span-4 lg:col-start-9" aria-labelledby="walk-process-heading">
                         <h2 id="walk-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">How registration works</h2>
                         <ol class="mt-5 grid list-decimal gap-3 pl-5 text-hedge-800/80">
-                            <li>Add every adult and junior walker.</li>
+                            <li>Add every adult and under-18 walker.</li>
+                            <li>Add any dogs joining your group.</li>
                             <li>Check the registrant’s contact details.</li>
                             <li>Pay securely on Stripe.</li>
                             <li>The registrant and Walk organisers receive the paid registration.</li>
@@ -49,7 +71,7 @@
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
                 <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Register and pay online</p>
                 <h2 id="walk-form-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Scalby Charity Walk {{ $catalogue->year() }} registration</h2>
-                <p class="mt-4 max-w-[56ch] text-base text-pretty text-hedge-800/75">Required fields are marked with an asterisk. You can register several walkers in one payment.</p>
+                <p class="mt-4 max-w-[62ch] text-base text-pretty text-hedge-800/75">Required fields are marked with an asterisk. You can register up to 10 adults and 10 under-18 walkers in one payment.</p>
 
                 @if(request('payment') === 'cancelled')
                     <div class="mt-8 border-l-4 border-wheat-500 bg-cream-50 p-5 text-hedge-900" role="status">
@@ -123,6 +145,11 @@
                                         @error('town')<p id="walk-town-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
                                     </div>
                                     <div>
+                                        <label class="field-label" for="walk-county">County (optional)</label>
+                                        <input class="field-control" id="walk-county" name="county" type="text" value="{{ old('county') }}" autocomplete="address-level1" @error('county') aria-invalid="true" aria-describedby="walk-county-error" @enderror>
+                                        @error('county')<p id="walk-county-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
                                         <label class="field-label" for="walk-postcode">Postcode *</label>
                                         <input class="field-control" id="walk-postcode" name="postcode" type="text" value="{{ old('postcode') }}" autocomplete="postal-code" required @error('postcode') aria-invalid="true" aria-describedby="walk-postcode-error" @enderror>
                                         @error('postcode')<p id="walk-postcode-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
@@ -138,43 +165,57 @@
                             <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
                                 <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">3. Adult walkers</legend>
                                 <div class="flex flex-wrap items-baseline justify-between gap-3">
-                                    <p class="text-pretty text-hedge-800/70">Add every adult included in this payment.</p>
+                                    <p class="text-pretty text-hedge-800/70">Add every walker aged 18 or over on {{ $ageDateLabel }}. Maximum 10.</p>
                                     <p class="tabular-nums font-semibold text-barn-700">£{{ number_format($catalogue->adultPrice() / 100, 2) }} each</p>
                                 </div>
                                 @if($adultAvailable)
                                     <div class="mt-5" data-walker-list="adult">
                                         @foreach($adultWalkers as $index => $walker)
-                                            <x-walker-fields group="adult_walkers" :index="$index" :walker="$walker" category="Adult" />
+                                            <x-walker-fields group="adult_walkers" :index="$index" :walker="$walker" category="Adult" :age-date-label="$ageDateLabel" :min-age="18" :max-age="120" />
                                         @endforeach
                                     </div>
-                                    <button class="mt-6 border border-hedge-700 px-3 py-2 text-base font-semibold text-hedge-800 hover:bg-hedge-50 sm:text-sm" type="button" data-add-walker="adult">Add another adult</button>
+                                    <button class="mt-6 border border-hedge-700 px-3 py-2 text-base font-semibold text-hedge-800 hover:bg-hedge-50 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm" type="button" data-add-walker="adult">Add another adult</button>
+                                    @error('adult_walkers')<p class="mt-3 font-semibold text-barn-700">{{ $message }}</p>@enderror
                                 @else
                                     <p class="mt-5 border-l-4 border-barn-600 bg-barn-100 p-4 font-semibold text-barn-700">Adult bookings are currently unavailable.</p>
                                 @endif
                             </fieldset>
 
                             <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
-                                <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">4. Junior walkers</legend>
+                                <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">4. Under-18 walkers</legend>
                                 <div class="flex flex-wrap items-baseline justify-between gap-3">
-                                    <p class="text-pretty text-hedge-800/70">Add every junior included in this payment.</p>
+                                    <p class="text-pretty text-hedge-800/70">Add every walker aged under 18 on {{ $ageDateLabel }}. Maximum 10.</p>
                                     <p class="tabular-nums font-semibold text-barn-700">£{{ number_format($catalogue->juniorPrice() / 100, 2) }} each</p>
                                 </div>
                                 @if($juniorAvailable)
                                     <div class="mt-5" data-walker-list="junior">
                                         @foreach($juniorWalkers as $index => $walker)
-                                            <x-walker-fields group="junior_walkers" :index="$index" :walker="$walker" category="Junior" />
+                                            <x-walker-fields group="junior_walkers" :index="$index" :walker="$walker" category="Under-18" :age-date-label="$ageDateLabel" :min-age="0" :max-age="17" />
                                         @endforeach
                                     </div>
-                                    <button class="mt-6 border border-hedge-700 px-3 py-2 text-base font-semibold text-hedge-800 hover:bg-hedge-50 sm:text-sm" type="button" data-add-walker="junior">Add another junior</button>
+                                    <button class="mt-6 border border-hedge-700 px-3 py-2 text-base font-semibold text-hedge-800 hover:bg-hedge-50 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm" type="button" data-add-walker="junior">Add another under-18 walker</button>
+                                    @error('junior_walkers')<p class="mt-3 font-semibold text-barn-700">{{ $message }}</p>@enderror
                                 @else
-                                    <p class="mt-5 border-l-4 border-barn-600 bg-barn-100 p-4 font-semibold text-barn-700">Junior bookings are currently unavailable.</p>
+                                    <p class="mt-5 border-l-4 border-barn-600 bg-barn-100 p-4 font-semibold text-barn-700">Under-18 bookings are currently unavailable.</p>
                                 @endif
                                 @error('walkers')<p class="mt-5 font-semibold text-barn-700">{{ $message }}</p>@enderror
                             </fieldset>
 
+                            <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
+                                <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">5. Dogs</legend>
+                                <p class="text-pretty text-hedge-800/70">Dogs are welcome but must be kept under control on a short lead. Add the name and age of each dog joining your group.</p>
+                                <div class="mt-5" data-dog-list>
+                                    @foreach($dogs as $index => $dog)
+                                        <x-dog-fields :index="$index" :dog="$dog" :age-date-label="$ageDateLabel" />
+                                    @endforeach
+                                </div>
+                                <button class="mt-6 border border-hedge-700 px-3 py-2 text-base font-semibold text-hedge-800 hover:bg-hedge-50 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm" type="button" data-add-dog>Add a dog</button>
+                                @error('dogs')<p class="mt-3 font-semibold text-barn-700">{{ $message }}</p>@enderror
+                            </fieldset>
+
                             @if($catalogue->donationsAreEnabled())
                                 <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
-                                    <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">5. Optional charity donation</legend>
+                                    <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">6. Optional charity donation</legend>
                                     <p class="mb-5 max-w-[60ch] text-pretty text-hedge-800/70">Add a donation to the Scalby Walk charity. Leave this blank if you do not wish to donate.</p>
                                     <div class="max-w-xs">
                                         <label class="field-label" for="walk-donation">Donation amount</label>
@@ -188,16 +229,16 @@
                             @endif
 
                             <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
-                                <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">6. Confirmations</legend>
+                                <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">7. Confirmations</legend>
                                 <div class="grid gap-5">
                                     <label class="grid grid-cols-[auto_1fr] items-start gap-3">
                                         <input class="mt-1 size-5 shrink-0 accent-hedge-700 sm:size-4" name="walker_details_confirmation" type="checkbox" value="1" @checked(old('walker_details_confirmation')) required>
-                                        <span>I confirm that I have entered the full name, age, gender and postcode for every walker included above. *</span>
+                                        <span>I confirm that I have entered the first name, second name, age, gender and postcode for every walker included above. *</span>
                                     </label>
                                     @error('walker_details_confirmation')<p class="font-semibold text-barn-700">{{ $message }}</p>@enderror
                                     <label class="grid grid-cols-[auto_1fr] items-start gap-3">
                                         <input class="mt-1 size-5 shrink-0 accent-hedge-700 sm:size-4" name="rules_confirmation" type="checkbox" value="1" @checked(old('rules_confirmation')) required>
-                                        <span>I confirm that all walkers are aware of the <a class="font-semibold text-barn-700 underline underline-offset-4" href="#walk-registration-information">Scalby Walk rules and event information</a> and will follow them. *</span>
+                                        <span>I confirm that all walkers have read and agree to the <a class="font-semibold text-barn-700 underline underline-offset-4" href="{{ $rulesDocument?->url() ?: '#walk-registration-information' }}" @if($rulesDocument) target="_blank" rel="noopener" @endif>Scalby Walk Rules and Regulations</a>. *</span>
                                     </label>
                                     @error('rules_confirmation')<p class="font-semibold text-barn-700">{{ $message }}</p>@enderror
                                     <label class="grid grid-cols-[auto_1fr] items-start gap-3">
@@ -215,7 +256,8 @@
                             <p class="mt-5 tabular-nums font-serif text-5xl font-semibold text-wheat-300" data-walk-booking-total>£0.00</p>
                             <dl class="mt-6 grid gap-2 text-cream-100/80">
                                 <div class="flex justify-between gap-4"><dt>Adults</dt><dd class="tabular-nums" data-walker-count="adult">0</dd></div>
-                                <div class="flex justify-between gap-4"><dt>Juniors</dt><dd class="tabular-nums" data-walker-count="junior">0</dd></div>
+                                <div class="flex justify-between gap-4"><dt>Under 18s</dt><dd class="tabular-nums" data-walker-count="junior">0</dd></div>
+                                <div class="flex justify-between gap-4"><dt>Dogs</dt><dd class="tabular-nums" data-dog-count>0</dd></div>
                             </dl>
                             <p class="mt-5 border-t border-cream-50/15 pt-5 text-pretty text-cream-100/80">The total is recalculated securely before Stripe takes payment. Card details are entered on Stripe and are not stored by this website.</p>
                             <button class="mt-7 inline-flex min-h-12 w-full items-center justify-center border-2 border-barn-600 bg-barn-600 px-4 py-3 font-semibold text-white hover:-translate-y-0.5 hover:border-barn-700 hover:bg-barn-700 focus-visible:outline-barn-500 focus-visible:outline-3 focus-visible:outline-offset-2" type="submit">Continue to secure payment</button>
@@ -227,10 +269,13 @@
                         </div>
 
                         <template data-walker-template="adult">
-                            <x-walker-fields group="adult_walkers" index="__INDEX__" :walker="[]" category="Adult" />
+                            <x-walker-fields group="adult_walkers" index="__INDEX__" :walker="[]" category="Adult" :age-date-label="$ageDateLabel" :min-age="18" :max-age="120" />
                         </template>
                         <template data-walker-template="junior">
-                            <x-walker-fields group="junior_walkers" index="__INDEX__" :walker="[]" category="Junior" />
+                            <x-walker-fields group="junior_walkers" index="__INDEX__" :walker="[]" category="Under-18" :age-date-label="$ageDateLabel" :min-age="0" :max-age="17" />
+                        </template>
+                        <template data-dog-template>
+                            <x-dog-fields index="__INDEX__" :dog="[]" :age-date-label="$ageDateLabel" />
                         </template>
                     </form>
                 @else

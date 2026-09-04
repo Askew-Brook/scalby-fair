@@ -38,15 +38,19 @@ class ScalbyWalkRegistrationTest extends TestCase
                 'address_line_1' => '1 Test Street',
                 'address_line_2' => '',
                 'town' => 'Scalby',
+                'county' => 'North Yorkshire',
                 'postcode' => 'YO13 0AA',
                 'country' => 'United Kingdom',
                 'adult_walkers' => [
-                    ['name' => 'Adult One', 'age' => 40, 'gender' => 'F', 'postcode' => 'YO13 0AA'],
-                    ['name' => 'Adult Two', 'age' => 41, 'gender' => 'M', 'postcode' => 'YO13 0AA'],
+                    ['first_name' => 'Adult', 'last_name' => 'One', 'age' => 40, 'gender' => 'F', 'postcode' => 'YO13 0AA'],
+                    ['first_name' => 'Adult', 'last_name' => 'Two', 'age' => 41, 'gender' => 'M', 'postcode' => 'YO13 0AA'],
                 ],
                 'junior_walkers' => [
-                    ['name' => 'Junior One', 'age' => 14, 'gender' => 'F', 'postcode' => 'YO13 0AA'],
-                    ['name' => 'Junior Two', 'age' => 10, 'gender' => 'M', 'postcode' => 'YO13 0AA'],
+                    ['first_name' => 'Junior', 'last_name' => 'One', 'age' => 14, 'gender' => 'F', 'postcode' => 'YO13 0AA'],
+                    ['first_name' => 'Junior', 'last_name' => 'Two', 'age' => 10, 'gender' => 'M', 'postcode' => 'YO13 0AA'],
+                ],
+                'dogs' => [
+                    ['name' => 'Bertie', 'age' => 4],
                 ],
                 'donation' => '20.00',
                 'walker_details_confirmation' => '1',
@@ -62,6 +66,10 @@ class ScalbyWalkRegistrationTest extends TestCase
             $this->assertSame(6000, $registration->get('total_pence'));
             $this->assertSame(2, $registration->get('adult_count'));
             $this->assertSame(2, $registration->get('junior_count'));
+            $this->assertSame(1, $registration->get('dog_count'));
+            $this->assertSame('Adult One|Adult Two', $registration->get('adult_walkers_names'));
+            $this->assertSame('Junior One|Junior Two', $registration->get('junior_walkers_names'));
+            $this->assertSame('Bertie', $registration->get('dog_names'));
             $this->assertSame('awaiting_payment', $registration->get('payment_status'));
 
             app(ScalbyWalkRegistrationFinaliser::class)->finalise([

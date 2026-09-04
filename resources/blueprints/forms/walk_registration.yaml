@@ -48,6 +48,11 @@ tabs:
               type: text
               display: 'Town or city'
           -
+            handle: county
+            field:
+              type: text
+              display: County
+          -
             handle: postcode
             field:
               type: text
@@ -71,21 +76,85 @@ tabs:
               type: textarea
               display: 'Adult walker details'
           -
+            handle: adult_walkers_names
+            field:
+              type: text
+              display: 'Adult walker names (CSV)'
+          -
+            handle: adult_walkers_ages
+            field:
+              type: text
+              display: 'Adult walker ages (CSV)'
+          -
+            handle: adult_walkers_genders
+            field:
+              type: text
+              display: 'Adult walker genders (CSV)'
+          -
+            handle: adult_walkers_postcodes
+            field:
+              type: text
+              display: 'Adult walker postcodes (CSV)'
+          -
             handle: junior_count
             field:
               type: integer
-              display: 'Junior walkers'
+              display: 'Under-18 walkers'
           -
             handle: junior_walkers_summary
             field:
               type: textarea
-              display: 'Junior walker details'
+              display: 'Under-18 walker details'
+          -
+            handle: junior_walkers_names
+            field:
+              type: text
+              display: 'Under-18 walker names (CSV)'
+          -
+            handle: junior_walkers_ages
+            field:
+              type: text
+              display: 'Under-18 walker ages (CSV)'
+          -
+            handle: junior_walkers_genders
+            field:
+              type: text
+              display: 'Under-18 walker genders (CSV)'
+          -
+            handle: junior_walkers_postcodes
+            field:
+              type: text
+              display: 'Under-18 walker postcodes (CSV)'
+          -
+            handle: dog_count
+            field:
+              type: integer
+              display: Dogs
+          -
+            handle: dogs_summary
+            field:
+              type: textarea
+              display: 'Dog details'
+          -
+            handle: dog_names
+            field:
+              type: text
+              display: 'Dog names (CSV)'
+          -
+            handle: dog_ages
+            field:
+              type: text
+              display: 'Dog ages (CSV)'
           -
             handle: adult_walkers
             field:
               type: hidden
           -
             handle: junior_walkers
+            field:
+              type: hidden
+          -
+            handle: dogs
             field:
               type: hidden
       -

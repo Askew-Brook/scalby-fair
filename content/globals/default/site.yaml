@@ -57,7 +57,8 @@ stall_booking_items:
     max_quantity: 2
     available: true
 walk_registrations_open: true
-walk_booking_year: 2026
+walk_booking_year: 2027
+walk_event_date: '2027-03-29'
 walk_booking_recipients:
   -
     name: 'Michael Whiteley'

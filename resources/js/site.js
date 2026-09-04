@@ -30,8 +30,10 @@ document.querySelectorAll('[data-walk-booking-form]').forEach((form) => {
     const total = form.querySelector('[data-walk-booking-total]');
     const donation = form.querySelector('[data-walk-donation]');
     let nextIndex = 100;
+    const maximumPerGroup = 10;
 
     const walkerRows = (type) => form.querySelectorAll(`[data-walker-list="${type}"] [data-walker-row]`);
+    const dogRows = () => form.querySelectorAll('[data-dog-list] [data-dog-row]');
 
     const updateSummary = () => {
         const adultCount = walkerRows('adult').length;
@@ -43,6 +45,9 @@ document.querySelectorAll('[data-walk-booking-form]').forEach((form) => {
             element.textContent = String(element.dataset.walkerCount === 'adult' ? adultCount : juniorCount);
         });
 
+        const dogCount = form.querySelector('[data-dog-count]');
+        if (dogCount) dogCount.textContent = String(dogRows().length);
+
         if (total) {
             total.textContent = new Intl.NumberFormat('en-GB', {
                 style: 'currency',
@@ -53,12 +58,20 @@ document.querySelectorAll('[data-walk-booking-form]').forEach((form) => {
         ['adult', 'junior'].forEach((type) => {
             walkerRows(type).forEach((row, index) => {
                 const label = row.querySelector('[data-walker-label]');
-                if (label) label.textContent = `${type === 'adult' ? 'Adult' : 'Junior'} walker ${index + 1}`;
+                if (label) label.textContent = `${type === 'adult' ? 'Adult' : 'Under-18'} walker ${index + 1}`;
             });
 
             const addButton = form.querySelector(`[data-add-walker="${type}"]`);
-            if (addButton) addButton.disabled = walkerRows(type).length >= 20;
+            if (addButton) addButton.disabled = walkerRows(type).length >= maximumPerGroup;
         });
+
+        dogRows().forEach((row, index) => {
+            const label = row.querySelector('[data-dog-label]');
+            if (label) label.textContent = `Dog ${index + 1}`;
+        });
+
+        const addDogButton = form.querySelector('[data-add-dog]');
+        if (addDogButton) addDogButton.disabled = dogRows().length >= maximumPerGroup;
     };
 
     form.querySelectorAll('[data-add-walker]').forEach((button) => {
@@ -67,7 +80,7 @@ document.querySelectorAll('[data-walk-booking-form]').forEach((form) => {
             const list = form.querySelector(`[data-walker-list="${type}"]`);
             const template = form.querySelector(`[data-walker-template="${type}"]`);
 
-            if (!list || !template || walkerRows(type).length >= 20) return;
+            if (!list || !template || walkerRows(type).length >= maximumPerGroup) return;
 
             const wrapper = document.createElement('div');
             wrapper.innerHTML = template.innerHTML.replaceAll('__INDEX__', String(nextIndex));
@@ -82,11 +95,37 @@ document.querySelectorAll('[data-walk-booking-form]').forEach((form) => {
         });
     });
 
+    form.querySelector('[data-add-dog]')?.addEventListener('click', () => {
+        const list = form.querySelector('[data-dog-list]');
+        const template = form.querySelector('[data-dog-template]');
+
+        if (!list || !template || dogRows().length >= maximumPerGroup) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = template.innerHTML.replaceAll('__INDEX__', String(nextIndex));
+        nextIndex += 1;
+
+        const row = wrapper.firstElementChild;
+        if (!row) return;
+
+        list.append(row);
+        row.querySelector('input')?.focus();
+        updateSummary();
+    });
+
     form.addEventListener('click', (event) => {
         const button = event.target instanceof Element ? event.target.closest('[data-remove-walker]') : null;
         if (!button) return;
 
         button.closest('[data-walker-row]')?.remove();
+        updateSummary();
+    });
+
+    form.addEventListener('click', (event) => {
+        const button = event.target instanceof Element ? event.target.closest('[data-remove-dog]') : null;
+        if (!button) return;
+
+        button.closest('[data-dog-row]')?.remove();
         updateSummary();
     });
 

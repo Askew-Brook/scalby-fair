@@ -12,20 +12,30 @@
                     <tr><td style="width: 38%; border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; font-weight: 700;">Name</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0;">{{ trim(($registration['first_name'] ?? '').' '.($registration['last_name'] ?? '')) }}</td></tr>
                     <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; font-weight: 700;">Email</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0;"><a href="mailto:{{ $registration['email'] ?? '' }}">{{ $registration['email'] ?? '' }}</a></td></tr>
                     <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; font-weight: 700;">Telephone</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0;">{{ $registration['phone'] ?? '' }}</td></tr>
-                    <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; font-weight: 700;">Address</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0;">{{ $registration['address_line_1'] ?? '' }}<br>@if($registration['address_line_2'] ?? null){{ $registration['address_line_2'] }}<br>@endif{{ $registration['town'] ?? '' }}<br>{{ $registration['postcode'] ?? '' }}<br>{{ $registration['country'] ?? '' }}</td></tr>
+                    <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; font-weight: 700;">Address</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0;">{{ $registration['address_line_1'] ?? '' }}<br>@if($registration['address_line_2'] ?? null){{ $registration['address_line_2'] }}<br>@endif{{ $registration['town'] ?? '' }}<br>@if($registration['county'] ?? null){{ $registration['county'] }}<br>@endif{{ $registration['postcode'] ?? '' }}<br>{{ $registration['country'] ?? '' }}</td></tr>
                 </table>
 
-                @foreach(['Adult' => ($registration['adult_walkers'] ?? []), 'Junior' => ($registration['junior_walkers'] ?? [])] as $category => $walkers)
+                @foreach(['Adult' => ($registration['adult_walkers'] ?? []), 'Under-18' => ($registration['junior_walkers'] ?? [])] as $category => $walkers)
                     @if(count($walkers))
                         <h2 style="margin: 32px 0 12px; color: #1d2c20; font-size: 20px;">{{ $category }} walkers</h2>
                         <table role="presentation" style="width: 100%; border-collapse: collapse; line-height: 1.5;">
                             <tr><th style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; text-align: left;">Name</th><th style="border-top: 1px solid #eadcbd; padding: 10px 8px; text-align: left;">Age</th><th style="border-top: 1px solid #eadcbd; padding: 10px 8px; text-align: left;">Gender</th><th style="border-top: 1px solid #eadcbd; padding: 10px 0 10px 8px; text-align: left;">Postcode</th></tr>
                             @foreach($walkers as $walker)
-                                <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0;">{{ $walker['name'] ?? '' }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 8px;">{{ $walker['age'] ?? '' }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 8px;">{{ $walker['gender'] ?? '' }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0 10px 8px;">{{ $walker['postcode'] ?? '' }}</td></tr>
+                                <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0;">{{ trim(($walker['first_name'] ?? '').' '.($walker['last_name'] ?? '')) }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 8px;">{{ $walker['age'] ?? '' }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 8px;">{{ $walker['gender'] ?? '' }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0 10px 8px;">{{ $walker['postcode'] ?? '' }}</td></tr>
                             @endforeach
                         </table>
                     @endif
                 @endforeach
+
+                @if(count($registration['dogs'] ?? []))
+                    <h2 style="margin: 32px 0 12px; color: #1d2c20; font-size: 20px;">Dogs</h2>
+                    <table role="presentation" style="width: 100%; border-collapse: collapse; line-height: 1.5;">
+                        <tr><th style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; text-align: left;">Name</th><th style="border-top: 1px solid #eadcbd; padding: 10px 0 10px 8px; text-align: left;">Age</th></tr>
+                        @foreach($registration['dogs'] as $dog)
+                            <tr><td style="border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0;">{{ $dog['name'] ?? '' }}</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0 10px 8px;">{{ $dog['age'] ?? '' }}</td></tr>
+                        @endforeach
+                    </table>
+                @endif
 
                 <h2 style="margin: 32px 0 12px; color: #1d2c20; font-size: 20px;">Payment</h2>
                 <table role="presentation" style="width: 100%; border-collapse: collapse; line-height: 1.5;">

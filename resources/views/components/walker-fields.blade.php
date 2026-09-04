@@ -3,6 +3,9 @@
     'index',
     'walker' => [],
     'category',
+    'ageDateLabel' => 'event day',
+    'minAge' => 0,
+    'maxAge' => 120,
 ])
 
 @php
@@ -14,15 +17,20 @@
         <h4 class="min-w-0 font-semibold text-hedge-900"><span data-walker-label>{{ $category }} walker</span></h4>
         <button class="shrink-0 border border-hedge-700 px-3 py-1.5 text-base font-semibold text-hedge-800 hover:bg-hedge-50 sm:text-sm" type="button" data-remove-walker>Remove</button>
     </div>
-    <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="sm:col-span-2 lg:col-span-1">
-            <label class="field-label" for="{{ $prefix }}-name">Full name *</label>
-            <input class="field-control" id="{{ $prefix }}-name" name="{{ $group }}[{{ $index }}][name]" type="text" value="{{ $walker['name'] ?? '' }}" autocomplete="off" required @error("{$group}.{$index}.name") aria-invalid="true" aria-describedby="{{ $prefix }}-name-error" @enderror>
-            @error("{$group}.{$index}.name")<p id="{{ $prefix }}-name-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
+    <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div>
+            <label class="field-label" for="{{ $prefix }}-first-name">First name *</label>
+            <input class="field-control" id="{{ $prefix }}-first-name" name="{{ $group }}[{{ $index }}][first_name]" type="text" value="{{ $walker['first_name'] ?? '' }}" autocomplete="off" required @error("{$group}.{$index}.first_name") aria-invalid="true" aria-describedby="{{ $prefix }}-first-name-error" @enderror>
+            @error("{$group}.{$index}.first_name")<p id="{{ $prefix }}-first-name-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
         </div>
         <div>
-            <label class="field-label" for="{{ $prefix }}-age">Age *</label>
-            <input class="field-control tabular-nums" id="{{ $prefix }}-age" name="{{ $group }}[{{ $index }}][age]" type="number" value="{{ $walker['age'] ?? '' }}" min="0" max="120" inputmode="numeric" required @error("{$group}.{$index}.age") aria-invalid="true" aria-describedby="{{ $prefix }}-age-error" @enderror>
+            <label class="field-label" for="{{ $prefix }}-last-name">Second name *</label>
+            <input class="field-control" id="{{ $prefix }}-last-name" name="{{ $group }}[{{ $index }}][last_name]" type="text" value="{{ $walker['last_name'] ?? '' }}" autocomplete="off" required @error("{$group}.{$index}.last_name") aria-invalid="true" aria-describedby="{{ $prefix }}-last-name-error" @enderror>
+            @error("{$group}.{$index}.last_name")<p id="{{ $prefix }}-last-name-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
+        </div>
+        <div>
+            <label class="field-label" for="{{ $prefix }}-age">Age on {{ $ageDateLabel }} *</label>
+            <input class="field-control tabular-nums" id="{{ $prefix }}-age" name="{{ $group }}[{{ $index }}][age]" type="number" value="{{ $walker['age'] ?? '' }}" min="{{ $minAge }}" max="{{ $maxAge }}" inputmode="numeric" required @error("{$group}.{$index}.age") aria-invalid="true" aria-describedby="{{ $prefix }}-age-error" @enderror>
             @error("{$group}.{$index}.age")<p id="{{ $prefix }}-age-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
         </div>
         <div>
