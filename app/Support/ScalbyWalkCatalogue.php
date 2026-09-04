@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
 class ScalbyWalkCatalogue
@@ -14,6 +15,33 @@ class ScalbyWalkCatalogue
     public function year(): int
     {
         return (int) (globalSet('site')?->get('walk_booking_year') ?: now()->year);
+    }
+
+    public function eventDate(): Carbon
+    {
+        $configuredDate = globalSet('site')?->get('walk_event_date');
+
+        return Carbon::parse($configuredDate ?: "{$this->year()}-01-01");
+    }
+
+    public function eventDateLabel(): string
+    {
+        return $this->eventDate()->format('j F Y');
+    }
+
+    public function rulesDocument(): ?string
+    {
+        return $this->assetPath('walk_rules_document');
+    }
+
+    public function mapDocument(): ?string
+    {
+        return $this->assetPath('walk_map_document');
+    }
+
+    public function sponsorshipDocument(): ?string
+    {
+        return $this->assetPath('walk_sponsorship_document');
     }
 
     public function adultBookingsAreAvailable(): bool
@@ -56,5 +84,13 @@ class ScalbyWalkCatalogue
     private function priceInPence(string $handle): int
     {
         return max(0, (int) round(((float) globalSet('site')?->get($handle, 0)) * 100));
+    }
+
+    private function assetPath(string $handle): ?string
+    {
+        $value = globalSet('site')?->get($handle);
+        $path = is_array($value) ? ($value[0] ?? null) : $value;
+
+        return filled($path) ? (string) $path : null;
     }
 }

@@ -70,6 +70,9 @@ walk_adult_bookings_available: true
 walk_junior_price: 5.00
 walk_junior_bookings_available: true
 walk_donations_enabled: true
+walk_rules_document: walk/scalby-walk-rules-2026.pdf
+walk_map_document: walk/scalby-walk-map-2026.pdf
+walk_sponsorship_document: walk/scalby-walk-sponsorship-form-2026.docx
 statistics:
   -
     value: 'Since 1977'

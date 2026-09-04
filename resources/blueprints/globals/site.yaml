@@ -206,6 +206,14 @@ tabs:
                 - required
                 - integer
           -
+            handle: walk_event_date
+            field:
+              type: date
+              display: 'Walk date'
+              instructions: 'Used for the age shown against every walker and dog.'
+              validate:
+                - required
+          -
             handle: walk_booking_recipients
             field:
               type: grid
@@ -273,6 +281,37 @@ tabs:
               type: toggle
               display: 'Accept an optional charity donation'
               default: true
+      -
+        display: 'Walk documents'
+        instructions: 'Replace these files when the committee supplies the documents for a new Walk year.'
+        fields:
+          -
+            handle: walk_rules_document
+            field:
+              type: assets
+              display: 'Rules and Regulations'
+              container: assets
+              folder: walk
+              max_files: 1
+              mode: list
+          -
+            handle: walk_map_document
+            field:
+              type: assets
+              display: 'Walk map'
+              container: assets
+              folder: walk
+              max_files: 1
+              mode: list
+          -
+            handle: walk_sponsorship_document
+            field:
+              type: assets
+              display: 'Sponsorship form'
+              container: assets
+              folder: walk
+              max_files: 1
+              mode: list
   impact:
     display: Impact
     sections:
