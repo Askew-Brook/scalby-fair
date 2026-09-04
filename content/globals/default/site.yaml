@@ -29,23 +29,23 @@ stall_booking_items:
     max_quantity: 10
     available: true
   -
-    code: gazebo_one_table
-    name: 'Fair gazebo with one table'
-    description: '3m × 3m gazebo with one 1.8m × 0.76m table.'
-    price: 46.00
+    code: fair_gazebo
+    name: 'Fair gazebo'
+    description: '3m × 3m gazebo. Tables can be added separately below.'
+    price: 44.00
     max_quantity: 5
     available: true
   -
-    code: gazebo_two_tables
-    name: 'Fair gazebo with two tables'
-    description: '3m × 3m gazebo with two 1.8m × 0.76m tables.'
-    price: 48.00
-    max_quantity: 5
+    code: table
+    name: 'Table'
+    description: '6ft × 2.5ft table.'
+    price: 2.00
+    max_quantity: 10
     available: true
   -
     code: own_pitch
-    name: 'Pitch for your own stall, gazebo or mobile unit'
-    description: 'Located on High Street between Yew Tree Café and The Plough.'
+    name: 'Pitch for your own gazebo'
+    description: 'Bring and secure your own gazebo.'
     price: 37.00
     max_quantity: 5
     available: true

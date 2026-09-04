@@ -44,7 +44,8 @@ class StallBookingTest extends TestCase
                 'special_requirements' => 'None',
                 'certificates' => 'None',
                 'items' => [
-                    'single_stall' => 2,
+                    'fair_gazebo' => 1,
+                    'table' => 2,
                     'electric_hookup' => 1,
                 ],
                 'acceptance' => '1',
@@ -56,7 +57,7 @@ class StallBookingTest extends TestCase
             $submission = $created->sole();
 
             $response->assertRedirect('https://checkout.stripe.com/c/pay/cs_test_stall_booking');
-            $this->assertSame(4700, $submission->get('total_pence'));
+            $this->assertSame(5300, $submission->get('total_pence'));
             $this->assertSame('awaiting_payment', $submission->get('payment_status'));
 
             Http::assertSent(fn ($request) => $request->url() === 'https://api.stripe.com/v1/checkout/sessions');
@@ -64,7 +65,7 @@ class StallBookingTest extends TestCase
             app(StallBookingPaymentFinaliser::class)->finalise([
                 'id' => 'cs_test_stall_booking',
                 'payment_status' => 'paid',
-                'amount_total' => 4700,
+                'amount_total' => 5300,
                 'payment_intent' => 'pi_test_stall_booking',
                 'metadata' => ['booking_id' => $submission->id()],
             ]);

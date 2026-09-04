@@ -35,5 +35,5 @@ content: |-
 
   Stalls are located on High Street and South Street. Your position will be marked with your name on the morning of the Fair. The Fair Steward at the North Street entrance will direct you to it.
 
-  Food trucks and food concessions cannot be booked online. Please [contact the Fair committee](/contact?about=Food%20concession) before applying.
+  Food, coffee and ice-cream concessions cost **£105** and cannot be booked online. Tom needs to approve these directly so the Fair can manage the range of concessions. Please [contact the stalls organiser](/contact?about=Food%2C%20coffee%20or%20ice-cream%20concession) before applying.
 ---

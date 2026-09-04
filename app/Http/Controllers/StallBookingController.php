@@ -72,6 +72,10 @@ class StallBookingController extends Controller
                 }
             }
 
+            if ((int) ($submittedItems['own_pitch'] ?? 0) > 0 && (int) ($submittedItems['electric_hookup'] ?? 0) > 0) {
+                $validator->errors()->add('items', 'An electric hook-up is not available with your own gazebo.');
+            }
+
             if ($selectedQuantity < 1) {
                 $validator->errors()->add('items', 'Please choose at least one stall-hire item.');
             }
