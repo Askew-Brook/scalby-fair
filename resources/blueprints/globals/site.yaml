@@ -93,6 +93,225 @@ tabs:
               display: Notice link label
               if:
                 emergency_notice: 'not null'
+  stall_bookings:
+    display: Stall bookings
+    sections:
+      -
+        display: Availability and notifications
+        fields:
+          -
+            handle: stall_bookings_open
+            field:
+              type: toggle
+              display: 'Accept online stall bookings'
+              instructions: 'Switch this off to close the whole booking form without removing the page.'
+              default: false
+          -
+            handle: stall_booking_year
+            field:
+              type: integer
+              display: 'Booking year'
+              validate:
+                - required
+                - integer
+          -
+            handle: stall_booking_recipient_email
+            field:
+              type: text
+              input_type: email
+              display: 'Send paid bookings to'
+              instructions: 'A full confirmation is sent here only after Stripe confirms payment.'
+              validate:
+                - required
+                - email
+      -
+        display: Items and prices
+        instructions: 'Change prices here each year. Switch an item off to show it as unavailable and prevent it being purchased.'
+        fields:
+          -
+            handle: stall_booking_items
+            field:
+              type: grid
+              display: 'Bookable items'
+              add_row: 'Add item'
+              reorderable: true
+              fields:
+                -
+                  handle: code
+                  field:
+                    type: slug
+                    display: 'Item code'
+                    instructions: 'A short unique code. Avoid changing this once bookings have opened.'
+                    validate:
+                      - required
+                -
+                  handle: name
+                  field:
+                    type: text
+                    display: Name
+                    validate:
+                      - required
+                -
+                  handle: description
+                  field:
+                    type: textarea
+                    display: Description
+                -
+                  handle: price
+                  field:
+                    type: float
+                    display: Price
+                    prepend: £
+                    min: 0.01
+                    step: 0.01
+                    validate:
+                      - required
+                      - numeric
+                -
+                  handle: max_quantity
+                  field:
+                    type: integer
+                    display: 'Maximum per booking'
+                    default: 5
+                    min: 1
+                    max: 20
+                    validate:
+                      - required
+                      - integer
+                -
+                  handle: available
+                  field:
+                    type: toggle
+                    display: 'On sale'
+                    default: true
+  walk_bookings:
+    display: Walk bookings
+    sections:
+      -
+        display: Availability and notifications
+        fields:
+          -
+            handle: walk_registrations_open
+            field:
+              type: toggle
+              display: 'Accept online Walk registrations'
+              instructions: 'Switch this off to close the whole registration form without removing the page.'
+              default: false
+          -
+            handle: walk_booking_year
+            field:
+              type: integer
+              display: 'Booking year'
+              validate:
+                - required
+                - integer
+          -
+            handle: walk_event_date
+            field:
+              type: date
+              display: 'Walk date'
+              instructions: 'Used for the age shown against every walker and dog.'
+              validate:
+                - required
+          -
+            handle: walk_booking_recipients
+            field:
+              type: grid
+              display: 'Send paid registrations to'
+              instructions: 'Each address receives a blind copy of the confirmation sent to the registrant after Stripe confirms payment.'
+              add_row: 'Add recipient'
+              fields:
+                -
+                  handle: name
+                  field:
+                    type: text
+                    display: Name
+                    validate:
+                      - required
+                -
+                  handle: email
+                  field:
+                    type: text
+                    input_type: email
+                    display: 'Email address'
+                    validate:
+                      - required
+                      - email
+      -
+        display: Prices and availability
+        instructions: 'Change prices here each year. Switch a booking type off to prevent it being purchased while leaving the rest of the form open.'
+        fields:
+          -
+            handle: walk_adult_price
+            field:
+              type: float
+              display: 'Adult walker price'
+              prepend: £
+              min: 0.01
+              step: 0.01
+              validate:
+                - required
+                - numeric
+          -
+            handle: walk_adult_bookings_available
+            field:
+              type: toggle
+              display: 'Adult bookings on sale'
+              default: true
+          -
+            handle: walk_junior_price
+            field:
+              type: float
+              display: 'Junior walker price'
+              prepend: £
+              min: 0.01
+              step: 0.01
+              validate:
+                - required
+                - numeric
+          -
+            handle: walk_junior_bookings_available
+            field:
+              type: toggle
+              display: 'Junior bookings on sale'
+              default: true
+          -
+            handle: walk_donations_enabled
+            field:
+              type: toggle
+              display: 'Accept an optional charity donation'
+              default: true
+      -
+        display: 'Walk documents'
+        instructions: 'Replace these files when the committee supplies the documents for a new Walk year.'
+        fields:
+          -
+            handle: walk_rules_document
+            field:
+              type: assets
+              display: 'Rules and Regulations'
+              container: assets
+              folder: walk
+              max_files: 1
+              mode: list
+          -
+            handle: walk_map_document
+            field:
+              type: assets
+              display: 'Walk map'
+              container: assets
+              folder: walk
+              max_files: 1
+              mode: list
+          -
+            handle: walk_sponsorship_document
+            field:
+              type: assets
+              display: 'Sponsorship form'
+              container: assets
+              folder: walk
+              max_files: 1
+              mode: list
   impact:
     display: Impact
     sections:

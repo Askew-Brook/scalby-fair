@@ -36,12 +36,12 @@
             @if($hero_image)
                 <x-responsive-image :asset="$hero_image" :width="1920" :height="1120" sizes="100vw" loading="eager" fetch-priority="high" alt="" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
             @endif
-            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900 via-hedge-900/85 to-hedge-900/25" aria-hidden="true"></div>
-            <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-hedge-900/65 to-transparent" aria-hidden="true"></div>
+            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900/75 via-hedge-900/52 to-hedge-900/5" aria-hidden="true"></div>
+            <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-hedge-900/35 to-transparent" aria-hidden="true"></div>
             <div class="mx-auto grid min-h-[42rem] max-w-7xl items-end px-5 py-16 sm:min-h-[47rem] sm:px-8 sm:py-20 lg:grid-cols-12 lg:py-24">
                 <div class="max-w-4xl lg:col-span-8">
                     <p class="text-sm font-semibold tracking-[0.18em] text-wheat-300 uppercase">{{ $hero_kicker }}</p>
-                    <h1 class="mt-5 font-serif text-5xl leading-[0.96] tracking-tight text-balance sm:text-7xl lg:text-8xl">{{ $hero_heading }}</h1>
+                    <h1 class="mt-5 font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-balance sm:text-7xl lg:text-8xl">{{ $hero_heading }}</h1>
                     <p class="mt-7 max-w-2xl text-lg leading-8 text-pretty text-cream-100 sm:text-xl">{{ $hero_text }}</p>
                     <p class="mt-5 inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-wheat-300">
                         <svg class="size-4 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 18s6-5.2 6-11A6 6 0 1 0 4 7c0 5.8 6 11 6 11Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="7" r="2" fill="currentColor"/></svg>
@@ -56,6 +56,28 @@
                     @endif
                     @if($hero_link && $hero_link_label)<x-button :href="$hero_link" class="mt-9">{{ $hero_link_label }}</x-button>@endif
                 </div>
+            </div>
+        </section>
+
+        <section class="border-y border-hedge-700/15 bg-cream-100 py-16 sm:py-20">
+            <div class="mx-auto max-w-7xl px-5 sm:px-8">
+                <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                    <x-section-heading eyebrow="Latest news" heading="News from the Fair" />
+                    <a href="/news" class="font-semibold text-barn-700 underline decoration-2 underline-offset-4">All news</a>
+                </div>
+                @if($latestNews->isNotEmpty())
+                    <div class="mt-10 grid gap-10 md:grid-cols-3">@foreach($latestNews as $article)<x-news-card :article="$article" />@endforeach</div>
+                @else
+                    <div class="mt-10 grid overflow-hidden bg-cream-50 lg:grid-cols-12 lg:items-center">
+                        <x-responsive-image :asset="$news_empty_image" :width="1100" :height="760" sizes="(min-width: 1024px) 58vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover lg:col-span-7" />
+                        <div class="p-8 sm:p-12 lg:col-span-5">
+                            <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">From the community</p>
+                            <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-4xl">More stories are on their way</h2>
+                            <p class="mt-4 text-pretty text-hedge-800/80">Fresh stories from Fair Week, Fair Day and the people behind the tradition will be shared here soon.</p>
+                            <a href="/newsletter" class="mt-7 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Join the newsletter</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </section>
 
@@ -163,26 +185,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
-            <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                <x-section-heading eyebrow="Latest stories" heading="News from the Fair" />
-                <a href="/news" class="font-semibold text-barn-700 underline decoration-2 underline-offset-4">All news</a>
-            </div>
-            @if($latestNews->isNotEmpty())
-                <div class="mt-12 grid gap-10 md:grid-cols-3">@foreach($latestNews as $article)<x-news-card :article="$article" />@endforeach</div>
-            @else
-                <div class="mt-12 grid overflow-hidden bg-hedge-50 lg:grid-cols-12 lg:items-center">
-                    <x-responsive-image :asset="$news_empty_image" :width="1100" :height="760" sizes="(min-width: 1024px) 58vw, 100vw" alt="" class="aspect-[4/3] h-full w-full object-cover lg:col-span-7" />
-                    <div class="p-8 sm:p-12 lg:col-span-5">
-                        <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">From the community</p>
-                        <h2 class="mt-3 font-serif text-3xl tracking-tight text-balance text-hedge-900 sm:text-4xl">More stories are on their way</h2>
-                        <p class="mt-4 text-pretty text-hedge-800/80">Fresh stories from Fair Week, Fair Day and the people behind the tradition will be shared here soon.</p>
-                        <a href="/newsletter" class="mt-7 inline-flex font-semibold text-barn-700 underline decoration-2 underline-offset-4">Join the newsletter</a>
-                    </div>
-                </div>
-            @endif
         </section>
 
         @if($communityImages->isNotEmpty())

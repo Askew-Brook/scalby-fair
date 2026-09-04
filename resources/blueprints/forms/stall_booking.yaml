@@ -1,0 +1,146 @@
+title: 'Stall Booking'
+tabs:
+  main:
+    display: Booking
+    sections:
+      -
+        display: Stallholder
+        fields:
+          -
+            handle: booking_year
+            field:
+              type: integer
+              display: 'Booking year'
+          -
+            handle: first_name
+            field:
+              type: text
+              display: 'First name'
+          -
+            handle: last_name
+            field:
+              type: text
+              display: 'Last name'
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: 'Email address'
+          -
+            handle: phone
+            field:
+              type: text
+              display: 'Phone number'
+          -
+            handle: business_name
+            field:
+              type: text
+              display: 'Organiser or business'
+          -
+            handle: address_line_1
+            field:
+              type: text
+              display: 'Address line 1'
+          -
+            handle: address_line_2
+            field:
+              type: text
+              display: 'Address line 2'
+          -
+            handle: town
+            field:
+              type: text
+              display: 'Town or city'
+          -
+            handle: postcode
+            field:
+              type: text
+              display: Postcode
+      -
+        display: Requirements
+        fields:
+          -
+            handle: stall_purpose
+            field:
+              type: textarea
+              display: 'Purpose of stall'
+          -
+            handle: special_requirements
+            field:
+              type: textarea
+              display: 'Special requirements'
+          -
+            handle: certificates
+            field:
+              type: textarea
+              display: 'Certificates held'
+          -
+            handle: items_summary
+            field:
+              type: textarea
+              display: 'Items booked'
+          -
+            handle: total
+            field:
+              type: text
+              display: 'Total paid'
+          -
+            handle: items
+            field:
+              type: hidden
+          -
+            handle: total_pence
+            field:
+              type: hidden
+          -
+            handle: acceptance
+            field:
+              type: toggle
+              display: 'Conditions accepted'
+          -
+            handle: privacy_consent
+            field:
+              type: toggle
+              display: 'Privacy consent'
+  payment:
+    display: Payment
+    sections:
+      -
+        fields:
+          -
+            handle: payment_status
+            field:
+              type: select
+              display: 'Payment status'
+              options:
+                creating_checkout: 'Creating checkout'
+                awaiting_payment: 'Awaiting payment'
+                paid: Paid
+                expired: Expired
+                checkout_error: 'Checkout error'
+          -
+            handle: stripe_checkout_session_id
+            field:
+              type: text
+              display: 'Stripe Checkout Session'
+          -
+            handle: stripe_payment_intent_id
+            field:
+              type: text
+              display: 'Stripe Payment Intent'
+          -
+            handle: paid_at
+            field:
+              type: text
+              display: 'Paid at'
+          -
+            handle: confirmation_sent_at
+            field:
+              type: text
+              display: 'Confirmation sent at'
+          -
+            handle: recipient_email
+            field:
+              type: text
+              display: 'Notification recipient'
