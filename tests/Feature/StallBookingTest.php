@@ -60,7 +60,8 @@ class StallBookingTest extends TestCase
             $this->assertSame(5300, $submission->get('total_pence'));
             $this->assertSame('awaiting_payment', $submission->get('payment_status'));
 
-            Http::assertSent(fn ($request) => $request->url() === 'https://api.stripe.com/v1/checkout/sessions');
+            Http::assertSent(fn ($request) => $request->url() === 'https://api.stripe.com/v1/checkout/sessions'
+                && $request->hasHeader('Stripe-Version', '2022-11-15'));
 
             app(StallBookingPaymentFinaliser::class)->finalise([
                 'id' => 'cs_test_stall_booking',

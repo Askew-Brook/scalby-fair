@@ -213,7 +213,11 @@ class ScalbyWalkRegistrationController extends Controller
     public function webhook(Request $request, StripeCheckoutClient $stripe, ScalbyWalkRegistrationFinaliser $finaliser): JsonResponse
     {
         try {
-            $event = $stripe->parseWebhook($request->getContent(), $request->header('Stripe-Signature'));
+            $event = $stripe->parseWebhook(
+                $request->getContent(),
+                $request->header('Stripe-Signature'),
+                config('services.stripe.walk_webhook_secret'),
+            );
         } catch (Throwable $exception) {
             report($exception);
 

@@ -113,9 +113,9 @@ class StripeCheckoutClient
     }
 
     /** @return array<string, mixed> */
-    public function parseWebhook(string $payload, ?string $signatureHeader): array
+    public function parseWebhook(string $payload, ?string $signatureHeader, ?string $webhookSecret): array
     {
-        $secret = (string) config('services.stripe.webhook_secret');
+        $secret = (string) $webhookSecret;
 
         if ($secret === '') {
             throw new RuntimeException('The Stripe webhook secret is not configured.');
@@ -161,6 +161,7 @@ class StripeCheckoutClient
         return Http::asForm()
             ->acceptJson()
             ->withBasicAuth($secret, '')
+            ->withHeaders(['Stripe-Version' => (string) config('services.stripe.api_version')])
             ->timeout(15)
             ->retry(2, 250);
     }

@@ -24,7 +24,9 @@ return [
 
     'stripe' => [
         'secret' => env('STRIPE_SECRET_KEY'),
-        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+        'api_version' => env('STRIPE_API_VERSION', '2022-11-15'),
+        'stall_webhook_secret' => env('STRIPE_STALL_WEBHOOK_SECRET', env('STRIPE_WEBHOOK_SECRET')),
+        'walk_webhook_secret' => env('STRIPE_WALK_WEBHOOK_SECRET', env('STRIPE_WEBHOOK_SECRET')),
     ],
 
     'ses' => [
