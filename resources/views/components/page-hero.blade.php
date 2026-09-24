@@ -16,7 +16,7 @@
         <div @class(['lg:col-span-6' => $hasImage, 'max-w-4xl lg:col-span-9' => !$hasImage])>
             @if($eyebrow)<p @class(['text-sm font-semibold tracking-[0.16em] uppercase', 'text-barn-600' => $hasImage, 'text-wheat-300' => !$hasImage])>{{ $eyebrow }}</p>@endif
             <h1 @class([
-                'font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-7xl',
+                'font-serif text-5xl font-semibold leading-[0.98] tracking-tight text-balance sm:text-7xl',
                 'mt-4' => $eyebrow,
                 'text-hedge-900' => $hasImage,
                 'text-cream-50' => !$hasImage,

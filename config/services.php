@@ -22,6 +22,13 @@ return [
         'key' => env('RESEND_API_KEY'),
     ],
 
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET_KEY'),
+        'api_version' => env('STRIPE_API_VERSION', '2022-11-15'),
+        'stall_webhook_secret' => env('STRIPE_STALL_WEBHOOK_SECRET', env('STRIPE_WEBHOOK_SECRET')),
+        'walk_webhook_secret' => env('STRIPE_WALK_WEBHOOK_SECRET', env('STRIPE_WEBHOOK_SECRET')),
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),

@@ -108,7 +108,7 @@
     .field-label {
         color: var(--color-hedge-900);
         display: block;
-        font-size: 0.875rem;
+        font-size: 1rem;
         font-weight: 600;
         letter-spacing: 0.05em;
         margin-bottom: 0.4rem;
@@ -124,11 +124,16 @@
     }
     .field-control:hover { border-color: var(--color-hedge-600); }
     .field-control:focus-visible { border-color: var(--color-hedge-700); outline-color: var(--color-wheat-500); }
+    .field-control[aria-invalid="true"] { border-color: var(--color-barn-600); }
     .interactive-card {
         transition: border-color 220ms ease-out, box-shadow 220ms ease-out, transform 220ms ease-out;
     }
     .image-zoom { overflow: hidden; }
     .image-zoom > img { transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
+}
+
+@media (min-width: 40rem) {
+    .field-label { font-size: 0.875rem; }
 }
 
 @media (hover: hover) {

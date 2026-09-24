@@ -10,6 +10,70 @@ askew_brook_heading: 'Proudly designed and developed by Askew Brook'
 askew_brook_text: 'Based in Scalby, Askew Brook creates bespoke websites, software and AI-powered digital solutions for businesses, charities and organisations across the UK.'
 askew_brook_label: 'Visit Askew Brook'
 askew_brook_url: 'https://askewbrook.com'
+stall_bookings_open: true
+stall_booking_year: 2026
+stall_booking_recipient_email: thomas.owen@live.co.uk
+stall_booking_items:
+  -
+    code: single_stall
+    name: 'Single rigid stall'
+    description: '6ft × 2ft (183cm × 61cm), covered.'
+    price: 21.00
+    max_quantity: 10
+    available: true
+  -
+    code: double_stall
+    name: 'Double rigid stall'
+    description: '12ft × 2ft (366cm × 61cm), covered.'
+    price: 42.00
+    max_quantity: 10
+    available: true
+  -
+    code: fair_gazebo
+    name: 'Fair gazebo'
+    description: '3m × 3m gazebo. Tables can be added separately below.'
+    price: 44.00
+    max_quantity: 5
+    available: true
+  -
+    code: table
+    name: 'Table'
+    description: '6ft × 2.5ft table.'
+    price: 2.00
+    max_quantity: 10
+    available: true
+  -
+    code: own_pitch
+    name: 'Pitch for your own gazebo'
+    description: 'Bring and secure your own gazebo.'
+    price: 37.00
+    max_quantity: 5
+    available: true
+  -
+    code: electric_hookup
+    name: '13 amp electric hook-up'
+    description: 'Not available for your own gazebo. Please include any power requirements below.'
+    price: 5.00
+    max_quantity: 2
+    available: true
+walk_registrations_open: true
+walk_booking_year: 2027
+walk_event_date: '2027-03-29'
+walk_booking_recipients:
+  -
+    name: 'Michael Whiteley'
+    email: m.whiteley@chaoslab.co.uk
+  -
+    name: 'Nigel Sheppard'
+    email: sheppardnigel@hotmail.com
+walk_adult_price: 15.00
+walk_adult_bookings_available: true
+walk_junior_price: 5.00
+walk_junior_bookings_available: true
+walk_donations_enabled: true
+walk_rules_document: walk/scalby-walk-rules-2026.pdf
+walk_map_document: walk/scalby-walk-map-2026.pdf
+walk_sponsorship_document: walk/scalby-walk-sponsorship-form-2026.docx
 statistics:
   -
     value: 'Since 1977'

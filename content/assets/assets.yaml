@@ -1,4 +1,4 @@
 title: Assets
 disk: assets
 validate:
-  - 'mimes:avif,gif,heic,heif,jpeg,jpg,pdf,png,webp'
+  - 'mimes:avif,doc,docx,gif,heic,heif,jpeg,jpg,pdf,png,webp'
