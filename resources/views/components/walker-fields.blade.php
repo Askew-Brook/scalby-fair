@@ -17,7 +17,7 @@
         <h4 class="min-w-0 font-semibold text-hedge-900"><span data-walker-label>{{ $category }} walker</span></h4>
         <button class="shrink-0 border border-hedge-700 px-3 py-1.5 text-base font-semibold text-hedge-800 hover:bg-hedge-50 sm:text-sm" type="button" data-remove-walker>Remove</button>
     </div>
-    <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="mt-5 grid gap-5 sm:grid-cols-2 sm:[&_.field-label]:flex sm:[&_.field-label]:min-h-12 sm:[&_.field-label]:items-end lg:grid-cols-5">
         <div>
             <label class="field-label" for="{{ $prefix }}-first-name">First name *</label>
             <input class="field-control" id="{{ $prefix }}-first-name" name="{{ $group }}[{{ $index }}][first_name]" type="text" value="{{ $walker['first_name'] ?? '' }}" autocomplete="off" required @error("{$group}.{$index}.first_name") aria-invalid="true" aria-describedby="{{ $prefix }}-first-name-error" @enderror>

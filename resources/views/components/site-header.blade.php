@@ -8,7 +8,7 @@
         <x-announcement :message="$siteSettings->emergency_notice" :href="$siteSettings->emergency_notice_link" :label="$siteSettings->emergency_notice_label" />
     @endif
 
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:py-3">
         <a href="/" class="shrink-0 text-hedge-800 hover:text-barn-700" aria-label="Scalby Fair home"><x-site-mark /></a>
 
         <nav class="relative z-20 hidden lg:block" aria-label="Main navigation">
