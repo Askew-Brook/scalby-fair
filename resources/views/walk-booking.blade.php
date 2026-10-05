@@ -39,6 +39,7 @@
                         <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Easter Monday {{ $catalogue->year() }}</p>
                         <h2 id="walk-booking-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Before you register</h2>
                         @if($pageContent)<div class="prose mt-7 max-w-[75ch]">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                        <p class="mt-6 max-w-[75ch] font-semibold italic text-hedge-900">You can also enter using a paper form at The Plough or on walk day.</p>
 
                         @if($walkDocuments->isNotEmpty())
                             <div class="mt-8 grid border-y border-hedge-900/10 sm:grid-cols-3" role="list" aria-label="Walk documents">
@@ -83,9 +84,11 @@
                 @if($errors->any())
                     <div class="mt-8 border-l-4 border-barn-600 bg-barn-100 p-5 text-barn-700" role="alert">
                         <p class="font-semibold">Please check the highlighted fields and try again.</p>
-                        @foreach(['booking', 'payment', 'walkers'] as $errorKey)
-                            @if($errors->has($errorKey))<p class="mt-1">{{ $errors->first($errorKey) }}</p>@endif
-                        @endforeach
+                        <ul class="mt-2 list-disc space-y-1 pl-5">
+                            @foreach(collect($errors->all())->unique() as $message)
+                                <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
 
@@ -203,7 +206,7 @@
 
                             <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
                                 <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">5. Dogs</legend>
-                                <p class="text-pretty text-hedge-800/70">Dogs are welcome but must be kept under control on a short lead. Add the name and age of each dog joining your group.</p>
+                                <p class="text-pretty text-hedge-800/70">Dogs are welcome <strong><em>free of charge</em></strong> but must be kept under control on a short lead. Add the name and age of each dog joining your group.</p>
                                 <div class="mt-5" data-dog-list>
                                     @foreach($dogs as $index => $dog)
                                         <x-dog-fields :index="$index" :dog="$dog" :age-date-label="$ageDateLabel" />
@@ -216,7 +219,7 @@
                             @if($catalogue->donationsAreEnabled())
                                 <fieldset class="border-t-4 border-hedge-700 bg-cream-50 p-6 sm:p-9">
                                     <legend class="px-2 font-serif text-2xl font-semibold tracking-tight text-hedge-900">6. Optional charity donation</legend>
-                                    <p class="mb-5 max-w-[60ch] text-pretty text-hedge-800/70">Add a donation to the Scalby Walk charity. Leave this blank if you do not wish to donate.</p>
+                                    <p class="mb-5 max-w-[60ch] text-pretty text-hedge-800/70">We are very grateful to those who help by adding donations. If you wish to do so please enter an amount here and it will be added to your overall payment. Leave this blank if you do not wish to donate.</p>
                                     <div class="max-w-xs">
                                         <label class="field-label" for="walk-donation">Donation amount</label>
                                         <div class="grid grid-cols-[auto_1fr] items-center">

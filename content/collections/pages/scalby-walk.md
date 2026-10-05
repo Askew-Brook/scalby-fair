@@ -5,7 +5,7 @@ title: Scalby Walk
 slug: scalby-walk
 template: scalby-walk
 eyebrow: Easter Monday since 1959
-introduction: A seven-mile village tradition with friendly competition, fancy dress, four pub stops and fundraising at its heart.
+introduction: A six-mile village tradition with friendly competition, fancy dress, four pub stops and fundraising at its heart.
 featured_image: 'Scalby Walk 2026.jpg'
 supporting_image: 'Scalby Walk 2026 2.jpg'
 current_information: |-
@@ -18,19 +18,17 @@ history_chapters:
   -
     heading: "An Easter Monday tradition"
     content: |-
-      Scalby Charity Walk has been taking place since 1959 and takes place each year on Easter Monday.  Scalby Fair organises the walk which starts from the Nag’s Head.
+      Scalby Charity Walk has taken place every Easter Monday since 1959. Scalby Fair organises the walk, which starts from the Nag’s Head.
 
-      The Walk is a circular route between Scalby and Cloughton, involving the partaking of liquid (alcoholic or otherwise) in several pubs. The Walk is marshalled until 2pm – walkers have occasionally been known to become “lost” in one of the pubs!
+      The Walk follows a circular route between Scalby and Cloughton, with participants enjoying a drink, alcoholic or otherwise, in four pubs. The Walk is marshalled until 2pm – walkers have occasionally been known to become “lost” in one of the pubs!
   -
     heading: "Walking for good causes"
     content: |-
-      All proceeds go to a chosen charity. In the past the Walk has raised £2,250 for the YMCA, £1,650 for Ellies Brain Tumour Trust  Fund, and £1,300 for Scalby Cricket and Football clubs. Many other charities, including St Catherine’s Hospice, have also benefited.
-
-      In 2019 the walk celebrates its diamond 60th anniversary. We are proud to have nominated Scarborough Dial-a-Ride as our nominated charity in the anniversary year. Over the years the walk has raised thousands of pounds for a diverse range of charities, such as the Teenage Cancer Trust, YMCA and St Catherine’s Hospice.
+      All proceeds go to local charities. Our long-term partners are Newby and Scalby Library and Scarborough Mates, and each year we select another local charity. In 2026 the charity was Futureworks NY and we raised £3,000. Recent charities we have supported include St Catherine’s Hospice, YMCA and The Sparks Project.
   -
     heading: "The route, the pubs and friendly competition"
     content: |-
-      Foremost in our goals is to put on an event that fosters community spirit brought together in friendly competition. You don’t have to be a resident to take part and people come from all over the country to join in. Each year the residents of Scalby, Burniston and Cloughton have taken part in a 7-mile walk (no running!) through all the three villages where all the participants must consume a half of bitter, lager or soft drink in the four pubs en route: The Three Jolly Sailors, the Red Lion, the Blacksmiths Arms and the Oak Wheel.
+      Foremost in our goals is to put on an event that fosters community spirit brought together in friendly competition. You don’t have to be a resident to take part and people come from all over the country to join in. Each year many people have taken part in a 6-mile walk (no running!) through all three villages. All participants must consume a half of bitter, lager or soft drink in the four pubs en route: The Three Jolly Sailors, the Red Lion, the Blacksmiths Arms and the Oak Wheel.
 
       Over the years the walkers have dressed up in a variety of fancy dress costumes, and what is a bit of fun is also a challenge with trophies to be won, and family members competing with each other to achieve the best time. Others meanwhile have been known to ‘get lost’ in some of the pubs!
   -

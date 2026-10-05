@@ -13,15 +13,15 @@ content: |-
 
   Payment must be made with your application. If you need to cancel, you must do so no later than seven days before Scalby Fair Day. Refunds are at the discretion of the Scalby Fair Committee.
 
-  Stall locations are allocated by the Scalby Fair Committee and cannot be altered. Please describe your stall accurately because numbers of some stall types are limited. Tombolas are not permitted.
+  Stall locations are allocated by the Scalby Fair Committee and cannot be altered. Please describe your stall accurately because numbers of some stall types are limited. **Tombolas are not permitted.**
 
-  Each Fair-supplied unit is covered. Stallholders are encouraged to decorate their stall in keeping with the current Fair theme, **Circus**.
+  Each Fair-supplied unit is covered. Stallholders are encouraged to decorate their stall in keeping with the Fair theme for the current year.
 
   ### Set-up and trading
 
   Set-up is not permitted before 9am. You will be given an arrival time, which must be followed to keep unloading efficient. Set-up must be complete and vehicles removed from the street-closure area by 11am. There is no vehicle access, except for emergency services, between 11am and 5pm. Trading begins at noon, with access for de-rig after 5pm.
 
-  On-street parking is available nearby and there is a modest car park at Scalby Community Hall. Limited disabled parking for stallholders must be arranged in advance with the stalls organiser.
+  On-street parking is available nearby. Limited disabled parking for stallholders must be arranged in advance with the stalls organiser.
 
   ### Safety and responsibilities
 
@@ -35,5 +35,5 @@ content: |-
 
   Stalls are located on High Street and South Street. Your position will be marked with your name on the morning of the Fair. The Fair Steward at the North Street entrance will direct you to it.
 
-  Food, coffee and ice-cream concessions cost **£105** and cannot be booked online. Tom needs to approve these directly so the Fair can manage the range of concessions. Please [contact the stalls organiser](/contact?about=Food%2C%20coffee%20or%20ice-cream%20concession) before applying.
+  Food, coffee and ice-cream concessions cost **£105** and cannot be booked online. Stalls Organiser Tom needs to approve these directly so the Fair can manage the range of concessions. Please [contact the stalls organiser](/contact?about=Food%2C%20coffee%20or%20ice-cream%20concession) before applying.
 ---
