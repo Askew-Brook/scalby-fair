@@ -7,7 +7,7 @@ template: walk-booking
 eyebrow: Take part
 introduction: Registration information for the Easter Monday Scalby Walk.
 featured_image: IMG_9704-1.jpeg
-supporting_image: SF-2026-Fair-Day-Parade-1-scaled-e1782569315833.webp
+supporting_image: 'Scalby Walk 2026.jpeg'
 content: |-
   Please enter the details of every adult and under-18 walker included in the booking. One person can register and pay for a group. You can also add the names and ages of any dogs joining you.
 

@@ -50,9 +50,11 @@
                 @if($errors->any())
                     <div class="mt-8 border-l-4 border-barn-600 bg-barn-100 p-5 text-barn-700" role="alert">
                         <p class="font-semibold">Please check the highlighted fields and try again.</p>
-                        @if($errors->has('booking'))<p class="mt-1">{{ $errors->first('booking') }}</p>@endif
-                        @if($errors->has('payment'))<p class="mt-1">{{ $errors->first('payment') }}</p>@endif
-                        @if($errors->has('items'))<p class="mt-1">{{ $errors->first('items') }}</p>@endif
+                        <ul class="mt-2 list-disc space-y-1 pl-5">
+                            @foreach(collect($errors->all())->unique() as $message)
+                                <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
 

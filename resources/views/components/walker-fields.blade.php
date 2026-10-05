@@ -48,7 +48,15 @@
         </div>
         <div>
             <label class="field-label" for="{{ $prefix }}-postcode">Postcode *</label>
-            <input class="field-control" id="{{ $prefix }}-postcode" name="{{ $group }}[{{ $index }}][postcode]" type="text" value="{{ $walker['postcode'] ?? '' }}" autocomplete="postal-code" required @error("{$group}.{$index}.postcode") aria-invalid="true" aria-describedby="{{ $prefix }}-postcode-error" @enderror>
+            <span class="grid grid-cols-[1fr_2rem]">
+                <select class="field-control col-span-full row-start-1 appearance-none pr-8" id="{{ $prefix }}-postcode" name="{{ $group }}[{{ $index }}][postcode]" required @error("{$group}.{$index}.postcode") aria-invalid="true" aria-describedby="{{ $prefix }}-postcode-error" @enderror>
+                    <option value="">Select</option>
+                    @foreach(['YO11', 'YO12', 'YO13', 'Other'] as $option)
+                        <option value="{{ $option }}" @selected(($walker['postcode'] ?? '') === $option)>{{ $option }}</option>
+                    @endforeach
+                </select>
+                <svg viewBox="0 0 8 5" width="8" height="5" fill="none" class="pointer-events-none col-start-2 row-start-1 place-self-center text-hedge-700" aria-hidden="true"><path d="M.5.5 4 4 7.5.5" stroke="currentColor" /></svg>
+            </span>
             @error("{$group}.{$index}.postcode")<p id="{{ $prefix }}-postcode-error" class="mt-2 font-semibold text-barn-700">{{ $message }}</p>@enderror
         </div>
     </div>

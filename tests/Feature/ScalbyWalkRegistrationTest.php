@@ -42,12 +42,12 @@ class ScalbyWalkRegistrationTest extends TestCase
                 'postcode' => 'YO13 0AA',
                 'country' => 'United Kingdom',
                 'adult_walkers' => [
-                    ['first_name' => 'Adult', 'last_name' => 'One', 'age' => 40, 'gender' => 'F', 'postcode' => 'YO13 0AA'],
-                    ['first_name' => 'Adult', 'last_name' => 'Two', 'age' => 41, 'gender' => 'M', 'postcode' => 'YO13 0AA'],
+                    ['first_name' => 'Adult', 'last_name' => 'One', 'age' => 40, 'gender' => 'F', 'postcode' => 'YO13'],
+                    ['first_name' => 'Adult', 'last_name' => 'Two', 'age' => 41, 'gender' => 'M', 'postcode' => 'YO13'],
                 ],
                 'junior_walkers' => [
-                    ['first_name' => 'Junior', 'last_name' => 'One', 'age' => 14, 'gender' => 'F', 'postcode' => 'YO13 0AA'],
-                    ['first_name' => 'Junior', 'last_name' => 'Two', 'age' => 10, 'gender' => 'M', 'postcode' => 'YO13 0AA'],
+                    ['first_name' => 'Junior', 'last_name' => 'One', 'age' => 14, 'gender' => 'F', 'postcode' => 'YO13'],
+                    ['first_name' => 'Junior', 'last_name' => 'Two', 'age' => 10, 'gender' => 'M', 'postcode' => 'YO13'],
                 ],
                 'dogs' => [
                     ['name' => 'Bertie', 'age' => 4],
