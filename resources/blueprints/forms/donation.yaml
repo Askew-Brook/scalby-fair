@@ -1,0 +1,68 @@
+title: Donation
+tabs:
+  main:
+    display: Donation
+    sections:
+      -
+        fields:
+          -
+            handle: first_name
+            field:
+              type: text
+              display: 'First name'
+          -
+            handle: last_name
+            field:
+              type: text
+              display: 'Last name'
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: 'Email address'
+          -
+            handle: amount
+            field:
+              type: text
+              display: 'Donation amount'
+          -
+            handle: amount_pence
+            field:
+              type: hidden
+          -
+            handle: privacy_consent
+            field:
+              type: toggle
+              display: 'Privacy consent'
+  payment:
+    display: Payment
+    sections:
+      -
+        fields:
+          -
+            handle: payment_status
+            field:
+              type: select
+              display: 'Payment status'
+              options:
+                creating_checkout: 'Creating checkout'
+                awaiting_payment: 'Awaiting payment'
+                paid: Paid
+                expired: Expired
+                checkout_error: 'Checkout error'
+          -
+            handle: stripe_checkout_session_id
+            field:
+              type: text
+              display: 'Stripe Checkout Session'
+          -
+            handle: stripe_payment_intent_id
+            field:
+              type: text
+              display: 'Stripe Payment Intent'
+          -
+            handle: paid_at
+            field:
+              type: text
+              display: 'Paid at'

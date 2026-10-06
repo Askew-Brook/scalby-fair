@@ -1,0 +1,39 @@
+title: 'Newsletter Sign-up'
+tabs:
+  main:
+    display: Subscriber
+    sections:
+      -
+        fields:
+          -
+            handle: first_name
+            field:
+              type: text
+              display: 'First name'
+              validate: [required, string, 'max:80']
+          -
+            handle: last_name
+            field:
+              type: text
+              display: 'Last name'
+              validate: [required, string, 'max:80']
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: 'Email address'
+              validate: [required, email, confirmed, 'max:160']
+          -
+            handle: email_confirmation
+            field:
+              type: text
+              input_type: email
+              display: 'Confirm email address'
+              validate: [required, email, 'max:160']
+          -
+            handle: privacy_consent
+            field:
+              type: toggle
+              display: 'Privacy consent'
+              validate: [accepted]

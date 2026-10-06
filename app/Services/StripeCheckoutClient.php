@@ -98,6 +98,44 @@ class StripeCheckoutClient
     }
 
     /** @return array<string, mixed> */
+    public function createDonationCheckoutSession(string $donationId, string $email, string $donorName, int $amountPence): array
+    {
+        $response = $this->request()
+            ->withHeaders(['Idempotency-Key' => "donation-{$donationId}"])
+            ->post('https://api.stripe.com/v1/checkout/sessions', [
+                'mode' => 'payment',
+                'payment_method_types' => ['card'],
+                'customer_email' => $email,
+                'client_reference_id' => $donationId,
+                'success_url' => route('donations.success').'?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => url('/donate').'?payment=cancelled#donation-form',
+                'metadata' => [
+                    'donation_id' => $donationId,
+                    'booking_type' => 'donation',
+                    'donor_name' => $donorName,
+                ],
+                'line_items' => [[
+                    'quantity' => 1,
+                    'price_data' => [
+                        'currency' => 'gbp',
+                        'unit_amount' => $amountPence,
+                        'product_data' => [
+                            'name' => 'Donation to Scalby Fair',
+                        ],
+                    ],
+                ]],
+            ])
+            ->throw()
+            ->json();
+
+        if (! is_array($response) || empty($response['id']) || empty($response['url'])) {
+            throw new RuntimeException('Stripe did not return a valid Checkout Session.');
+        }
+
+        return $response;
+    }
+
+    /** @return array<string, mixed> */
     public function retrieveCheckoutSession(string $sessionId): array
     {
         $response = $this->request()

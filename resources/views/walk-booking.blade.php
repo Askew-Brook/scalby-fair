@@ -83,7 +83,7 @@
 
                 @if($errors->any())
                     <div class="mt-8 border-l-4 border-barn-600 bg-barn-100 p-5 text-barn-700" role="alert">
-                        <p class="font-semibold">Please check the highlighted fields and try again.</p>
+                        <p class="font-semibold">We could not continue to payment for the following reason:</p>
                         <ul class="mt-2 list-disc space-y-1 pl-5">
                             @foreach(collect($errors->all())->unique() as $message)
                                 <li>{{ $message }}</li>

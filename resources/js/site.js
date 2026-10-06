@@ -132,3 +132,16 @@ document.querySelectorAll('[data-walk-booking-form]').forEach((form) => {
     donation?.addEventListener('input', updateSummary);
     updateSummary();
 });
+
+document.querySelectorAll('[data-donation-form]').forEach((form) => {
+    const amount = form.querySelector('[data-donation-amount]');
+
+    form.querySelectorAll('[data-donation-preset]').forEach((button) => {
+        button.addEventListener('click', () => {
+            if (!amount) return;
+
+            amount.value = button.dataset.donationPreset || '';
+            amount.focus();
+        });
+    });
+});
