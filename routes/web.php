@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\ScalbyWalkRegistrationController;
 use App\Http\Controllers\StallBookingController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,16 @@ Route::get('walk-bookings/success', [ScalbyWalkRegistrationController::class, 's
 
 Route::post('stripe/webhooks/walk-bookings', [ScalbyWalkRegistrationController::class, 'webhook'])
     ->name('walk-bookings.webhook');
+
+Route::post('donate/checkout', [DonationController::class, 'checkout'])
+    ->middleware('throttle:10,1')
+    ->name('donations.checkout');
+
+Route::get('donate/success', [DonationController::class, 'success'])
+    ->name('donations.success');
+
+Route::post('stripe/webhooks/donations', [DonationController::class, 'webhook'])
+    ->name('donations.webhook');
 
 Route::get('sitemap.xml', function () {
     $entries = Entry::query()

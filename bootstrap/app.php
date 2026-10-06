@@ -12,6 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->validateCsrfTokens(except: [
+            'stripe/webhooks/donations',
             'stripe/webhooks/stall-bookings',
             'stripe/webhooks/walk-bookings',
         ]);
