@@ -6,6 +6,7 @@ use App\Mail\ScalbyWalkRegistrationPaid;
 use App\Services\ScalbyWalkRegistrationFinaliser;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use League\Csv\Reader;
 use Statamic\Facades\Form;
 use Tests\TestCase;
 
@@ -86,6 +87,14 @@ class ScalbyWalkRegistrationTest extends TestCase
             Mail::assertSent(ScalbyWalkRegistrationPaid::class, fn (ScalbyWalkRegistrationPaid $mail) => $mail->hasTo('registrant@example.com')
                 && $mail->hasBcc('m.whiteley@chaoslab.co.uk')
                 && $mail->hasBcc('sheppardnigel@hotmail.com'));
+
+            $csv = $form->exporter('walkers_csv')->setSubmissions(collect([$registration]))->export();
+            $records = collect(Reader::createFromString($csv)->setHeaderOffset(0)->getRecords())->values();
+
+            $this->assertCount(5, $records);
+            $this->assertSame(['Adult', 'Adult', 'Under-18', 'Under-18', 'Dog'], $records->pluck('Participant type')->all());
+            $this->assertSame('YO11, YO12 or YO13', $records->first()['Postcode area']);
+            $this->assertSame('Bertie', $records->last()['Participant first name']);
         } finally {
             $created->each->deleteQuietly();
         }
