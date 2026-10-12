@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Statamic\Facades\Form;
@@ -44,13 +45,13 @@ class ScalbyWalkRegistrationController extends Controller
             'adult_walkers.*.last_name' => ['required', 'string', 'max:80'],
             'adult_walkers.*.age' => ['required', 'integer', 'min:18', 'max:120'],
             'adult_walkers.*.gender' => ['required', 'string', 'in:M,F,Other,Prefer not to say'],
-            'adult_walkers.*.postcode' => ['required', 'string', 'in:YO11,YO12,YO13,Other'],
+            'adult_walkers.*.postcode' => ['required', 'string', Rule::in(['YO11, YO12 or YO13', 'Other'])],
             'junior_walkers' => ['nullable', 'array', 'max:10'],
             'junior_walkers.*.first_name' => ['required', 'string', 'max:80'],
             'junior_walkers.*.last_name' => ['required', 'string', 'max:80'],
             'junior_walkers.*.age' => ['required', 'integer', 'min:0', 'max:17'],
             'junior_walkers.*.gender' => ['required', 'string', 'in:M,F,Other,Prefer not to say'],
-            'junior_walkers.*.postcode' => ['required', 'string', 'in:YO11,YO12,YO13,Other'],
+            'junior_walkers.*.postcode' => ['required', 'string', Rule::in(['YO11, YO12 or YO13', 'Other'])],
             'dogs' => ['nullable', 'array', 'max:10'],
             'dogs.*.name' => ['required', 'string', 'max:80'],
             'dogs.*.age' => ['required', 'integer', 'min:0', 'max:30'],
@@ -67,8 +68,8 @@ class ScalbyWalkRegistrationController extends Controller
             'junior_walkers.max' => 'You can register up to 10 under-18 walkers in one booking.',
             'adult_walkers.*.age.min' => 'Adult walkers must be aged 18 or over on the event date.',
             'junior_walkers.*.age.max' => 'Under-18 walkers must be aged 17 or younger on the event date.',
-            'adult_walkers.*.postcode.in' => 'Choose YO11, YO12, YO13 or Other for each adult walker.',
-            'junior_walkers.*.postcode.in' => 'Choose YO11, YO12, YO13 or Other for each under-18 walker.',
+            'adult_walkers.*.postcode.in' => 'Choose “YO11, YO12 or YO13” or “Other” for each adult walker.',
+            'junior_walkers.*.postcode.in' => 'Choose “YO11, YO12 or YO13” or “Other” for each under-18 walker.',
             'dogs.max' => 'You can add up to 10 dogs to one booking.',
         ]);
 
