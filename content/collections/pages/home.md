@@ -10,7 +10,7 @@ hero_image: 'Scalby Fair 2026 Gen Crowd.jpg'
 hero_supporting_images:
   - 'SF 2026 Fair Day Magic Mike 3.jpg'
   - SF_Library stall_2025.jpg
-  - 'SF_Wine Tasting 2025.jpeg'
+  - WineTasting1.jpeg
 hero_link_label: 'See what’s on'
 hero_link: 'entry::events'
 introduction_heading: 'There is more to the Fair than one day'
@@ -20,7 +20,7 @@ programme_images:
   - SF_Treasure Hunt_2025.jpeg
   - 'Scalby Walk 2026.jpg'
 fair_week_summary: 'A week of community events leading up to the main Fair Day.'
-fair_week_image: 'SF_Wine Tasting 2025.jpeg'
+fair_week_image: WineTasting1.jpeg
 fair_day_summary: 'The centrepiece of the week: a day for neighbours, families, visitors and local causes.'
 fair_day_image: 'Scalby Fair 2026 Main Stage.jpg'
 walk_summary: 'An Easter Monday walk that brings the community together before summer arrives.'
@@ -35,7 +35,7 @@ community_gallery:
   - 'Fair Day Yew Court 2.jpg'
   - SF_Library stall_2025.jpg
   - SF_Treasure Hunt_2025.jpeg
-  - 'SF_Wine Tasting 2025.jpeg'
+  - WineTasting1.jpeg
   - 'Soul Rida at Nags 26-23.jpg'
   - 'Scalby Walk 2026 2.jpg'
 seo_title: 'Scalby Fair | Fair Week, Fair Day & Scalby Walk'
