@@ -47,7 +47,7 @@ chapters:
     heading: "The first Flower Festivals"
     content: |-
       And then, there was the Flower Festival. Those wonderful ladies Mrs Wharton and Mrs Beal who gathered the arrangers round them and produced fantastic displays in both St Laurence’s Church and the Methodist Church. They were followed by Rosemary Grace, Jan Milnes and Anne Tubbs. In the early years, Ken Gill would take orders for flowers and go to Leeds Market to collect. Reading a list of contributors shows how many are still contributing to the Flower Festival but so many others are no longer with us.
-    image: "SF_Wine-Tasting-2025.jpeg"
+    image: "Flower Festival.jpeg"
   -
     heading: "Walks, runs and sporting events"
     content: |-
@@ -109,7 +109,7 @@ chapters:
       On the Monday, the church is open from 10am to 3pm for viewing with donations towards the Fair’s charities.
 
       We hope that visitors viewing the displays at times other than the preview evening will be prepared to make a donation towards the flowers, which will help the Scalby Fair Committee’s donations to local causes.
-    image: "SF_Wine-Tasting-2025.jpeg"
+    image: "Flower Festival.jpeg"
 leaders:
   -
     year: 1977

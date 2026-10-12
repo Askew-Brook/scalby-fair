@@ -51,7 +51,7 @@
             <span class="grid grid-cols-[1fr_2rem]">
                 <select class="field-control col-span-full row-start-1 appearance-none pr-8" id="{{ $prefix }}-postcode" name="{{ $group }}[{{ $index }}][postcode]" required @error("{$group}.{$index}.postcode") aria-invalid="true" aria-describedby="{{ $prefix }}-postcode-error" @enderror>
                     <option value="">Select</option>
-                    @foreach(['YO11', 'YO12', 'YO13', 'Other'] as $option)
+                    @foreach(['YO11, YO12 or YO13', 'Other'] as $option)
                         <option value="{{ $option }}" @selected(($walker['postcode'] ?? '') === $option)>{{ $option }}</option>
                     @endforeach
                 </select>

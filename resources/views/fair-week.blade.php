@@ -29,8 +29,8 @@
         : null;
     $pageContent = \Statamic\View\Blade\value($content);
     $ceilidhImage = Asset::find('assets::SF_Celidh_2025.jpeg');
-    $wineImage = Asset::find('assets::SF_Wine-Tasting-2025.jpeg');
-    $soulImage = Asset::find('assets::Soul-Rida-Scalby-Fair-2026-Upscaler-2x-scale.webp');
+    $wineImage = Asset::find('assets::WineTasting1.jpeg');
+    $beckviewImage = Asset::find('assets::Beckview 2025.webp');
     $nancyImage = Asset::find('assets::SF-2026-Nancy-Tilley-on-stageRS-e1782569879860.webp');
 @endphp
 
@@ -72,7 +72,7 @@
             <div class="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-12 sm:px-8">
                 <div class="image-zoom sm:col-span-5 sm:translate-y-5"><x-responsive-image :asset="$ceilidhImage" :width="900" :height="760" sizes="(min-width: 640px) 42vw, 100vw" class="aspect-[9/7] h-full w-full object-cover" /></div>
                 <div class="image-zoom sm:col-span-4"><x-responsive-image :asset="$wineImage" :width="760" :height="900" sizes="(min-width: 640px) 34vw, 100vw" class="aspect-[4/5] h-full w-full object-cover" /></div>
-                <div class="image-zoom sm:col-span-3 sm:translate-y-10"><x-responsive-image :asset="$soulImage" :width="650" :height="760" sizes="(min-width: 640px) 25vw, 100vw" class="aspect-[4/5] h-full w-full object-cover" /></div>
+                <div class="image-zoom sm:col-span-3 sm:translate-y-10"><x-responsive-image :asset="$beckviewImage" :width="650" :height="760" sizes="(min-width: 640px) 25vw, 100vw" class="aspect-[4/5] h-full w-full object-cover" /></div>
             </div>
         </section>
 

@@ -78,23 +78,19 @@ tabs:
           -
             handle: adult_walkers_names
             field:
-              type: text
-              display: 'Adult walker names (CSV)'
+              type: hidden
           -
             handle: adult_walkers_ages
             field:
-              type: text
-              display: 'Adult walker ages (CSV)'
+              type: hidden
           -
             handle: adult_walkers_genders
             field:
-              type: text
-              display: 'Adult walker genders (CSV)'
+              type: hidden
           -
             handle: adult_walkers_postcodes
             field:
-              type: text
-              display: 'Adult walker postcodes (CSV)'
+              type: hidden
           -
             handle: junior_count
             field:
@@ -108,23 +104,19 @@ tabs:
           -
             handle: junior_walkers_names
             field:
-              type: text
-              display: 'Under-18 walker names (CSV)'
+              type: hidden
           -
             handle: junior_walkers_ages
             field:
-              type: text
-              display: 'Under-18 walker ages (CSV)'
+              type: hidden
           -
             handle: junior_walkers_genders
             field:
-              type: text
-              display: 'Under-18 walker genders (CSV)'
+              type: hidden
           -
             handle: junior_walkers_postcodes
             field:
-              type: text
-              display: 'Under-18 walker postcodes (CSV)'
+              type: hidden
           -
             handle: dog_count
             field:
@@ -138,13 +130,11 @@ tabs:
           -
             handle: dog_names
             field:
-              type: text
-              display: 'Dog names (CSV)'
+              type: hidden
           -
             handle: dog_ages
             field:
-              type: text
-              display: 'Dog ages (CSV)'
+              type: hidden
           -
             handle: adult_walkers
             field:

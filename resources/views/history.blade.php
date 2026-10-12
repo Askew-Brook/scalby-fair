@@ -8,7 +8,7 @@
         Asset::find('assets::SF_Celidh_2025.jpeg'),
         Asset::find('assets::Scalby-Fair_BBQ_2025.webp'),
         Asset::find('assets::images.jpeg'),
-        Asset::find('assets::SF_Wine-Tasting-2025.jpeg'),
+        Asset::find('assets::Flower Festival.jpeg'),
     ])->filter()->values();
 @endphp
 
