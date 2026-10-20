@@ -34,6 +34,14 @@
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
                 <x-breadcrumbs :items="[['title' => $title]]" />
 
+                @unless($bookingOpen)
+                    <div class="mt-10 border-l-4 border-wheat-500 bg-cream-100 p-6 sm:p-8" role="status">
+                        <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Registrations are not yet available</p>
+                        <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-4xl">Please don’t use the previous prices</h2>
+                        <p class="mt-4 max-w-[65ch] text-pretty text-hedge-800/80">The committee is agreeing the prices and arrangements for the next Walk. Online registration and payment will be enabled here when everything is confirmed.</p>
+                    </div>
+                @endunless
+
                 <div class="mt-10 grid gap-12 lg:grid-cols-12 lg:items-start">
                     <div class="lg:col-span-7">
                         <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Easter Monday {{ $catalogue->year() }}</p>
@@ -54,15 +62,21 @@
                     </div>
 
                     <aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:sticky lg:top-28 lg:col-span-4 lg:col-start-9" aria-labelledby="walk-process-heading">
-                        <h2 id="walk-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">How registration works</h2>
-                        <ol class="mt-5 grid list-decimal gap-3 pl-5 text-hedge-800/80">
-                            <li>Add every adult and under-18 walker.</li>
-                            <li>Add any dogs joining your group.</li>
-                            <li>Check the registrant’s contact details.</li>
-                            <li>Pay securely on Stripe.</li>
-                            <li>The registrant and Walk organisers receive the paid registration.</li>
-                        </ol>
-                        <p class="mt-6 border-t border-hedge-900/10 pt-6 text-pretty text-hedge-800/75">Your place is not confirmed until Stripe confirms payment.</p>
+                        @if($bookingOpen)
+                            <h2 id="walk-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">How registration works</h2>
+                            <ol class="mt-5 grid list-decimal gap-3 pl-5 text-hedge-800/80">
+                                <li>Add every adult and under-18 walker.</li>
+                                <li>Add any dogs joining your group.</li>
+                                <li>Check the registrant’s contact details.</li>
+                                <li>Pay securely on Stripe.</li>
+                                <li>The registrant and Walk organisers receive the paid registration.</li>
+                            </ol>
+                            <p class="mt-6 border-t border-hedge-900/10 pt-6 text-pretty text-hedge-800/75">Your place is not confirmed until Stripe confirms payment.</p>
+                        @else
+                            <h2 id="walk-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">Registrations are not open yet</h2>
+                            <p class="mt-5 text-pretty text-hedge-800/80">The committee will publish the next prices and arrangements before online payments are enabled.</p>
+                            <p class="mt-6 border-t border-hedge-900/10 pt-6 text-pretty text-hedge-800/75">For questions in the meantime, contact the Walk Organiser.</p>
+                        @endif
                     </aside>
                 </div>
             </div>
@@ -70,9 +84,9 @@
 
         <section id="walk-booking-form" class="scroll-mt-24 border-y border-hedge-900/10 bg-cream-100 py-14 sm:py-20" aria-labelledby="walk-form-heading">
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
-                <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Register and pay online</p>
-                <h2 id="walk-form-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Scalby Charity Walk {{ $catalogue->year() }} registration</h2>
-                <p class="mt-4 max-w-[62ch] text-base text-pretty text-hedge-800/75">Required fields are marked with an asterisk. You can register up to 10 adults and 10 under-18 walkers in one payment.</p>
+                <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">{{ $bookingOpen ? 'Register and pay online' : 'Registration availability' }}</p>
+                <h2 id="walk-form-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">{{ $bookingOpen ? 'Scalby Charity Walk '.$catalogue->year().' registration' : 'Registration for the next Scalby Charity Walk' }}</h2>
+                <p class="mt-4 max-w-[62ch] text-base text-pretty text-hedge-800/75">{{ $bookingOpen ? 'Required fields are marked with an asterisk. You can register up to 10 adults and 10 under-18 walkers in one payment.' : 'Online payments are not yet available while the committee agrees the next Walk’s prices and arrangements.' }}</p>
 
                 @if(request('payment') === 'cancelled')
                     <div class="mt-8 border-l-4 border-wheat-500 bg-cream-50 p-5 text-hedge-900" role="status">
@@ -284,7 +298,7 @@
                 @else
                     <div class="mt-10 border-l-4 border-wheat-500 bg-cream-50 p-7">
                         <h3 class="font-serif text-2xl font-semibold tracking-tight text-hedge-900">Online Walk registrations are currently closed</h3>
-                        <p class="mt-3 max-w-[60ch] text-pretty text-hedge-800/75">The committee will reopen this form when the next registration period begins. Contact the Walk organisers if you have a question.</p>
+                        <p class="mt-3 max-w-[60ch] text-pretty text-hedge-800/75">The committee is agreeing the next Walk’s prices and arrangements. This form will reopen when registrations are ready to go on sale. Please do not use the previous year’s prices.</p>
                         <x-button href="/contact?about=Scalby%20Walk" variant="secondary" class="mt-6">Contact the committee</x-button>
                     </div>
                 @endif

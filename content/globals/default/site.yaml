@@ -56,7 +56,7 @@ stall_booking_items:
     price: 5.00
     max_quantity: 2
     available: true
-walk_registrations_open: true
+walk_registrations_open: false
 walk_booking_year: 2027
 walk_event_date: '2027-03-29'
 walk_booking_recipients:
