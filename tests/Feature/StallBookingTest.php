@@ -14,6 +14,7 @@ class StallBookingTest extends TestCase
     public function test_a_paid_stall_booking_uses_server_prices_and_emails_the_organiser(): void
     {
         config(['services.stripe.secret' => 'sk_test_example']);
+        globalSet('site')->set('stall_bookings_open', true);
 
         Mail::fake();
 
@@ -76,6 +77,7 @@ class StallBookingTest extends TestCase
             $this->assertSame('paid', $submission->get('payment_status'));
             Mail::assertSent(StallBookingPaid::class, fn (StallBookingPaid $mail) => $mail->hasTo('thomas.owen@live.co.uk'));
         } finally {
+            globalSet('site')->set('stall_bookings_open', false);
             $created->each->deleteQuietly();
         }
     }

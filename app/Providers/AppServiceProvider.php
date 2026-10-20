@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Listeners\SendWalkContactEnquiry;
+use App\Listeners\SendContactEnquiry;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Statamic\Events\FormSubmitted;
@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(FormSubmitted::class, SendWalkContactEnquiry::class);
+        Event::listen(FormSubmitted::class, SendContactEnquiry::class);
 
         // Statamic::vite('app', [
         //     'resources/js/cp.js',

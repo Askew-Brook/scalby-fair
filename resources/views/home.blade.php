@@ -36,8 +36,8 @@
             @if($hero_image)
                 <x-responsive-image :asset="$hero_image" :width="1920" :height="1120" sizes="100vw" loading="eager" fetch-priority="high" alt="" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
             @endif
-            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900/75 via-hedge-900/52 to-hedge-900/5" aria-hidden="true"></div>
-            <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-hedge-900/35 to-transparent" aria-hidden="true"></div>
+            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900/65 via-hedge-900/38 to-transparent" aria-hidden="true"></div>
+            <div class="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-hedge-900/25 to-transparent" aria-hidden="true"></div>
             <div class="mx-auto grid min-h-[42rem] max-w-7xl items-end px-5 py-16 sm:min-h-[47rem] sm:px-8 sm:py-20 lg:grid-cols-12 lg:py-24">
                 <div class="max-w-4xl lg:col-span-8">
                     <p class="text-sm font-semibold tracking-[0.18em] text-wheat-300 uppercase">{{ $hero_kicker }}</p>
@@ -129,7 +129,7 @@
 
             <article class="group relative isolate mx-auto mt-8 min-h-[34rem] max-w-[96rem] overflow-hidden bg-hedge-900 text-cream-50 sm:mt-12">
                 <div class="image-zoom absolute inset-0 -z-20"><x-responsive-image :asset="$fair_day_image" :width="1920" :height="1050" sizes="100vw" alt="" class="h-full w-full object-cover" /></div>
-                <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900/95 via-hedge-900/70 to-transparent" aria-hidden="true"></div>
+                <div class="absolute inset-0 -z-10 bg-gradient-to-r from-hedge-900/82 via-hedge-900/52 to-transparent" aria-hidden="true"></div>
                 <div class="mx-auto flex min-h-[34rem] max-w-7xl items-end px-5 py-12 sm:px-8 sm:py-16">
                     <div class="max-w-xl">
                         <p class="font-serif text-5xl text-wheat-300" aria-hidden="true">02</p>

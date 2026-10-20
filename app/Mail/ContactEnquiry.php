@@ -9,12 +9,24 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class WalkContactEnquiry extends Mailable
+class ContactEnquiry extends Mailable
 {
     use Queueable, SerializesModels;
 
     /** @param array<string, mixed> $enquiry */
     public function __construct(public array $enquiry) {}
+
+    public function enquiryTypeLabel(): string
+    {
+        return match ($this->enquiry['enquiry_type'] ?? null) {
+            'fair_week' => 'Fair Week or an event',
+            'stalls' => 'Stall bookings',
+            'volunteering' => 'Volunteering',
+            'walk' => 'Scalby Walk',
+            'website' => 'Website help',
+            default => 'General enquiry',
+        };
+    }
 
     public function envelope(): Envelope
     {
@@ -25,12 +37,15 @@ class WalkContactEnquiry extends Mailable
 
         return new Envelope(
             replyTo: $replyTo,
-            subject: 'Scalby Walk website enquiry'.($name ? ' — '.$name : ''),
+            subject: 'Scalby Fair website enquiry — '.$this->enquiryTypeLabel().($name ? ' — '.$name : ''),
         );
     }
 
     public function content(): Content
     {
-        return new Content(view: 'emails.walk-contact-enquiry');
+        return new Content(
+            view: 'emails.contact-enquiry',
+            with: ['enquiryTypeLabel' => $this->enquiryTypeLabel()],
+        );
     }
 }

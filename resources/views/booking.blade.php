@@ -13,22 +13,36 @@
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
                 <x-breadcrumbs :items="[['title' => $title]]" />
 
+                @unless($bookingOpen)
+                    <div class="mt-10 border-l-4 border-wheat-500 bg-cream-100 p-6 sm:p-8" role="status">
+                        <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Bookings are not yet available</p>
+                        <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-4xl">Please don’t use last year’s prices</h2>
+                        <p class="mt-4 max-w-[65ch] text-pretty text-hedge-800/80">The committee is agreeing the prices and availability for the next Fair. Online booking and payment will be enabled here when everything is confirmed.</p>
+                    </div>
+                @endunless
+
                 <div class="mt-10 grid gap-12 lg:grid-cols-12 lg:items-start">
                     <div class="lg:col-span-7">
-                        <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Fair Day {{ $catalogue->year() }}</p>
+                        <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">{{ $bookingOpen ? 'Fair Day '.$catalogue->year() : 'Next Fair Day' }}</p>
                         <h2 id="stall-booking-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Please read this before booking</h2>
                         @if($pageContent)<div id="stall-booking-terms" class="prose mt-7 max-w-[75ch]">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
                     </div>
 
                     <aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:sticky lg:top-28 lg:col-span-4 lg:col-start-9" aria-labelledby="booking-process-heading">
-                        <h2 id="booking-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">How online booking works</h2>
-                        <ol class="mt-5 grid list-decimal gap-3 pl-5 text-hedge-800/80">
-                            <li>Choose the items you need.</li>
-                            <li>Complete your stallholder details.</li>
-                            <li>Pay securely on Stripe.</li>
-                            <li>The stalls organiser receives your paid booking automatically.</li>
-                        </ol>
-                        <p class="mt-6 border-t border-hedge-900/10 pt-6 text-pretty text-hedge-800/75">Your booking is not complete until Stripe confirms payment.</p>
+                        @if($bookingOpen)
+                            <h2 id="booking-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">How online booking works</h2>
+                            <ol class="mt-5 grid list-decimal gap-3 pl-5 text-hedge-800/80">
+                                <li>Choose the items you need.</li>
+                                <li>Complete your stallholder details.</li>
+                                <li>Pay securely on Stripe.</li>
+                                <li>The stalls organiser receives your paid booking automatically.</li>
+                            </ol>
+                            <p class="mt-6 border-t border-hedge-900/10 pt-6 text-pretty text-hedge-800/75">Your booking is not complete until Stripe confirms payment.</p>
+                        @else
+                            <h2 id="booking-process-heading" class="font-serif text-2xl font-semibold tracking-tight text-balance text-hedge-900">Bookings are not open yet</h2>
+                            <p class="mt-5 text-pretty text-hedge-800/80">The committee will publish the next prices and availability before online payments are enabled.</p>
+                            <p class="mt-6 border-t border-hedge-900/10 pt-6 text-pretty text-hedge-800/75">For questions in the meantime, contact the Stalls Organiser.</p>
+                        @endif
                     </aside>
                 </div>
             </div>
@@ -36,9 +50,9 @@
 
         <section id="stall-booking-form" class="scroll-mt-24 border-y border-hedge-900/10 bg-cream-100 py-14 sm:py-20" aria-labelledby="booking-form-heading">
             <div class="mx-auto max-w-7xl px-5 sm:px-8">
-                <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Book and pay online</p>
-                <h2 id="booking-form-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Scalby Fair stall booking form {{ $catalogue->year() }}</h2>
-                <p class="mt-4 max-w-[56ch] text-base text-pretty text-hedge-800/75">Required fields are marked with an asterisk. Prices and availability below are current for this Fair.</p>
+                <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">{{ $bookingOpen ? 'Book and pay online' : 'Booking availability' }}</p>
+                <h2 id="booking-form-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">{{ $bookingOpen ? 'Scalby Fair stall booking form '.$catalogue->year() : 'Stall bookings for the next Fair' }}</h2>
+                <p class="mt-4 max-w-[56ch] text-base text-pretty text-hedge-800/75">{{ $bookingOpen ? 'Required fields are marked with an asterisk. Prices and availability below are current for this Fair.' : 'Online payments are not yet available while the committee agrees the next Fair’s prices.' }}</p>
 
                 @if(request('payment') === 'cancelled')
                     <div class="mt-8 border-l-4 border-wheat-500 bg-cream-50 p-5 text-hedge-900" role="status">
@@ -220,7 +234,7 @@
                 @else
                     <div class="mt-10 border-l-4 border-wheat-500 bg-cream-50 p-7">
                         <h3 class="font-serif text-2xl font-semibold tracking-tight text-hedge-900">Online stall bookings are currently closed</h3>
-                        <p class="mt-3 max-w-[60ch] text-pretty text-hedge-800/75">The committee will reopen this form when the next booking period begins. Contact the Fair committee if you have a stall enquiry.</p>
+                        <p class="mt-3 max-w-[60ch] text-pretty text-hedge-800/75">The committee is agreeing the next Fair’s prices. This form will reopen when bookings are ready to go on sale. Please do not use the previous year’s prices.</p>
                         <x-button href="/contact?about=Stall%20bookings" variant="secondary" class="mt-6">Contact the committee</x-button>
                     </div>
                 @endif
