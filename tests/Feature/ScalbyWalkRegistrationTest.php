@@ -15,6 +15,7 @@ class ScalbyWalkRegistrationTest extends TestCase
     public function test_a_paid_walk_registration_uses_server_prices_and_emails_every_recipient(): void
     {
         config(['services.stripe.secret' => 'sk_test_example']);
+        globalSet('site')->set('walk_registrations_open', true);
 
         Mail::fake();
 
@@ -96,6 +97,7 @@ class ScalbyWalkRegistrationTest extends TestCase
             $this->assertSame('YO11, YO12 or YO13', $records->first()['Postcode area']);
             $this->assertSame('Bertie', $records->last()['Participant first name']);
         } finally {
+            globalSet('site')->set('walk_registrations_open', false);
             $created->each->deleteQuietly();
         }
     }
