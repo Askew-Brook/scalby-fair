@@ -19,6 +19,16 @@ tabs:
               input_type: tel
               display: Public phone number
           -
+            handle: contact_form_recipient_email
+            field:
+              type: text
+              input_type: email
+              display: 'General enquiry recipient'
+              instructions: 'General, Fair Week, volunteering and website enquiries are sent here. Stall and Walk enquiries use their organiser addresses.'
+              validate:
+                - required
+                - email
+          -
             handle: postal_address
             field:
               type: textarea

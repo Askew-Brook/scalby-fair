@@ -4,7 +4,7 @@
         <div style="margin: 0 auto; max-width: 680px; padding: 32px 20px;">
             <div style="background: #ffffff; border-top: 5px solid #b78d3b; padding: 32px;">
                 <p style="margin: 0 0 8px; color: #74332d; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Website enquiry</p>
-                <h1 style="margin: 0; color: #1d2c20; font-family: Georgia, serif; font-size: 30px;">Scalby Walk enquiry</h1>
+                <h1 style="margin: 0; color: #1d2c20; font-family: Georgia, serif; font-size: 30px;">{{ $enquiryTypeLabel }}</h1>
 
                 <table role="presentation" style="margin-top: 24px; width: 100%; border-collapse: collapse; line-height: 1.5;">
                     <tr><td style="width: 32%; border-top: 1px solid #eadcbd; padding: 10px 8px 10px 0; font-weight: 700;">Name</td><td style="border-top: 1px solid #eadcbd; padding: 10px 0;">{{ $enquiry['name'] ?? '' }}</td></tr>

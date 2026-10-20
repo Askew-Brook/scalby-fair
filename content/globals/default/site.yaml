@@ -10,7 +10,8 @@ askew_brook_heading: 'Proudly designed and developed by Askew Brook'
 askew_brook_text: 'Based in Scalby, Askew Brook creates bespoke websites, software and AI-powered digital solutions for businesses, charities and organisations across the UK.'
 askew_brook_label: 'Visit Askew Brook'
 askew_brook_url: 'https://askewbrook.com'
-stall_bookings_open: true
+contact_form_recipient_email: petercalow@gmail.com
+stall_bookings_open: false
 stall_booking_year: 2026
 stall_booking_recipient_email: thomas.owen@live.co.uk
 stall_booking_items:
