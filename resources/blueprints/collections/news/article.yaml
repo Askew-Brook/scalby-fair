@@ -23,11 +23,6 @@ tabs:
               validate:
                 - required
           -
-            handle: author_name
-            field:
-              type: text
-              display: Author
-          -
             handle: featured_image
             field:
               type: assets
