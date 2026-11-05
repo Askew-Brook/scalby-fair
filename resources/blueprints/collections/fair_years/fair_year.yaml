@@ -78,7 +78,6 @@ tabs:
               type: assets
               display: Programme downloads
               container: assets
-              folder: downloads/programmes
               mode: list
           -
             handle: bookings_open
@@ -111,7 +110,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: fair-years
           -
             handle: announcement
             field:

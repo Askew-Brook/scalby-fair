@@ -101,7 +101,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: events
           -
             handle: gallery
             field:
@@ -109,7 +108,6 @@ tabs:
               display: Image gallery
               container: assets
               mode: grid
-              folder: events
           -
             handle: content
             field:
@@ -239,7 +237,6 @@ tabs:
               type: assets
               display: Downloads
               container: assets
-              folder: downloads/events
               mode: list
   seo:
     display: SEO

@@ -301,7 +301,6 @@ tabs:
               type: assets
               display: 'Rules and Regulations'
               container: assets
-              folder: walk
               max_files: 1
               mode: list
           -
@@ -310,7 +309,6 @@ tabs:
               type: assets
               display: 'Walk map'
               container: assets
-              folder: walk
               max_files: 1
               mode: list
           -
@@ -319,7 +317,6 @@ tabs:
               type: assets
               display: 'Sponsorship form'
               container: assets
-              folder: walk
               max_files: 1
               mode: list
   impact:
@@ -461,4 +458,3 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: social

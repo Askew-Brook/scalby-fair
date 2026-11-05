@@ -23,11 +23,6 @@ tabs:
               validate:
                 - required
           -
-            handle: author_name
-            field:
-              type: text
-              display: Author
-          -
             handle: featured_image
             field:
               type: assets
@@ -35,7 +30,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: news
           -
             handle: content
             field:
@@ -77,7 +71,6 @@ tabs:
               type: assets
               display: Gallery
               container: assets
-              folder: news
               mode: grid
   seo:
     display: SEO

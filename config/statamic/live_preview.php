@@ -35,6 +35,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Debounce
+    |--------------------------------------------------------------------------
+    |
+    | Keep preview requests responsive while allowing compound editor fields
+    | enough time to settle before Statamic refreshes the preview.
+    |
+    */
+
+    'debounce_ms' => (int) env('STATAMIC_LIVE_PREVIEW_DEBOUNCE_MS', 150),
+
+    /*
+    |--------------------------------------------------------------------------
     | Force Reload Javascript Modules
     |--------------------------------------------------------------------------
     |
@@ -44,5 +56,17 @@ return [
     */
 
     'force_reload_js_modules' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Hot Reload Contents
+    |--------------------------------------------------------------------------
+    |
+    | Allow preview targets that opt out of a full page refresh to replace
+    | their document contents whenever an editor changes a field.
+    |
+    */
+
+    'hot_reload_contents' => true,
 
 ];

@@ -33,7 +33,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: pages
           -
             handle: supporting_image
             field:
@@ -43,7 +42,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: pages
           -
             handle: content
             field:

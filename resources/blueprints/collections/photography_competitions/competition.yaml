@@ -52,7 +52,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: photography-competition
           -
             handle: supporting_image
             field:
@@ -61,7 +60,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: photography-competition
           -
             handle: card_image
             field:
@@ -71,7 +69,6 @@ tabs:
               container: assets
               max_files: 1
               mode: list
-              folder: photography-competition
       -
         display: Entry information
         fields:
@@ -163,7 +160,6 @@ tabs:
               display: Winning photographs
               container: assets
               mode: grid
-              folder: photography-competition/winners
               if:
                 winners_announced: 'equals true'
           -
