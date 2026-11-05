@@ -2,8 +2,13 @@ title: Pages
 route: '{parent_uri}/{slug}'
 template: page
 layout: layouts/app
-revisions: false
+revisions: true
 sort_dir: asc
 structure:
   root: true
 propagate: true
+preview_targets:
+  -
+    label: Page
+    url: '{permalink}'
+    refresh: true
