@@ -1,0 +1,30 @@
+booking_year: 2026
+first_name: Peter
+last_name: Calow
+email: petercalow@gmail.com
+phone: '+447977559472'
+business_name: Peter
+address_line_1: '14 Hay Lane'
+address_line_2: Scalby
+town: Scarborough
+postcode: 'YO13 0SP'
+stall_purpose: Information
+special_requirements: None
+certificates: None
+items:
+  -
+    code: single_stall
+    name: 'Single rigid stall'
+    description: '6ft × 2ft (183cm × 61cm), covered.'
+    unit_amount: 2100
+    available: true
+    max_quantity: 10
+    quantity: 1
+    line_total: 2100
+items_summary: '1 × Single rigid stall — £21.00'
+total_pence: 2100
+total: £21.00
+acceptance: true
+privacy_consent: true
+recipient_email: thomas.owen@live.co.uk
+payment_status: checkout_error

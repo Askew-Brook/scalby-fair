@@ -1,0 +1,16 @@
+name: 'Peter Calow'
+super: true
+id: 2c99ed9d-ba63-46fa-89cc-90df46d75826
+password_hash: $2y$12$/tmUA6P/vxU0k8m42GCX/OkoNj3CYoIKZweXcRnmAZvimEYeRIxjm
+preferences:
+  collections:
+    events:
+      view: list
+    photography_competitions:
+      view: list
+    pages:
+      view: tree
+    fair_years:
+      view: list
+    news:
+      view: list

@@ -1,0 +1,59 @@
+booking_year: 2027
+first_name: Iain
+last_name: Johnston
+email: iainjscar@hotmail.co.uk
+phone: '07967059222'
+address_line_1: '25 Barmoor Close'
+address_line_2: Scalby
+town: Scarborough
+postcode: 'YO13 0RZ'
+country: 'United Kingdom'
+adult_walkers:
+  -
+    first_name: Iain
+    last_name: Johnston
+    age: '72'
+    gender: M
+    postcode: 'YO13 0RZ'
+  -
+    first_name: Barbara
+    last_name: Johnston
+    age: '72'
+    gender: F
+    postcode: 'YO13 0RZ'
+adult_walkers_summary: |-
+  Iain Johnston — age 72, M, YO13 0RZ
+  Barbara Johnston — age 72, F, YO13 0RZ
+adult_walkers_names: 'Iain Johnston|Barbara Johnston'
+adult_walkers_ages: 72|72
+adult_walkers_genders: M|F
+adult_walkers_postcodes: 'YO13 0RZ|YO13 0RZ'
+adult_count: 2
+junior_count: 0
+dog_count: 0
+donation_pence: 200
+donation: £2.00
+line_items:
+  -
+    code: adult_walkers
+    name: 'Adult walker'
+    description: 'Scalby Charity Walk 2027'
+    unit_amount: 1500
+    quantity: 2
+    line_total: 3000
+  -
+    code: charity_donation
+    name: 'Donation to the Scalby Walk charity'
+    description: 'Thank you for supporting the chosen charity.'
+    unit_amount: 200
+    quantity: 1
+    line_total: 200
+total_pence: 3200
+total: £32.00
+walker_details_confirmation: true
+rules_confirmation: true
+privacy_consent: true
+recipient_emails:
+  - m.whiteley@chaoslab.co.uk
+  - sheppardnigel@hotmail.com
+payment_status: checkout_error

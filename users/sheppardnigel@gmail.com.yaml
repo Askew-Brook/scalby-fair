@@ -1,0 +1,14 @@
+name: 'Nigel Sheppard'
+super: true
+id: 58cfda34-1eaa-4a7c-a4f8-d8eb3875785e
+password_hash: $2y$12$kAdz.4XYRbU9r5L6XvahH.DE2OYUBfh1ceu9uzBQOSa.eMGf82HG2
+preferences:
+  collections:
+    pages:
+      view: tree
+    events:
+      view: list
+    fair_years:
+      view: list
+    news:
+      view: list

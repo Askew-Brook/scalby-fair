@@ -1,0 +1,16 @@
+name: 'Marion Sheppard'
+super: true
+id: c5f5ed98-dfe2-4e66-bba0-3958eee75a7c
+password_hash: $2y$12$Wk4dOooZ8Du2Gmm1bVPNleMYDLb2fkWwxKuo/Yci0ZoFAV5uL3BXe
+preferences:
+  collections:
+    events:
+      view: list
+    pages:
+      view: list
+    fair_years:
+      view: list
+    news:
+      view: list
+    photography_competitions:
+      view: list

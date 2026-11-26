@@ -1,0 +1,30 @@
+booking_year: 2026
+first_name: Thomas
+last_name: Gillon
+email: thomas.owen@live.co.uk
+phone: '7969006414'
+business_name: 'tom Owen'
+address_line_1: '8 wrea head close'
+address_line_2: scalby
+town: Scarborough
+postcode: YO130RX
+stall_purpose: sgsht
+special_requirements: fgbsdy
+certificates: bvwbyur
+items:
+  -
+    code: table
+    name: Table
+    description: '6ft × 2.5ft table.'
+    unit_amount: 200
+    available: true
+    max_quantity: 10
+    quantity: 1
+    line_total: 200
+items_summary: '1 × Table — £2.00'
+total_pence: 200
+total: £2.00
+acceptance: true
+privacy_consent: true
+recipient_email: thomas.owen@live.co.uk
+payment_status: checkout_error

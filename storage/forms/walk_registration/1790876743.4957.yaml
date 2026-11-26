@@ -1,0 +1,52 @@
+booking_year: 2027
+first_name: Peter
+last_name: Calow
+email: petercalow@gmail.com
+phone: '+447977559472'
+address_line_1: '14 Hay Lane'
+address_line_2: Scalby
+town: Scarborough
+county: 'North Yorkshire'
+postcode: 'YO13 0SP'
+country: 'United Kingdom'
+adult_walkers:
+  -
+    first_name: Peter
+    last_name: Calow
+    age: '70'
+    gender: M
+    postcode: 'YO13 0SP'
+adult_walkers_summary: 'Peter Calow — age 70, M, YO13 0SP'
+adult_walkers_names: 'Peter Calow'
+adult_walkers_ages: '70'
+adult_walkers_genders: M
+adult_walkers_postcodes: 'YO13 0SP'
+adult_count: 1
+junior_count: 0
+dog_count: 0
+donation_pence: 498
+donation: £4.98
+line_items:
+  -
+    code: adult_walkers
+    name: 'Adult walker'
+    description: 'Scalby Charity Walk 2027'
+    unit_amount: 1500
+    quantity: 1
+    line_total: 1500
+  -
+    code: charity_donation
+    name: 'Donation to the Scalby Walk charity'
+    description: 'Thank you for supporting the chosen charity.'
+    unit_amount: 498
+    quantity: 1
+    line_total: 498
+total_pence: 1998
+total: £19.98
+walker_details_confirmation: true
+rules_confirmation: true
+privacy_consent: true
+recipient_emails:
+  - m.whiteley@chaoslab.co.uk
+  - sheppardnigel@hotmail.com
+payment_status: checkout_error
