@@ -1,4 +1,4 @@
-@props(['event', 'headingLevel' => 3])
+@props(['event', 'headingLevel' => 3, 'compact' => false])
 @php
     $startAt = $event->start_at ? \Illuminate\Support\Carbon::parse($event->start_at) : null;
     $endAt = $event->end_at ? \Illuminate\Support\Carbon::parse($event->end_at) : null;
@@ -8,30 +8,32 @@
     $types = collect($event->event_types ?? []);
 @endphp
 
-<article {{ $attributes->class(['interactive-card group grid h-full overflow-hidden border border-hedge-700/15 bg-cream-50 sm:grid-cols-[12rem_1fr]']) }}>
+<article {{ $attributes->class(['interactive-card group grid h-full overflow-hidden border border-hedge-700/15 bg-cream-50', 'grid-rows-[auto_1fr]' => $compact, 'sm:grid-cols-[12rem_1fr]' => ! $compact]) }}>
     @if($event->featured_image)
-        <a href="{{ $event->url() }}" tabindex="-1" aria-hidden="true" class="image-zoom min-h-52 overflow-hidden">
-            <x-responsive-image :asset="$event->featured_image" :width="700" :height="850" sizes="(min-width: 1024px) 16vw, 100vw" alt="" class="h-full w-full object-cover" />
+        <a href="{{ $event->url() }}" tabindex="-1" aria-hidden="true" @class(['image-zoom overflow-hidden', 'h-32' => $compact, 'min-h-52' => ! $compact])>
+            <x-responsive-image :asset="$event->featured_image" :width="700" :height="$compact ? 300 : 850" :sizes="$compact ? '(min-width: 768px) 33vw, 100vw' : '(min-width: 1024px) 16vw, 100vw'" alt="" class="h-full w-full object-cover" />
         </a>
     @else
-        <div class="grid min-h-40 place-items-center bg-hedge-700 font-serif text-5xl text-cream-50" aria-hidden="true">SF</div>
+        <div @class(['grid place-items-center bg-hedge-700 font-serif text-5xl text-cream-50', 'h-32' => $compact, 'min-h-40' => ! $compact]) aria-hidden="true">SF</div>
     @endif
-    <div class="p-6 sm:p-7">
+    <div @class(['p-4' => $compact, 'p-6 sm:p-7' => ! $compact])>
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
             @if($startAt)<p class="font-semibold text-barn-700">{{ $startAt->format('D j M') }}@if($timeTbc) · time TBC @else, {{ $startAt->format('g:ia') }}@if($endAt)–{{ $endAt->format('g:ia') }}@endif @endif</p>@endif
             @if($status !== 'scheduled')<span class="bg-barn-600 px-2.5 py-1 text-xs font-bold tracking-[0.12em] text-white uppercase">{{ $status }}</span>@endif
         </div>
-        @if($types->isNotEmpty())<p class="mt-3 text-xs font-semibold tracking-[0.12em] text-hedge-600 uppercase">{{ $types->pluck('title')->join(' · ') }}</p>@endif
+        @if(!$compact && $types->isNotEmpty())<p class="mt-3 text-xs font-semibold tracking-[0.12em] text-hedge-600 uppercase">{{ $types->pluck('title')->join(' · ') }}</p>@endif
         @if((int) $headingLevel === 4)
             <h4 class="mt-2 font-serif text-2xl tracking-tight text-balance text-hedge-900 sm:text-3xl"><a href="{{ $event->url() }}" class="group-hover:text-barn-700">{{ $event->title }}<span aria-hidden="true" class="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span></a></h4>
         @else
             <h3 class="mt-2 font-serif text-2xl tracking-tight text-balance text-hedge-900 sm:text-3xl"><a href="{{ $event->url() }}" class="group-hover:text-barn-700">{{ $event->title }}<span aria-hidden="true" class="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span></a></h3>
         @endif
-        @if($event->summary)<p class="mt-3 text-pretty text-hedge-800/80">{{ $event->summary }}</p>@endif
+        @if(!$compact && $event->summary)<p class="mt-3 text-pretty text-hedge-800/80">{{ $event->summary }}</p>@endif
         @if($event->location)<p class="mt-4 text-sm font-semibold text-hedge-700">{{ $event->location }}</p>@endif
+        @unless($compact)
         <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2">
             <a href="{{ $event->url() }}" class="font-semibold text-barn-700 underline decoration-2 underline-offset-4">Event details</a>
             @if($bookingUrl)<a href="{{ $bookingUrl }}" class="font-semibold text-hedge-700 underline decoration-2 underline-offset-4" rel="noopener">Booking available</a>@endif
         </div>
+        @endunless
     </div>
 </article>
