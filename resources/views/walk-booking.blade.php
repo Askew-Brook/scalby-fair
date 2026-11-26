@@ -46,7 +46,7 @@
                     <div class="lg:col-span-7">
                         <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Easter Monday {{ $catalogue->year() }}</p>
                         <h2 id="walk-booking-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Before you register</h2>
-                        @if($pageContent)<div class="prose mt-7 max-w-[75ch]">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                        @if($pageContent)<div class="prose mt-7 max-w-[75ch]">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
                         <p class="mt-6 max-w-[75ch] font-semibold italic text-hedge-900">You can also enter using a paper form at The Plough or on walk day.</p>
 
                         @if($walkDocuments->isNotEmpty())

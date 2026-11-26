@@ -13,10 +13,9 @@ tabs:
           - { handle: supporting_image, field: { type: assets, display: Supporting image, container: assets, max_files: 1, mode: list } }
           -
             handle: content
-            field:
-              type: markdown
+            field: editorial_text.body
+            config:
               display: About the Fair
-              buttons: [h2, h3, bold, italic, unorderedlist, link]
       -
         display: Community impact
         fields:

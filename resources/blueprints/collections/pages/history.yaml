@@ -25,7 +25,12 @@ tabs:
               reorderable: true
               fields:
                 - { handle: heading, field: { type: text, display: Heading, required: true } }
-                - { handle: content, field: { type: markdown, display: Chapter text, required: true, buttons: [h3, bold, italic, unorderedlist, orderedlist, quote, link] } }
+                -
+                  handle: content
+                  field: editorial_text.body
+                  config:
+                    display: Chapter text
+                    required: true
                 - { handle: image, field: { type: assets, display: Optional image, container: assets, max_files: 1, mode: list } }
       -
         display: Presidents and Chairs

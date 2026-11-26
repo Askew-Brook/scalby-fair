@@ -83,13 +83,9 @@ tabs:
                 - required
           -
             handle: how_to_enter
-            field:
-              type: markdown
+            field: editorial_text.body
+            config:
               display: How to enter
-              buttons:
-                - bold
-                - italic
-                - link
           -
             handle: rules
             field:
@@ -164,8 +160,8 @@ tabs:
                 winners_announced: 'equals true'
           -
             handle: winner_notes
-            field:
-              type: markdown
+            field: editorial_text.body
+            config:
               display: Winner details and credits
               if:
                 winners_announced: 'equals true'

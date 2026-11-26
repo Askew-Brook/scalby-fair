@@ -16,7 +16,7 @@
                 <div class="lg:col-span-7">
                     <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">A real person will read this</p>
                     <h2 id="contact-heading" class="mt-3 font-serif text-4xl tracking-tight text-balance text-hedge-900 sm:text-5xl">Contact the Fair committee</h2>
-                    @if($pageContent)<div class="prose mt-6">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                    @if($pageContent)<div class="prose mt-6">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
 
                     <section id="contact-form" class="mt-10 scroll-mt-28 border-t-4 border-wheat-300 bg-cream-100 p-6 sm:p-9" aria-labelledby="form-heading">
                         <h3 id="form-heading" class="font-serif text-3xl tracking-tight text-hedge-900">Send us a message</h3>

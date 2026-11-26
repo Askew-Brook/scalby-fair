@@ -106,6 +106,19 @@
     .prose li::marker { color: var(--color-barn-600); }
     .prose blockquote { border-left: 0.3rem solid var(--color-wheat-300); color: var(--color-hedge-800); font-size: 1.15em; font-style: italic; padding-left: 1.25rem; }
     .prose img { height: auto; max-width: 100%; }
+    .prose [data-editorial-colour="red"] { color: var(--editorial-red, var(--color-barn-700)); }
+    .prose [data-editorial-colour="blue"] { color: var(--editorial-blue, #205185); }
+    .prose [data-editorial-colour="green"] { color: var(--editorial-green, var(--color-hedge-700)); }
+    .prose [data-editorial-colour="gold"] { color: var(--editorial-gold, #765511); }
+    .prose-on-dark {
+        --editorial-red: #ffb7ac;
+        --editorial-blue: #a9d3ff;
+        --editorial-green: #c2dda8;
+        --editorial-gold: var(--color-wheat-300);
+        color: var(--color-cream-100);
+    }
+    .prose-on-dark :is(h2, h3, h4, strong, blockquote) { color: var(--color-cream-50); }
+    .prose-on-dark a, .prose-on-dark a:hover { color: var(--color-wheat-300); }
     .field-label {
         color: var(--color-hedge-900);
         display: block;

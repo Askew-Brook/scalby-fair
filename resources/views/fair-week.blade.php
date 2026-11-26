@@ -50,7 +50,7 @@
                 <div class="lg:col-span-7">
                     <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">One village. Ten days. A hundred reasons to join in.</p>
                     <h2 id="fair-week-intro" class="mt-3 font-serif text-4xl leading-tight tracking-tight text-balance text-hedge-900 sm:text-5xl">The build-up is part of the celebration</h2>
-                    @if($pageContent)<div class="prose mt-6 max-w-3xl">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                    @if($pageContent)<div class="prose mt-6 max-w-3xl">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
                 </div>
                 <aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:col-span-4 lg:col-start-9">
                     <p class="text-xs font-semibold tracking-[0.16em] text-barn-600 uppercase">At a glance</p>

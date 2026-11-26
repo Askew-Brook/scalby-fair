@@ -59,7 +59,7 @@
                 <article class="lg:col-span-5" aria-labelledby="how-to-enter-heading">
                     <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Your photographs</p>
                     <h2 id="how-to-enter-heading" class="mt-3 font-serif text-4xl tracking-tight text-hedge-900">How to enter</h2>
-                    <div class="prose mt-6">{!! \Statamic\Statamic::modify($how_to_enter)->markdown() !!}</div>
+                    <div class="prose mt-6">{!! \Statamic\View\Blade\value($how_to_enter) !!}</div>
                     <div class="mt-8 border-l-2 border-wheat-300 pl-5">
                         <p class="font-semibold text-hedge-900">Upload requirements</p>
                         <p class="mt-2 text-hedge-800/80">Up to 5 photographs · 10MB maximum per image · JPG, PNG or HEIC</p>
@@ -196,7 +196,7 @@
                     @if($winnerImages->isNotEmpty())
                         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">@foreach($winnerImages as $image)<div class="image-zoom"><x-responsive-image :asset="$image" class="aspect-[4/3] w-full object-cover" /></div>@endforeach</div>
                     @endif
-                    @if($winner_notes)<div class="prose mt-10 max-w-3xl">{!! \Statamic\Statamic::modify($winner_notes)->markdown() !!}</div>@endif
+                    @if($winner_notes)<div class="prose mt-10 max-w-3xl">{!! \Statamic\View\Blade\value($winner_notes) !!}</div>@endif
                 </div>
             </section>
         @endif

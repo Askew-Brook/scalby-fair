@@ -57,7 +57,7 @@
             <x-breadcrumbs :items="[['title' => 'What’s On', 'url' => '/events'], ['title' => $title]]" />
             <div class="mt-10 grid gap-12 lg:grid-cols-12">
                 <article class="lg:col-span-7">
-                    @if($content)<div class="prose">{!! \Statamic\Statamic::modify($content)->markdown() !!}</div>@endif
+                    @if($content)<div class="prose">{!! \Statamic\View\Blade\value($content) !!}</div>@endif
 
                     @if($galleryItems->isNotEmpty())
                         <section class="mt-12" aria-labelledby="event-gallery"><h2 id="event-gallery" class="font-serif text-3xl font-semibold tracking-tight text-hedge-900">Gallery</h2><div class="mt-6 grid gap-4 sm:grid-cols-2">@foreach($galleryItems as $image)<x-responsive-image :asset="$image" class="aspect-[4/3] w-full object-cover" />@endforeach</div></section>

@@ -2,8 +2,8 @@ title: Default
 fields:
   -
     handle: content
-    field:
-      type: markdown
+    field: editorial_text.body
+    config:
       display: Content
       localizable: true
   -

@@ -85,7 +85,7 @@
             <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
                 <div class="lg:col-span-5">
                     <x-section-heading eyebrow="Welcome" :heading="$introduction_heading" />
-                    <div class="prose mt-7">{!! \Statamic\Statamic::modify($introduction)->markdown() !!}</div>
+                    <div class="prose mt-7">{!! \Statamic\View\Blade\value($introduction) !!}</div>
                 </div>
                 <x-photo-collage :images="$heroSupportingImages" class="lg:col-span-6 lg:col-start-7" />
             </div>

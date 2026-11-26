@@ -25,7 +25,7 @@
                     <div class="lg:col-span-7">
                         <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">{{ $bookingOpen ? 'Fair Day '.$catalogue->year() : 'Next Fair Day' }}</p>
                         <h2 id="stall-booking-heading" class="mt-3 max-w-[35ch] font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Please read this before booking</h2>
-                        @if($pageContent)<div id="stall-booking-terms" class="prose mt-7 max-w-[75ch]">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                        @if($pageContent)<div id="stall-booking-terms" class="prose mt-7 max-w-[75ch]">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
                     </div>
 
                     <aside class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:sticky lg:top-28 lg:col-span-4 lg:col-start-9" aria-labelledby="booking-process-heading">

@@ -44,20 +44,10 @@ tabs:
               mode: list
           -
             handle: content
-            field:
-              type: markdown
+            field: editorial_text.body
+            config:
               display: 'Page content'
               instructions: 'Use headings, short paragraphs and lists to keep the page easy to scan.'
-              buttons:
-                - h2
-                - h3
-                - bold
-                - italic
-                - unorderedlist
-                - orderedlist
-                - quote
-                - link
-                - image
           -
             handle: fair_week_highlights
             field:
