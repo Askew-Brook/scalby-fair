@@ -1,5 +1,4 @@
 const bard = window.Statamic.$bard;
-const { Mark } = bard.tiptap.core;
 const palette = {
     red: { label: 'Barn red', hex: '#74332d' },
     blue: { label: 'Logo blue', hex: '#205185' },
@@ -8,7 +7,7 @@ const palette = {
 };
 const mark = 'editorialTextColour';
 
-bard.addExtension(() => Mark.create({
+bard.addExtension(({ tiptap }) => tiptap.core.Mark.create({
     name: mark,
 
     addAttributes() {
