@@ -14,7 +14,7 @@
                 <div class="lg:col-span-7">
                     <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">Occasional updates</p>
                     <h2 id="newsletter-heading" class="mt-3 font-serif text-4xl font-semibold tracking-tight text-balance text-hedge-900 sm:text-5xl">Keep me up to date</h2>
-                    @if($pageContent)<div class="prose mt-6">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                    @if($pageContent)<div class="prose mt-6">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
 
                     <section id="newsletter-form" class="mt-10 scroll-mt-28 border-t-4 border-wheat-300 bg-cream-100 p-6 sm:p-9" aria-labelledby="newsletter-form-heading">
                         <h3 id="newsletter-form-heading" class="font-serif text-3xl font-semibold tracking-tight text-hedge-900">Newsletter sign-up</h3>

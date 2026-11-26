@@ -1,0 +1,28 @@
+title: Editorial text
+fields:
+  -
+    handle: body
+    field:
+      type: article_body
+      display: Content
+      instructions: Use the link tool to choose a site entry or enter a URL. Apply the site colours using the swatches.
+      container: assets
+      link_collections: [pages, news, events, photography_competitions]
+      enable_paste_rules: true
+      buttons:
+        - h2
+        - h3
+        - h4
+        - bold
+        - italic
+        - underline
+        - unorderedlist
+        - orderedlist
+        - quote
+        - anchor
+        - image
+        - text_red
+        - text_blue
+        - text_green
+        - text_gold
+        - removeformat

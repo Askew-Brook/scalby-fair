@@ -15,7 +15,7 @@
                 <div class="lg:col-span-7">
                     <p class="text-sm font-semibold tracking-[0.16em] text-barn-600 uppercase">A village tradition, shared by everyone</p>
                     <h2 id="about-heading" class="mt-3 font-serif text-4xl tracking-tight text-balance text-hedge-900 sm:text-5xl">Built by volunteers, for the whole community</h2>
-                    @if($pageContent)<div class="prose mt-7">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+                    @if($pageContent)<div class="prose mt-7">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
                 </div>
                 <nav class="border-t-4 border-wheat-300 bg-cream-100 p-7 lg:col-span-4 lg:col-start-9" aria-label="Explore the story of the Fair">
                     <p class="text-xs font-semibold tracking-[0.16em] text-barn-600 uppercase">Explore more</p>

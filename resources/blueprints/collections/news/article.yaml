@@ -32,28 +32,13 @@ tabs:
               mode: list
           -
             handle: content
-            field:
-              type: article_body
+            field: editorial_text.body
+            config:
               display: Article content
               instructions: 'Use headings to structure the article. The link tool lets you choose a site entry or enter a URL. Pasted text keeps supported formatting such as headings, lists, emphasis and links.'
-              container: assets
-              link_collections: [pages, news, events]
-              enable_paste_rules: true
               required: true
               validate:
                 - required
-              buttons:
-                - h2
-                - h3
-                - h4
-                - bold
-                - italic
-                - unorderedlist
-                - orderedlist
-                - quote
-                - anchor
-                - image
-                - removeformat
           -
             handle: news_categories
             field:

@@ -33,7 +33,7 @@
                         <article id="{{ \Illuminate\Support\Str::slug($chapter['heading'] ?? '') }}" class="scroll-mt-28 border-t border-hedge-700/20 py-12 first:border-t-0 first:pt-0">
                             <div class="flex items-baseline gap-4"><span class="font-serif text-2xl text-wheat-500" aria-hidden="true">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><h2 class="font-serif text-3xl tracking-tight text-balance text-hedge-900 sm:text-4xl">{{ $chapter['heading'] ?? '' }}</h2></div>
                             @if($chapterImage && $index % 2 === 0)<div class="image-zoom mt-7"><x-responsive-image :asset="$chapterImage" :width="1100" :height="620" sizes="(min-width: 1024px) 62vw, 100vw" alt="" class="aspect-[16/9] w-full object-cover" /></div>@endif
-                            <div class="prose mt-7 max-w-none">{!! \Statamic\Statamic::modify($chapter['content'] ?? '')->markdown() !!}</div>
+                            <div class="prose mt-7 max-w-none">{!! \Statamic\View\Blade\value($chapter['content'] ?? '') !!}</div>
                             @if($chapterImage && $index % 2 === 1)<div class="image-zoom mt-8 ml-auto max-w-2xl"><x-responsive-image :asset="$chapterImage" :width="900" :height="650" sizes="(min-width: 1024px) 50vw, 100vw" alt="" class="aspect-[9/6] w-full object-cover shadow-soft" /></div>@endif
                         </article>
                     @endforeach

@@ -3,12 +3,15 @@
 namespace App\Providers;
 
 use App\Fieldtypes\ArticleBody;
+use App\Fieldtypes\Bard\EditorialTextColour;
 use App\Listeners\SendContactEnquiry;
 use App\Support\ArticleLivePreview;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Statamic\CP\LivePreview;
 use Statamic\Events\FormSubmitted;
+use Statamic\Fieldtypes\Bard\Augmentor;
+use Statamic\Statamic;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,12 +29,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ArticleBody::register();
+        Augmentor::addExtension('editorialTextColour', new EditorialTextColour);
+        Statamic::vite('scalby-fair', ['resources/js/cp.js']);
 
         Event::listen(FormSubmitted::class, SendContactEnquiry::class);
-
-        // Statamic::vite('app', [
-        //     'resources/js/cp.js',
-        //     'resources/css/cp.css',
-        // ]);
     }
 }

@@ -110,18 +110,9 @@ tabs:
               mode: grid
           -
             handle: content
-            field:
-              type: markdown
+            field: editorial_text.body
+            config:
               display: Full description
-              buttons:
-                - h2
-                - h3
-                - bold
-                - italic
-                - unorderedlist
-                - orderedlist
-                - quote
-                - link
   practical:
     display: Booking & practical information
     sections:

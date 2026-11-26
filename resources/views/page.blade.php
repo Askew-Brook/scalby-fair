@@ -11,7 +11,7 @@
         <x-page-hero :title="$title" :eyebrow="$eyebrow" :introduction="$introduction" :image="$featured_image" :supporting-image="$supporting_image" />
         <div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-20">
             <x-breadcrumbs :items="[['title' => $title]]" />
-            @if($pageContent)<div class="prose mt-10 max-w-4xl text-[1.2rem]">{!! \Statamic\Statamic::modify($pageContent)->markdown() !!}</div>@endif
+            @if($pageContent)<div class="prose mt-10 max-w-4xl text-[1.2rem]">{!! \Statamic\View\Blade\value($pageContent) !!}</div>@endif
 
             @if($title === 'Contact')
                 @php($siteSettings = globalSet('site'))
