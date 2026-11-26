@@ -59,6 +59,17 @@ tabs:
                 - link
                 - image
           -
+            handle: fair_week_highlights
+            field:
+              type: entries
+              display: Fair Week highlights
+              instructions: Choose up to three events in display order. Only published events in the displayed Fair Week programme appear. Leave blank to use the featured events.
+              collections: [events]
+              max_items: 3
+              mode: select
+              if:
+                template: 'equals fair-week'
+          -
             handle: callout_heading
             field:
               type: text

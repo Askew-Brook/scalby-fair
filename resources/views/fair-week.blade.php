@@ -19,7 +19,13 @@
         ->sortBy('start_at')
         ->values();
     $groupedEvents = $events->groupBy(fn ($event) => Carbon::parse($event->start_at)->toDateString());
-    $featuredEvents = $events->filter(fn ($event) => (bool) $event->featured)->take(3);
+    $highlightIds = collect($page->hasSupplement('fair_week_highlights')
+        ? $page->getSupplement('fair_week_highlights')
+        : $page->get('fair_week_highlights'))->filter()->unique();
+    $programmeEvents = $events->keyBy(fn ($event) => $event->id());
+    $featuredEvents = $highlightIds->isNotEmpty()
+        ? $highlightIds->map(fn ($id) => $programmeEvents->get($id))->filter()->take(3)
+        : $events->filter(fn ($event) => (bool) $event->featured)->take(3);
     $programmeStarts = $events->first() ? Carbon::parse($events->first()->start_at) : null;
     $programmeEnds = $events->last() ? Carbon::parse($events->last()->start_at) : null;
     $programmeDates = $programmeStarts && $programmeEnds
@@ -56,12 +62,12 @@
         </section>
 
         @if($featuredEvents->isNotEmpty())
-            <section class="bg-hedge-900 py-16 text-cream-50 sm:py-20" aria-labelledby="featured-events-heading">
+            <section class="bg-hedge-900 py-12 text-cream-50 sm:py-16" aria-labelledby="featured-events-heading">
                 <div class="mx-auto max-w-7xl px-5 sm:px-8">
-                    <x-section-heading id="featured-events-heading" eyebrow="Start here" title="Fair Week highlights" introduction="Three very different moments that capture the range of the week—from the first dance to the final live set." theme="dark" />
-                    <div class="mt-10 grid gap-7 xl:grid-cols-3">
+                    <x-section-heading id="featured-events-heading" title="Fair Week highlights" theme="dark" />
+                    <div class="mt-7 grid gap-5 md:grid-cols-3">
                         @foreach($featuredEvents as $event)
-                            <x-event-card :event="$event" class="bg-cream-50 text-ink sm:grid-cols-1" />
+                            <x-event-card :event="$event" compact class="text-ink" />
                         @endforeach
                     </div>
                 </div>
